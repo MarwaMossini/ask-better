@@ -1,0 +1,37 @@
+name: Build Android test APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Generate Android platform files
+        run: flutter create . --platforms=android --project-name proshnolab --org com.proshnolab
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Check Dart code
+        run: flutter analyze
+      - name: Run widget tests
+        run: flutter test
+      - name: Build installable debug APK
+        run: flutter build apk --debug
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: proshnolab-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
