@@ -10,6 +10,6 @@ void main() {
     await tester.tap(find.text('Build a prompt'));
     await tester.pumpAndSettle();
     expect(find.text('Generate my prompt'), findsOneWidget);
-    expect(find.byType(TextField), findsNWidgets(5));
+    expect(find.byType(TextField), findsNWidgets(4));
   });
 }
