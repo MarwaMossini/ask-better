@@ -94,6 +94,9 @@
     @media (prefers-reduced-motion: reduce) {
       .library-photos { scroll-behavior: auto; }
     }
+    .reading-card { padding: clamp(16px, 4vw, 28px); margin: 12px 0 24px; border: 1px solid #badad3; border-radius: 20px; background: white; }
+    .reading-card h4 { font-size: 1.25rem; margin: 6px 0 12px; }
+    .reading-card .muted { font-size: .9rem; }
   </style>
 </head>
 <body>
@@ -180,6 +183,16 @@
         </li>
       </ul>
       <p class="intro" data-en="Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates." data-bn="এআই নিয়ে প্রশ্নোত্তর, প্রম্পটের আগে-পরে উদাহরণ এবং এআই আপডেটের অফিসিয়াল লিংক দেখুন।">Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates.</p>
+      <div style="margin-top: 32px">
+        <h3 data-en="AI stories and practical tips" data-bn="এআই নিয়ে লেখা ও ব্যবহারিক পরামর্শ">AI stories and practical tips</h3>
+        <article id="prompt-workflows" class="reading-card">
+          <div class="muted"><span data-en="Expert opinion" data-bn="বিশেষজ্ঞের মতামত">Expert opinion</span> · Inc. · Pam Didner · <time datetime="2026-08-16" data-en="August 16, 2026" data-bn="১৬ আগস্ট ২০২৬">August 16, 2026</time></div>
+          <h4 data-en="Turn one AI prompt into a workflow" data-bn="একটি এআই প্রম্পট থেকে ধাপে ধাপে কাজ করুন">Turn one AI prompt into a workflow</h4>
+          <p data-en="Pam Didner describes how her AI use evolved from short, general prompts into repeatable workflows. Her experience offers a way to think about tasks that need planning, drafting, and feedback." data-bn="প্যাম ডিডনার বর্ণনা করেছেন কীভাবে ছোট ও সাধারণ প্রম্পট দিয়ে শুরু করে তিনি এআইকে ধারাবাহিক কাজে ব্যবহার করতে শিখেছেন। পরিকল্পনা, খসড়া ও প্রতিক্রিয়া দরকার এমন কাজে এই অভিজ্ঞতা কাজে লাগতে পারে।">Pam Didner describes how her AI use evolved from short, general prompts into repeatable workflows. Her experience offers a way to think about tasks that need planning, drafting, and feedback.</p>
+          <p><strong data-en="Try it with a class presentation" data-bn="ক্লাসের উপস্থাপনায় চেষ্টা করুন">Try it with a class presentation</strong>. <span data-en="Ask for a five-slide outline based on your topic and audience. Review the outline, then ask for speaker notes and practice questions." data-bn="আপনার বিষয় ও শ্রোতা অনুযায়ী পাঁচটি স্লাইডের রূপরেখা চান। সেটি দেখে বক্তার নোট ও অনুশীলনের প্রশ্ন চান।">Ask for a five-slide outline based on your topic and audience. Review the outline, then ask for speaker notes and practice questions.</span></p>
+          <a href="https://www.inc.com/pam-didner/short-chatbot-prompts-are-a-beginner-habit-skilled-users-turn-them-into-whole-workflows/91387220" data-en="Read the original on Inc." data-bn="Inc.-এ মূল লেখাটি পড়ুন">Read the original on Inc.</a>
+        </article>
+      </div>
       <a class="cta" href="app/?view=learn" data-en="Open the learning library" data-bn="শেখার সংগ্রহ খুলুন">Open the learning library</a>
     </section>
 
@@ -241,7 +254,8 @@
     </section>
     <section class="container">
       <h2 data-en="Stay curious about AI" data-bn="এআই সম্পর্কে নতুন তথ্য জানুন">Stay curious about AI</h2>
-      <p class="intro" data-en="The current preview links to official sources. A curated, dated news library is planned for a later release." data-bn="এই পরীক্ষামূলক সংস্করণে অফিসিয়াল উৎসের লিংক রয়েছে। যাচাইকৃত সংবাদ লাইব্রেরি পরের সংস্করণে যুক্ত করার পরিকল্পনা আছে।">The current preview links to official sources. A curated, dated news library is planned for a later release.</p>
+      <p class="intro" data-en="Follow official AI updates or browse our selected stories in the Learning Library." data-bn="এআই সম্পর্কে অফিসিয়াল আপডেট দেখুন অথবা শেখার সংগ্রহে নির্বাচিত লেখাগুলো পড়ুন।">The current preview links to official sources. A curated, dated news library is planned for a later release.</p>
+      <p><a href="#prompt-workflows" data-en="Read our featured AI story" data-bn="এআই নিয়ে নির্বাচিত লেখাটি পড়ুন">Read our featured AI story</a></p>
       <ul class="source-list">
         <li><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noopener noreferrer">ChatGPT release notes</a></li>
         <li><a href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">Google AI news</a></li>
