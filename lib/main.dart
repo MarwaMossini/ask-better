@@ -107,6 +107,19 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
               icon: const Icon(Icons.edit_outlined),
               label: Text(t('Build a prompt', 'প্রম্পট তৈরি করুন')),
             ),
+            TextButton(
+              onPressed: () async {
+                final openBuilder = await Navigator.of(context).push<bool>(
+                  MaterialPageRoute(
+                    builder: (context) => ProshnoLabHelp(bangla: bangla),
+                  ),
+                );
+                if (mounted && openBuilder == true) {
+                  setState(() => selectedTab = 1);
+                }
+              },
+              child: Text(t('How to use & FAQ', 'ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা')),
+            ),
           ]),
         ),
         const SizedBox(height: 22),
@@ -160,6 +173,100 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
             Text(description, maxLines: 2, overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.bodySmall),
           ]),
+        ),
+      ),
+    );
+  }
+}
+
+class ProshnoLabHelp extends StatelessWidget {
+  const ProshnoLabHelp({super.key, required this.bangla});
+
+  final bool bangla;
+
+  String t(String english, String bengali) => bangla ? bengali : english;
+
+  @override
+  Widget build(BuildContext context) {
+    final headingStyle = Theme.of(context).textTheme.titleLarge;
+    final steps = [
+      t('Choose Essay, Email, or Study in the Builder.', 'প্রম্পট বিল্ডারে রচনা, ইমেইল বা পড়াশোনা বেছে নিন।'),
+      t('Answer the guided questions with a few details about your task.', 'আপনার কাজ সম্পর্কে কয়েকটি তথ্য দিয়ে প্রশ্নগুলোর উত্তর দিন।'),
+      t('Generate your prompt, edit it if needed, then copy it into your preferred AI tool.', 'প্রম্পট তৈরি করুন, প্রয়োজনে সম্পাদনা করুন, তারপর কপি করে আপনার পছন্দের এআই টুলে পেস্ট করুন।'),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(title: Text(t('How to use ProshnoLab', 'প্রশনোল্যাব কীভাবে ব্যবহার করবেন'))),
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: ListView(
+              padding: const EdgeInsets.all(18),
+              children: [
+                for (var index = 0; index < steps.length; index++)
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: CircleAvatar(child: Text('${index + 1}')),
+                    title: Text(steps[index]),
+                  ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: FilledButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: Text(t('Open the builder', 'প্রম্পট বিল্ডার খুলুন')),
+                  ),
+                ),
+                const SizedBox(height: 28),
+                Semantics(
+                  header: true,
+                  child: Text(t('Frequently asked questions', 'সাধারণ জিজ্ঞাসা'), style: headingStyle),
+                ),
+                const SizedBox(height: 8),
+                ExpansionTile(
+                  title: Text(t('What is a prompt?', 'প্রম্পট কী?')),
+                  expandedAlignment: AlignmentDirectional.centerStart,
+                  childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  children: [
+                    Text(t('A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want.', 'প্রম্পট হলো এআই টুলকে দেওয়া প্রশ্ন বা নির্দেশনা। এতে আপনার লক্ষ্য, প্রাসঙ্গিক তথ্য ও কী ধরনের উত্তর চান তা লিখতে পারেন।')),
+                  ],
+                ),
+                ExpansionTile(
+                  title: Text(t('Does ProshnoLab answer my question?', 'প্রশনোল্যাব কি আমার প্রশ্নের উত্তর দেয়?')),
+                  expandedAlignment: AlignmentDirectional.centerStart,
+                  childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  children: [
+                    Text(t('The builder prepares a prompt for you. Copy it into an AI tool, such as ChatGPT or Gemini, to get a response.', 'বিল্ডার আপনার জন্য একটি প্রম্পট তৈরি করে। উত্তর পেতে সেটি কপি করে ChatGPT বা Gemini-এর মতো কোনো এআই টুলে পেস্ট করুন।')),
+                  ],
+                ),
+                ExpansionTile(
+                  title: Text(t('Can I use Bangla?', 'আমি কি বাংলায় ব্যবহার করতে পারি?')),
+                  expandedAlignment: AlignmentDirectional.centerStart,
+                  childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  children: [
+                    Text(t('Yes. Use the language button to switch between Bangla and English.', 'হ্যাঁ। ভাষার বোতাম দিয়ে বাংলা ও ইংরেজির মধ্যে বদলাতে পারবেন।')),
+                  ],
+                ),
+                ExpansionTile(
+                  title: Text(t('Do I need an account or payment?', 'অ্যাকাউন্ট খুলতে বা টাকা দিতে হবে কি?')),
+                  expandedAlignment: AlignmentDirectional.centerStart,
+                  childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  children: [
+                    Text(t('The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.', 'প্রশনোল্যাবের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।')),
+                  ],
+                ),
+                ExpansionTile(
+                  title: Text(t('Where do my answers go?', 'আমার উত্তরগুলো কোথায় যায়?')),
+                  expandedAlignment: AlignmentDirectional.centerStart,
+                  childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  children: [
+                    Text(t('ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.', 'প্রশনোল্যাব আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।')),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

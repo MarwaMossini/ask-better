@@ -40,6 +40,12 @@
     .prompt-line small { display: block; color: #5c7d75; margin-bottom: 3px; }
     .chip { display: inline-block; background: #d8efe8; color: #006960; padding: 4px 9px; border-radius: 8px; font-size: .83rem; font-weight: 700; }
     section { padding: 72px 0; }
+    .help-content { max-width: 760px; }
+    .help-content ol { padding-inline-start: 1.5rem; }
+    .help-content li + li { margin-top: 8px; }
+    .help-content details { border-top: 1px solid #c8e3dc; }
+    .help-content summary { padding: 12px 0; cursor: pointer; font-weight: 650; }
+    .help-content summary:focus-visible { outline: 3px solid #2aa99d; outline-offset: 3px; }
     .intro { max-width: 720px; color: #56716d; }
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
     .feature-card { padding: 26px; }
@@ -76,6 +82,7 @@
         <a href="#features" data-en="Features" data-bn="সুবিধা">Features</a>
         <a href="#try" data-en="Try a sample" data-bn="নমুনা দেখুন">Try a sample</a>
         <button type="button" class="language" id="language" aria-label="Switch language">বাংলা</button>
+        <a href="#how-to" data-en="How to use &amp; FAQ" data-bn="ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা">How to use &amp; FAQ</a>
       </nav>
     </div>
   </header>
@@ -91,6 +98,7 @@
             <a class="cta" href="#try" data-en="Try the sample builder" data-bn="নমুনা প্রম্পট তৈরি করুন">Try the sample builder</a>
             <a class="cta secondary" href="app/" data-en="Open full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ খুলুন">Open full web app</a>
           </div>
+          <p><a href="#how-to" data-en="How to use &amp; FAQ" data-bn="ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা">How to use &amp; FAQ</a></p>
         </div>
         <div class="preview-card" aria-label="Example prompt construction">
           <div class="preview-label" data-en="From an idea to a better prompt" data-bn="আইডিয়া থেকে ভালো প্রম্পট">From an idea to a better prompt</div>
@@ -138,6 +146,36 @@
       </div>
     </section>
 
+    <section id="how-to" class="container help-content">
+      <h2 data-en="How to use ProshnoLab" data-bn="প্রশনোল্যাব কীভাবে ব্যবহার করবেন">How to use ProshnoLab</h2>
+      <ol>
+        <li data-en="Choose Essay, Email, or Study in the Builder." data-bn="প্রম্পট বিল্ডারে রচনা, ইমেইল বা পড়াশোনা বেছে নিন।">Choose Essay, Email, or Study in the Builder.</li>
+        <li data-en="Answer the guided questions with a few details about your task." data-bn="আপনার কাজ সম্পর্কে কয়েকটি তথ্য দিয়ে প্রশ্নগুলোর উত্তর দিন।">Answer the guided questions with a few details about your task.</li>
+        <li data-en="Generate your prompt, edit it if needed, then copy it into your preferred AI tool." data-bn="প্রম্পট তৈরি করুন, প্রয়োজনে সম্পাদনা করুন, তারপর কপি করে আপনার পছন্দের এআই টুলে পেস্ট করুন।">Generate your prompt, edit it if needed, then copy it into your preferred AI tool.</li>
+      </ol>
+      <p><a href="app/" data-en="Open the full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ খুলুন">Open the full web app</a></p>
+      <h2 id="faq" data-en="Frequently asked questions" data-bn="সাধারণ জিজ্ঞাসা">Frequently asked questions</h2>
+      <details>
+        <summary data-en="What is a prompt?" data-bn="প্রম্পট কী?">What is a prompt?</summary>
+        <p data-en="A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want." data-bn="প্রম্পট হলো এআই টুলকে দেওয়া প্রশ্ন বা নির্দেশনা। এতে আপনার লক্ষ্য, প্রাসঙ্গিক তথ্য ও কী ধরনের উত্তর চান তা লিখতে পারেন।">A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want.</p>
+      </details>
+      <details>
+        <summary data-en="Does ProshnoLab answer my question?" data-bn="প্রশনোল্যাব কি আমার প্রশ্নের উত্তর দেয়?">Does ProshnoLab answer my question?</summary>
+        <p data-en="The builder prepares a prompt for you. Copy it into an AI tool, such as ChatGPT or Gemini, to get a response." data-bn="বিল্ডার আপনার জন্য একটি প্রম্পট তৈরি করে। উত্তর পেতে সেটি কপি করে ChatGPT বা Gemini-এর মতো কোনো এআই টুলে পেস্ট করুন।">The builder prepares a prompt for you. Copy it into an AI tool, such as ChatGPT or Gemini, to get a response.</p>
+      </details>
+      <details>
+        <summary data-en="Can I use Bangla?" data-bn="আমি কি বাংলায় ব্যবহার করতে পারি?">Can I use Bangla?</summary>
+        <p data-en="Yes. Use the language button to switch between Bangla and English." data-bn="হ্যাঁ। ভাষার বোতাম দিয়ে বাংলা ও ইংরেজির মধ্যে বদলাতে পারবেন।">Yes. Use the language button to switch between Bangla and English.</p>
+      </details>
+      <details>
+        <summary data-en="Do I need an account or payment?" data-bn="অ্যাকাউন্ট খুলতে বা টাকা দিতে হবে কি?">Do I need an account or payment?</summary>
+        <p data-en="The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing." data-bn="প্রশনোল্যাবের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।">The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.</p>
+      </details>
+      <details>
+        <summary data-en="Where do my answers go?" data-bn="আমার উত্তরগুলো কোথায় যায়?">Where do my answers go?</summary>
+        <p data-en="ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy." data-bn="প্রশনোল্যাব আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।">ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.</p>
+      </details>
+    </section>
     <section class="container">
       <h2 data-en="Stay curious about AI" data-bn="এআই সম্পর্কে নতুন তথ্য জানুন">Stay curious about AI</h2>
       <p class="intro" data-en="The current preview links to official sources. A curated, dated news library is planned for a later release." data-bn="এই পরীক্ষামূলক সংস্করণে অফিসিয়াল উৎসের লিংক রয়েছে। যাচাইকৃত সংবাদ লাইব্রেরি পরের সংস্করণে যুক্ত করার পরিকল্পনা আছে।">The current preview links to official sources. A curated, dated news library is planned for a later release.</p>
