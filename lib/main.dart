@@ -441,73 +441,166 @@ class _PromptBuilderState extends State<PromptBuilder> {
   }
 }
 
-class LearningLibrary extends StatelessWidget {
+typedef _Lesson = ({
+  int group,
+  (String, String) title,
+  (String, String) body,
+  (String, String)? example,
+});
+
+const _lessons = <_Lesson>[
+  (group: 0, title: ('What is a good AI prompt?', 'ভালো এআই প্রম্পট কী?'), body: ('It states your goal, useful context, limits and the kind of answer you need. Clear requests often reduce follow-up questions.', 'এতে আপনার লক্ষ্য, দরকারি তথ্য, সীমাবদ্ধতা এবং কী ধরনের উত্তর চান তা স্পষ্ট থাকে।'), example: null),
+  (group: 0, title: ('Does ProshnoLab answer questions with AI?', 'প্রশনোল্যাব কি এআই দিয়ে উত্তর দেয়?'), body: ('Not in this first version. It builds prompts you can paste into an AI tool, and this library contains prepared explanations.', 'প্রথম সংস্করণে নয়। এটি এআই টুলে ব্যবহার করার প্রম্পট তৈরি করে এবং এখানে আগে থেকে লেখা ব্যাখ্যা আছে।'), example: null),
+  (group: 0, title: ('Can a better prompt remove free-plan limits?', 'ভালো প্রম্পট কি ফ্রি প্ল্যানের সীমা সরায়?'), body: ('No. Better instructions can reduce unnecessary back-and-forth but cannot change a provider’s usage limits.', 'না। ভালো নির্দেশনা অপ্রয়োজনীয় বার্তা কমাতে পারে, কিন্তু সেবার ব্যবহারের সীমা বদলায় না।'), example: null),
+  (group: 0, title: ('Should I share personal information?', 'ব্যক্তিগত তথ্য কি শেয়ার করা উচিত?'), body: ('Only include information truly needed for the task. Use placeholders for private names, numbers and addresses.', 'কাজের জন্য একান্ত প্রয়োজনীয় তথ্যই দিন। ব্যক্তিগত নাম, নম্বর ও ঠিকানার বদলে নমুনা তথ্য দিন।'), example: null),
+  (group: 1, title: ('Make the output specific', 'কেমন উত্তর চান তা বলুন'), body: ('Weak: Explain photosynthesis.', 'সাধারণ: সালোকসংশ্লেষণ বুঝিয়ে দিন।'), example: ('Better: Explain photosynthesis to a class 9 student with a simple example and three practice questions.', 'উন্নত: নবম শ্রেণির শিক্ষার্থীর জন্য সহজ উদাহরণ ও তিনটি অনুশীলনীসহ সালোকসংশ্লেষণ বুঝিয়ে দিন।')),
+  (group: 1, title: ('Include context for emails', 'ইমেইলে প্রয়োজনীয় তথ্য দিন'), body: ('Weak: Write an email to my teacher.', 'সাধারণ: শিক্ষকের জন্য ইমেইল লিখুন।'), example: ('Better: Draft a polite, short email requesting an assignment extension; leave my name and dates as placeholders.', 'উন্নত: অ্যাসাইনমেন্টের সময় বাড়ানোর জন্য সংক্ষিপ্ত ভদ্র ইমেইল লিখুন; নাম ও তারিখের জায়গা ফাঁকা রাখুন।')),
+  (group: 2, title: ('ChatGPT release notes', 'চ্যাটজিপিটির নতুন ফিচার'), body: ('https://help.openai.com/en/articles/6825453-chatgpt-release-notes', 'https://help.openai.com/en/articles/6825453-chatgpt-release-notes'), example: null),
+  (group: 2, title: ('Google AI updates', 'গুগলের এআই আপডেট'), body: ('https://blog.google/technology/ai/', 'https://blog.google/technology/ai/'), example: null),
+  (group: 2, title: ('Microsoft AI news', 'মাইক্রোসফটের এআই সংবাদ'), body: ('https://blogs.microsoft.com/blog/tag/ai/', 'https://blogs.microsoft.com/blog/tag/ai/'), example: null),
+];
+
+class LearningLibrary extends StatefulWidget {
   final bool bangla;
   const LearningLibrary({super.key, required this.bangla});
-  String t(String en, String bn) => bangla ? bn : en;
+
+  @override
+  State<LearningLibrary> createState() => _LearningLibraryState();
+}
+
+class _LearningLibraryState extends State<LearningLibrary> {
+  final _search = TextEditingController();
+
+  String t(String en, String bn) => widget.bangla ? bn : en;
+  String _localized((String, String) text) => t(text.$1, text.$2);
+
+  @override
+  void dispose() {
+    _search.dispose();
+    super.dispose();
+  }
+
+  Widget _lessonCard(BuildContext context, _Lesson lesson, {bool expanded = false}) {
+    final title = _localized(lesson.title);
+    final body = _localized(lesson.body);
+    return switch (lesson.group) {
+      0 => _qa(context, title, body, expanded: expanded),
+      1 => _tip(context, title, body, _localized(lesson.example!)),
+      _ => _source(context, title, body),
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
+    final groups = [
+      t('Q&A', 'প্রশ্নোত্তর'),
+      t('Tips', 'টিপস'),
+      t('Updates', 'আপডেট'),
+    ];
+    final query = _search.text.trim().toLowerCase();
+    final words = query.split(RegExp(r'\s+'));
+    final matches = _lessons.where((lesson) {
+      final searchable = [
+        lesson.title.$1, lesson.title.$2, lesson.body.$1, lesson.body.$2,
+        lesson.example?.$1 ?? '', lesson.example?.$2 ?? '',
+        const ['Q&A প্রশ্নোত্তর', 'Tips টিপস', 'Updates আপডেট'][lesson.group],
+      ].join(' ').toLowerCase();
+      return words.every(searchable.contains);
+    }).toList();
+
     return DefaultTabController(
-      length: 3,
+      length: groups.length,
       child: Column(children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(18, 12, 18, 8),
-          child: Align(alignment: Alignment.centerLeft, child: Text(
-            t('Learn & Discover', 'শিখুন ও জানুন'),
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-          )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Semantics(
+                header: true,
+                child: Text(
+                  t('Learn & Discover', 'শিখুন ও জানুন'),
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _search,
+                onChanged: (_) => setState(() {}),
+                textInputAction: TextInputAction.search,
+                decoration: InputDecoration(
+                  labelText: t('Search the learning library', 'শেখার সংগ্রহে খুঁজুন'),
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: _search.text.isEmpty ? null : IconButton(
+                    tooltip: t('Clear search', 'অনুসন্ধান মুছুন'),
+                    icon: const Icon(Icons.clear),
+                    onPressed: () => setState(_search.clear),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-        TabBar(tabs: [
-          Tab(text: t('Q&A', 'প্রশ্নোত্তর')),
-          Tab(text: t('Tips', 'টিপস')),
-          Tab(text: t('Updates', 'আপডেট')),
-        ]),
-        Expanded(child: TabBarView(children: [
-          ListView(padding: const EdgeInsets.all(12), children: [
-            _qa(context, t('What is a good AI prompt?', 'ভালো এআই প্রম্পট কী?'),
-                t('It states your goal, useful context, limits and the kind of answer you need. Clear requests often reduce follow-up questions.',
-                    'এতে আপনার লক্ষ্য, দরকারি তথ্য, সীমাবদ্ধতা এবং কী ধরনের উত্তর চান তা স্পষ্ট থাকে।')),
-            _qa(context, t('Does ProshnoLab answer questions with AI?', 'প্রশনোল্যাব কি এআই দিয়ে উত্তর দেয়?'),
-                t('Not in this first version. It builds prompts you can paste into an AI tool, and this library contains prepared explanations.',
-                    'প্রথম সংস্করণে নয়। এটি এআই টুলে ব্যবহার করার প্রম্পট তৈরি করে এবং এখানে আগে থেকে লেখা ব্যাখ্যা আছে।')),
-            _qa(context, t('Can a better prompt remove free-plan limits?', 'ভালো প্রম্পট কি ফ্রি প্ল্যানের সীমা সরায়?'),
-                t('No. Better instructions can reduce unnecessary back-and-forth but cannot change a provider’s usage limits.',
-                    'না। ভালো নির্দেশনা অপ্রয়োজনীয় বার্তা কমাতে পারে, কিন্তু সেবার ব্যবহারের সীমা বদলায় না।')),
-            _qa(context, t('Should I share personal information?', 'ব্যক্তিগত তথ্য কি শেয়ার করা উচিত?'),
-                t('Only include information truly needed for the task. Use placeholders for private names, numbers and addresses.',
-                    'কাজের জন্য একান্ত প্রয়োজনীয় তথ্যই দিন। ব্যক্তিগত নাম, নম্বর ও ঠিকানার বদলে নমুনা তথ্য দিন।')),
-          ]),
-          ListView(padding: const EdgeInsets.all(12), children: [
-            _tip(context, t('Make the output specific', 'কেমন উত্তর চান তা বলুন'),
-                t('Weak: Explain photosynthesis.', 'সাধারণ: সালোকসংশ্লেষণ বুঝিয়ে দিন।'),
-                t('Better: Explain photosynthesis to a class 9 student with a simple example and three practice questions.',
-                    'উন্নত: নবম শ্রেণির শিক্ষার্থীর জন্য সহজ উদাহরণ ও তিনটি অনুশীলনীসহ সালোকসংশ্লেষণ বুঝিয়ে দিন।')),
-            _tip(context, t('Include context for emails', 'ইমেইলে প্রয়োজনীয় তথ্য দিন'),
-                t('Weak: Write an email to my teacher.', 'সাধারণ: শিক্ষকের জন্য ইমেইল লিখুন।'),
-                t('Better: Draft a polite, short email requesting an assignment extension; leave my name and dates as placeholders.',
-                    'উন্নত: অ্যাসাইনমেন্টের সময় বাড়ানোর জন্য সংক্ষিপ্ত ভদ্র ইমেইল লিখুন; নাম ও তারিখের জায়গা ফাঁকা রাখুন।')),
-          ]),
-          ListView(padding: const EdgeInsets.all(12), children: [
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(t('Starter sources, not a live news feed. Every future update will show its source and checked date.',
-                  'এগুলো প্রাথমিক উৎস, সরাসরি সংবাদ ফিড নয়। পরের প্রতিটি আপডেটে উৎস ও যাচাইয়ের তারিখ থাকবে।')),
+        if (query.isEmpty) ...[
+          TabBar(tabs: [for (final group in groups) Tab(text: group)]),
+          Expanded(child: TabBarView(children: [
+            for (var group = 0; group < groups.length; group++)
+              ListView(padding: const EdgeInsets.all(12), children: [
+                if (group == 2)
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(t('Browse these sources for AI updates.',
+                        'এআই আপডেটের জন্য এই উৎসগুলো দেখুন।')),
+                  ),
+                for (final lesson in _lessons.where((lesson) => lesson.group == group))
+                  _lessonCard(context, lesson),
+              ]),
+          ])),
+        ] else
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(12),
+              children: [
+                Semantics(
+                  header: true,
+                  liveRegion: true,
+                  child: Text(t('Learn / Search results', 'শিখুন / অনুসন্ধানের ফলাফল')),
+                ),
+                const SizedBox(height: 8),
+                if (matches.isEmpty)
+                  Text(t('No matches. Try a shorter keyword such as “email” or “prompt”.',
+                      'কিছু পাওয়া যায়নি। “ইমেইল” বা “প্রম্পট”-এর মতো ছোট শব্দ দিয়ে খুঁজুন।')),
+                for (final lesson in matches)
+                  Card(
+                    child: ListTile(
+                      title: Text(_localized(lesson.title)),
+                      subtitle: Text(groups[lesson.group]),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => Navigator.of(context).push<void>(
+                        MaterialPageRoute<void>(builder: (context) => Scaffold(
+                          appBar: AppBar(title: Text(groups[lesson.group])),
+                          body: ListView(
+                            padding: const EdgeInsets.all(16),
+                            children: [
+                              Text(t('Learn / Search results / ${groups[lesson.group]}',
+                                  'শিখুন / অনুসন্ধানের ফলাফল / ${groups[lesson.group]}')),
+                              _lessonCard(context, lesson, expanded: true),
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+                  ),
+              ],
             ),
-            _source(context, t('ChatGPT release notes', 'চ্যাটজিপিটির নতুন ফিচার'),
-                'https://help.openai.com/en/articles/6825453-chatgpt-release-notes'),
-            _source(context, t('Google AI updates', 'গুগলের এআই আপডেট'),
-                'https://blog.google/technology/ai/'),
-            _source(context, t('Microsoft AI news', 'মাইক্রোসফটের এআই সংবাদ'),
-                'https://blogs.microsoft.com/blog/tag/ai/'),
-          ]),
-        ])),
+          ),
       ]),
     );
   }
 
-  Widget _qa(BuildContext context, String question, String answer) => Card(
+  Widget _qa(BuildContext context, String question, String answer, {required bool expanded}) => Card(
     child: ExpansionTile(
+      initiallyExpanded: expanded,
       title: Text(question, style: const TextStyle(fontWeight: FontWeight.w600)),
       children: [Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 16), child: Align(
           alignment: Alignment.centerLeft, child: Text(answer)))],
