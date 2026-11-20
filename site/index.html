@@ -191,6 +191,10 @@
     #ai-shortcuts ul { display: flex; flex-wrap: wrap; gap: 4px 12px; list-style: none; padding: 0 10px; }
     #ai-shortcuts a { display: inline-flex; align-items: center; min-height: 44px; }
     #ai-shortcuts p { margin: 0 10px 8px; }
+    .comparison-card blockquote { margin: 0; padding-inline-start: 12px; border-inline-start: 3px solid #3d6098; }
+    .comparison-card h4 { margin-block: 20px 6px; }
+    .comparison-card .sample-answer { white-space: pre-line; margin: 0; }
+    .comparison-note { margin-block: 16px 0; }
   </style>
 </head>
 <body>
@@ -204,6 +208,7 @@
         <details class="nav-menu">
           <summary data-en="Explore" data-bn="ঘুরে দেখুন">Explore</summary>
           <div class="nav-panel">
+            <a href="?page=builder#compare" data-en="Compare answers" data-bn="উত্তর তুলনা করুন">Compare answers</a>
             <a href="?page=builder" data-page-link="builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a>
             <a href="?page=help" data-page-link="help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a>
             <a href="?page=plans" data-page-link="plans" data-en="Premium" data-bn="প্রিমিয়াম">Premium</a>
@@ -438,6 +443,61 @@
         <button class="cta" type="submit" data-en="Continue to GitHub" data-bn="গিটহাবে যান">Continue to GitHub</button>
       </form>
     </section>
+    <section id="compare" class="container" aria-labelledby="compare-title" hidden>
+      <h2 id="compare-title" data-en="Compare the answers" data-bn="উত্তর দুটি তুলনা করুন">Compare the answers</h2>
+      <p class="intro" data-en="Same task, two prompts. These sample answers illustrate how more context can reduce follow-up messages. Actual AI replies can vary." data-bn="একই কাজ, দুটি প্রম্পট। এই নমুনা উত্তরগুলো দেখায় কীভাবে বেশি তথ্য দিলে আবার প্রশ্ন করার প্রয়োজন কমতে পারে। এআইয়ের প্রকৃত উত্তর ভিন্ন হতে পারে।">Same task, two prompts. These sample answers illustrate how more context can reduce follow-up messages. Actual AI replies can vary.</p>
+      <div class="plan-grid">
+        <article class="feature-card plan-card comparison-card">
+          <h3 data-en="Short prompt" data-bn="ছোট প্রম্পট">Short prompt</h3>
+          <blockquote data-en="Write an email asking for an extension." data-bn="সময় বাড়ানোর অনুরোধ করে একটি ইমেইল লিখুন।">Write an email asking for an extension.</blockquote>
+          <h4 data-en="Sample answer" data-bn="নমুনা উত্তর">Sample answer</h4>
+          <p class="sample-answer" data-en="Subject: Request for an extension
+
+Hello,
+Could I have more time to complete the assignment? Please let me know if an extension is possible.
+
+Thank you,
+[Your name]" data-bn="বিষয়: সময় বাড়ানোর অনুরোধ
+
+শুভেচ্ছা,
+অ্যাসাইনমেন্টটি শেষ করার জন্য কি আরও কিছু সময় পেতে পারি? সময় বাড়ানো সম্ভব হলে জানাবেন।
+
+ধন্যবাদ,
+[আপনার নাম]">Subject: Request for an extension
+
+Hello,
+Could I have more time to complete the assignment? Please let me know if an extension is possible.
+
+Thank you,
+[Your name]</p>
+        </article>
+        <article class="feature-card plan-card comparison-card">
+          <h3 data-en="Ask Better prompt" data-bn="আস্ক বেটার প্রম্পট">Ask Better prompt</h3>
+          <blockquote data-en="Write a polite email to my instructor asking to move my research outline deadline from Friday to Monday. Explain that I need the weekend to verify two sources. Include a subject line and keep it under 90 words." data-bn="শিক্ষককে একটি ভদ্র ইমেইল লিখুন। গবেষণার রূপরেখা জমা দেওয়ার সময় শুক্রবার থেকে সোমবার পর্যন্ত বাড়াতে বলুন। জানিয়ে দিন, দুটি উৎস যাচাই করতে সপ্তাহান্ত দরকার। বিষয় লিখুন এবং ইমেইলটি ৯০ শব্দের মধ্যে রাখুন।">Write a polite email to my instructor asking to move my research outline deadline from Friday to Monday. Explain that I need the weekend to verify two sources. Include a subject line and keep it under 90 words.</blockquote>
+          <h4 data-en="Sample answer" data-bn="নমুনা উত্তর">Sample answer</h4>
+          <p class="sample-answer" data-en="Subject: Request to submit my research outline on Monday
+
+Dear Professor [Name],
+Could I submit my research outline on Monday instead of Friday? I’d like to use the weekend to verify two sources before turning it in.
+
+Thank you for considering my request.
+[Your name]" data-bn="বিষয়: গবেষণার রূপরেখা সোমবার জমা দেওয়ার অনুরোধ
+
+প্রিয় অধ্যাপক [নাম],
+আমি কি শুক্রবারের বদলে সোমবার আমার গবেষণার রূপরেখা জমা দিতে পারি? জমা দেওয়ার আগে দুটি উৎস যাচাই করতে সপ্তাহান্তের সময়টুকু ব্যবহার করতে চাই।
+
+আমার অনুরোধ বিবেচনা করার জন্য ধন্যবাদ।
+[আপনার নাম]">Subject: Request to submit my research outline on Monday
+
+Dear Professor [Name],
+Could I submit my research outline on Monday instead of Friday? I’d like to use the weekend to verify two sources before turning it in.
+
+Thank you for considering my request.
+[Your name]</p>
+        </article>
+      </div>
+      <p class="comparison-note" data-en="The second answer includes the assignment, the new deadline, and the reason. Try both prompts in the same AI tool to see what you get." data-bn="দ্বিতীয় উত্তরে কাজের নাম, নতুন সময়সীমা ও কারণ আছে। একই এআই টুলে দুটি প্রম্পট দিয়ে দেখুন কী উত্তর পান।">The second answer includes the assignment, the new deadline, and the reason. Try both prompts in the same AI tool to see what you get.</p>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -458,7 +518,7 @@
       ['home', ['.hero', '#features']],
       ['about', ['#about']],
       ['learn', ['#library', '#ai-updates']],
-      ['builder', ['#try']],
+      ['builder', ['#try', '#compare']],
       ['help', ['#how-to']],
       ['plans', ['#plans']],
       ['contact', ['#contact']],
