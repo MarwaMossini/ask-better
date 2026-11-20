@@ -170,6 +170,20 @@
       .plan-grid { gap: 14px; }
       .library-carousel { width: min(82%, 320px); }
     }
+
+    .site-footer { padding-block: clamp(20px, 3vw, 36px); }
+    .site-footer .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); align-items: start; gap: 16px 24px; }
+    .site-footer :is(h2, p) { margin: 0 0 7px; font-size: 1rem; }
+    .site-footer .footer-grid > div:first-child > a { font-size: 1.25rem; font-weight: 800; }
+    .site-footer p { color: #d5e5ff; font-size: .9rem; }
+    .site-footer ul { list-style: none; padding: 0; margin: 0; }
+    .site-footer a { display: inline-flex; align-items: center; min-height: 44px; }
+    .site-footer a:hover, .site-footer a:focus-visible { text-decoration: underline; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0 16px; margin-top: 14px; border-top: 1px solid #627497; padding-top: 8px; font-size: .875rem; }
+    #feedback-form { max-width: 38rem; }
+    @media (max-width: 680px) {
+      .site-footer .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body>
@@ -392,9 +406,35 @@
         </article>
       </div>
     </section>
+    <section id="contact" class="container" aria-labelledby="contact-title" hidden>
+      <h1 id="contact-title" data-en="Contact &amp; feedback" data-bn="যোগাযোগ ও মতামত">Contact &amp; feedback</h1>
+      <p class="intro" data-en="Report a problem or tell us how we can improve Ask Better." data-bn="কোনো সমস্যা জানান অথবা আস্ক বেটার কীভাবে উন্নত করা যায় বলুন।">Report a problem or tell us how we can improve Ask Better.</p>
+      <form id="feedback-form" class="demo-card" aria-describedby="feedback-notice">
+        <label for="feedback-type" data-en="Type of feedback" data-bn="মতামতের ধরন">Type of feedback</label>
+        <select id="feedback-type" required>
+          <option value="Suggestion" data-en="Suggestion" data-bn="পরামর্শ">Suggestion</option><option value="Bug report" data-en="Bug report" data-bn="ত্রুটির প্রতিবেদন">Bug report</option><option value="Complaint" data-en="Complaint" data-bn="অভিযোগ">Complaint</option><option value="General question" data-en="General question" data-bn="সাধারণ প্রশ্ন">General question</option>
+        </select>
+        <label for="feedback-title" data-en="Short title" data-bn="সংক্ষিপ্ত শিরোনাম">Short title</label>
+        <input id="feedback-title" required maxlength="100">
+        <label for="feedback-message" data-en="Your feedback" data-bn="আপনার মতামত">Your feedback</label>
+        <textarea id="feedback-message" required rows="5" maxlength="1200"></textarea>
+        <p id="feedback-notice" data-en="Your draft opens on GitHub. You’ll need to sign in there to post it publicly. Leave out personal or sensitive details." data-bn="আপনার খসড়া গিটহাবে খুলবে। সবার জন্য প্রকাশ করতে সেখানে সাইন ইন করতে হবে। ব্যক্তিগত বা সংবেদনশীল তথ্য লিখবেন না।">Your draft opens on GitHub. You’ll need to sign in there to post it publicly. Leave out personal or sensitive details.</p>
+        <button class="cta" type="submit" data-en="Continue to GitHub" data-bn="গিটহাবে যান">Continue to GitHub</button>
+      </form>
+    </section>
   </main>
 
-  <footer><div class="container footer-inner"><strong>Ask Better</strong><span data-en="For anyone writing, planning or learning." data-bn="লেখা, পরিকল্পনা ও শেখার জন্য সবার উপযোগী।">For anyone writing, planning or learning.</span></div></footer>
+  <footer class="site-footer">
+    <div class="container">
+      <nav class="footer-grid" aria-label="Footer">
+        <div><a href="./" data-en="Ask Better" data-bn="Ask Better">Ask Better</a><p data-en="Build clearer prompts for work, study, and everyday tasks." data-bn="কাজ, পড়াশোনা ও দৈনন্দিন কাজের জন্য স্পষ্ট প্রম্পট তৈরি করুন।">Build clearer prompts for work, study, and everyday tasks.</p></div>
+        <div><h2 data-en="Explore" data-bn="ঘুরে দেখুন">Explore</h2><ul><li><a href="?page=about" data-en="About Ask Better" data-bn="আস্ক বেটার সম্পর্কে">About Ask Better</a></li><li><a href="?page=builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a></li><li><a href="?page=plans" data-en="Plans" data-bn="প্ল্যান">Plans</a></li></ul></div>
+        <div><h2 data-en="Learn" data-bn="শিখুন">Learn</h2><ul><li><a href="?page=learn" data-en="Learning library" data-bn="শেখার লাইব্রেরি">Learning library</a></li><li><a href="?page=learn#ai-updates" data-en="AI updates" data-bn="এআই আপডেট">AI updates</a></li><li><a href="?page=help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a></li></ul></div>
+        <div><h2 data-en="Support" data-bn="সহায়তা">Support</h2><ul><li><a href="?page=contact" data-en="Contact &amp; feedback" data-bn="যোগাযোগ ও মতামত">Contact &amp; feedback</a></li><li><a href="?page=help#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a></li></ul></div>
+      </nav>
+      <div class="footer-bottom"><span>© Ask Better</span><a href="?page=builder" data-en="Try the free builder" data-bn="বিনামূল্যের বিল্ডার ব্যবহার করুন">Try the free builder</a></div>
+    </div>
+  </footer>
 
   <script>
     const language = document.getElementById('language');
@@ -405,6 +445,7 @@
       ['builder', ['#try']],
       ['help', ['#how-to']],
       ['plans', ['#plans']],
+      ['contact', ['#contact']],
     ]);
     const main = document.querySelector('main');
     function showPage() {
@@ -784,6 +825,16 @@
         result.select();
         status.textContent = isBangla ? 'লেখাটি নির্বাচন করা হয়েছে। কপি করুন।' : 'The prompt is selected. Use your device’s Copy command.';
       }
+    });
+
+    document.getElementById('feedback-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const type = document.getElementById('feedback-type').value;
+      const title = document.getElementById('feedback-title').value.trim();
+      const message = document.getElementById('feedback-message').value.trim();
+      const draft = new URL('https://github.com/MarwaMossini/proshnolab/issues/new');
+      draft.search = new URLSearchParams({ title: type + ': ' + title, body: message });
+      window.location.assign(draft);
     });
   </script>
 </body>
