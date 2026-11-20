@@ -343,6 +343,7 @@ class PromptBuilder extends StatefulWidget {
 class _PromptBuilderState extends State<PromptBuilder> {
   String category = 'essay';
   final Map<String, List<TextEditingController>> answers = {};
+  final responseLanguage = TextEditingController();
   final TextEditingController preview = TextEditingController();
 
   String t(String english, String bengali) => widget.bangla ? bengali : english;
@@ -362,6 +363,7 @@ class _PromptBuilderState extends State<PromptBuilder> {
         field.dispose();
       }
     }
+    responseLanguage.dispose();
     preview.dispose();
     super.dispose();
   }
@@ -400,7 +402,11 @@ class _PromptBuilderState extends State<PromptBuilder> {
           'Act as a patient tutor. Explain the topic step by step at my level, give a worked example, then three practice questions with answers separated from the questions.',
           'ধৈর্যশীল শিক্ষক হিসেবে আমার স্তর অনুযায়ী ধাপে ধাপে বুঝিয়ে দিন, একটি সমাধানসহ উদাহরণ দিন, তারপর তিনটি অনুশীলনী প্রশ্ন ও আলাদা উত্তর দিন।'),
     };
-    preview.text = '$instruction\n\n${t('My context:', 'আমার তথ্য:')}\n$details\n\n${t('Ask one brief clarifying question if an essential detail is missing.', 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।')}';
+    final replyLanguage = responseLanguage.text.trim();
+    final languageInstruction = replyLanguage.isEmpty
+        ? ''
+        : '\n\n${t('Reply in', 'এই ভাষায় উত্তর দিন:')} $replyLanguage';
+    preview.text = '$instruction\n\n${t('My context:', 'আমার তথ্য:')}\n$details\n\n${t('Ask one brief clarifying question if an essential detail is missing.', 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।')}$languageInstruction';
     setState(() {});
   }
 
@@ -493,6 +499,15 @@ class _PromptBuilderState extends State<PromptBuilder> {
         ),
         const SizedBox(height: 12),
       ],
+      TextField(
+        controller: responseLanguage,
+        maxLength: 80,
+        decoration: InputDecoration(
+          labelText: t('Reply language (optional)', 'উত্তরের ভাষা (ঐচ্ছিক)'),
+          hintText: t('For example, Dari or Spanish', 'যেমন, দারি বা স্প্যানিশ'),
+        ),
+      ),
+      const SizedBox(height: 8),
       FilledButton.icon(
         onPressed: _generate,
         icon: const Icon(Icons.auto_fix_high),
