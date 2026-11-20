@@ -184,6 +184,9 @@
     @media (max-width: 680px) {
       .site-footer .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+    .plan-card .premium-prices { list-style: none; padding: 0; }
+    .premium-prices li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 8px 10px; border-radius: 8px; background: #edf2f9; }
+    .premium-prices small { grid-column: 1 / -1; color: #435571; }
   </style>
 </head>
 <body>
@@ -199,7 +202,7 @@
           <div class="nav-panel">
             <a href="?page=builder" data-page-link="builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a>
             <a href="?page=help" data-page-link="help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a>
-            <a href="?page=plans" data-page-link="plans" data-en="Plans" data-bn="প্ল্যান">Plans</a>
+            <a href="?page=plans" data-page-link="plans" data-en="Premium" data-bn="প্রিমিয়াম">Premium</a>
             <a href="?page=help#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
             <a href="app/" data-en="Full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ">Full web app</a>
           </div>
@@ -386,11 +389,11 @@
         <li><a href="https://blogs.microsoft.com/blog/tag/ai/" target="_blank" rel="noopener noreferrer">Microsoft AI news</a></li>
       </ul>
       </div>
-      <div class="note-card"><strong data-en="Subscription status: Not active" data-bn="সাবস্ক্রিপশন: চালু হয়নি">Subscription status: Not active</strong><p class="muted" style="margin-bottom: 0" data-en="BDApps billing is not connected in this preview. See Plans for the proposed Plus features and price." data-bn="এই সংস্করণে বিডিঅ্যাপস বিলিং যুক্ত হয়নি। প্লাসের প্রস্তাবিত সুবিধা ও মূল্য প্ল্যান পেজে দেখুন।">BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing.</p></div>
+      <div class="note-card"><strong data-en="Subscription status: Not active" data-bn="সাবস্ক্রিপশন: চালু হয়নি">Subscription status: Not active</strong><p class="muted" style="margin-bottom: 0" data-en="BDApps billing is not connected in this preview. See Premium for the proposed Premium features and price." data-bn="এই সংস্করণে বিডিঅ্যাপস বিলিং যুক্ত হয়নি। প্রিমিয়ামের প্রস্তাবিত সুবিধা ও মূল্য প্রিমিয়াম পেজে দেখুন।">BDApps billing is not connected in this preview. See Premium for proposed features and prices.</p></div>
     </section>
   <section id="plans" class="container" aria-labelledby="plans-title" hidden>
-      <h1 id="plans-title" data-en="Plans" data-bn="প্ল্যান">Plans</h1>
-      <p class="intro" data-en="The free builder is available now. Plus features and pricing are proposed, and billing is currently off." data-bn="বিনামূল্যের বিল্ডার এখন ব্যবহার করা যায়। প্লাসের সুবিধা ও মূল্য প্রস্তাবিত, এবং বিলিং এখন বন্ধ।">The free builder is available now. Plus features and pricing are proposed, and billing is currently off.</p>
+      <h1 id="plans-title" data-en="Premium" data-bn="প্রিমিয়াম">Premium</h1>
+      <p class="intro" data-en="The free builder is available now. Premium features and pricing are proposed, and billing is currently off." data-bn="বিনামূল্যের বিল্ডার এখন ব্যবহার করা যায়। প্রিমিয়ামের সুবিধা ও মূল্য প্রস্তাবিত, এবং বিলিং এখন বন্ধ।">The free builder is available now. Premium features and pricing are proposed, and billing is currently off.</p>
       <div class="plan-grid">
         <article class="feature-card plan-card">
           <h2 data-en="Free" data-bn="বিনামূল্যে">Free</h2>
@@ -399,8 +402,12 @@
           <a class="cta" href="?page=builder" data-en="Try the free builder" data-bn="বিনামূল্যের বিল্ডার ব্যবহার করুন">Try the free builder</a>
         </article>
         <article class="feature-card plan-card">
-          <h2 data-en="Plus" data-bn="প্লাস">Plus</h2>
-          <p class="plan-price" data-en="৳99 per month" data-bn="মাসে ৳৯৯">৳99 per month</p>
+          <h2 data-en="Premium" data-bn="প্রিমিয়াম">Premium</h2>
+          <ul class="premium-prices" aria-label="Premium pricing">
+            <li><strong data-en="Daily" data-bn="দৈনিক">Daily</strong> <span data-en="৳3 per day" data-bn="দিনে ৳৩">৳3 per day</span></li>
+            <li><strong data-en="Monthly" data-bn="মাসিক">Monthly</strong> <span data-en="৳79 per month" data-bn="মাসে ৳৭৯">৳79 per month</span> <small data-en="Save ৳11 compared with 30 daily payments" data-bn="৩০ দিনের দৈনিক মূল্যের তুলনায় ৳১১ সাশ্রয়">Save ৳11 compared with 30 daily payments</small></li>
+            <li><strong data-en="Yearly" data-bn="বার্ষিক">Yearly</strong> <span data-en="৳799 per year" data-bn="বছরে ৳৭৯৯">৳799 per year</span> <small data-en="Save ৳149 compared with 12 monthly payments" data-bn="১২ মাসের মাসিক মূল্যের তুলনায় ৳১৪৯ সাশ্রয়">Save ৳149 compared with 12 monthly payments</small></li>
+          </ul>
           <ul><li data-en="Save and organize prompts in folders" data-bn="প্রম্পট সংরক্ষণ করে ফোল্ডারে সাজান">Save and organize prompts in folders</li><li data-en="Sync saved prompts between web and Android" data-bn="ওয়েব ও অ্যান্ড্রয়েডে সংরক্ষিত প্রম্পট ব্যবহার করুন">Sync saved prompts between web and Android</li><li data-en="Get more templates for work, study, and creative projects" data-bn="কাজ, পড়াশোনা ও সৃজনশীল প্রকল্পের জন্য আরও টেমপ্লেট পান">Get more templates for work, study, and creative projects</li></ul>
           
         </article>
@@ -428,7 +435,7 @@
     <div class="container">
       <nav class="footer-grid" aria-label="Footer">
         <div><a href="./" data-en="Ask Better" data-bn="Ask Better">Ask Better</a><p data-en="Build clearer prompts for work, study, and everyday tasks." data-bn="কাজ, পড়াশোনা ও দৈনন্দিন কাজের জন্য স্পষ্ট প্রম্পট তৈরি করুন।">Build clearer prompts for work, study, and everyday tasks.</p></div>
-        <div><h2 data-en="Explore" data-bn="ঘুরে দেখুন">Explore</h2><ul><li><a href="?page=about" data-en="About Ask Better" data-bn="আস্ক বেটার সম্পর্কে">About Ask Better</a></li><li><a href="?page=builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a></li><li><a href="?page=plans" data-en="Plans" data-bn="প্ল্যান">Plans</a></li></ul></div>
+        <div><h2 data-en="Explore" data-bn="ঘুরে দেখুন">Explore</h2><ul><li><a href="?page=about" data-en="About Ask Better" data-bn="আস্ক বেটার সম্পর্কে">About Ask Better</a></li><li><a href="?page=builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a></li><li><a href="?page=plans" data-en="Premium" data-bn="প্রিমিয়াম">Premium</a></li></ul></div>
         <div><h2 data-en="Learn" data-bn="শিখুন">Learn</h2><ul><li><a href="?page=learn" data-en="Learning library" data-bn="শেখার লাইব্রেরি">Learning library</a></li><li><a href="?page=learn#ai-updates" data-en="AI updates" data-bn="এআই আপডেট">AI updates</a></li><li><a href="?page=help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a></li></ul></div>
         <div><h2 data-en="Support" data-bn="সহায়তা">Support</h2><ul><li><a href="?page=contact" data-en="Contact &amp; feedback" data-bn="যোগাযোগ ও মতামত">Contact &amp; feedback</a></li><li><a href="?page=help#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a></li></ul></div>
       </nav>
