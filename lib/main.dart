@@ -298,6 +298,36 @@ const _questions = <String, List<PromptQuestion>>{
     PromptQuestion('What is difficult or confusing?', 'কোন অংশটি কঠিন লাগছে?'),
     PromptQuestion('What kind of examples would help?', 'কেমন উদাহরণে বুঝতে সুবিধা হবে?'),
   ],
+  'report': [
+    PromptQuestion('What is the report about?', 'প্রতিবেদনের বিষয় কী?'),
+    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?'),
+    PromptQuestion('What findings or data can I use?', 'কোন ফলাফল বা তথ্য ব্যবহার করা যাবে?'),
+    PromptQuestion('What sections or length are required?', 'কোন অংশ বা দৈর্ঘ্য প্রয়োজন?'),
+  ],
+  'career': [
+    PromptQuestion('What role are you applying for?', 'কোন পদের জন্য আবেদন করছেন?'),
+    PromptQuestion('Do you need a CV or a cover letter?', 'সিভি নাকি কভার লেটার দরকার?'),
+    PromptQuestion('What skills or experience should it include?', 'কোন দক্ষতা বা অভিজ্ঞতা রাখতে হবে?'),
+    PromptQuestion('Which job requirements should it address?', 'চাকরির কোন শর্তগুলো তুলে ধরতে হবে?'),
+  ],
+  'presentation': [
+    PromptQuestion('What are you presenting?', 'কী নিয়ে উপস্থাপনা করবেন?'),
+    PromptQuestion('Who is the audience?', 'শ্রোতা কারা?'),
+    PromptQuestion('How long is the presentation?', 'উপস্থাপনার সময় কত?'),
+    PromptQuestion('What key points must it cover?', 'কোন মূল বিষয়গুলো রাখতে হবে?'),
+  ],
+  'revision': [
+    PromptQuestion('What text would you like to revise?', 'কোন লেখাটি সংশোধন করতে চান?'),
+    PromptQuestion('What should improve?', 'কোন বিষয়টি উন্নত করতে চান?'),
+    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?'),
+    PromptQuestion('What tone or length should it have?', 'ভাষার ধরন বা দৈর্ঘ্য কেমন হবে?'),
+  ],
+  'research': [
+    PromptQuestion('What topic are you investigating?', 'কোন বিষয় নিয়ে গবেষণা করছেন?'),
+    PromptQuestion('What do you want to find out?', 'কী জানতে চান?'),
+    PromptQuestion('What sources or data can you access?', 'কোন সূত্র বা তথ্য ব্যবহার করতে পারবেন?'),
+    PromptQuestion('What limits or deadlines apply?', 'কী সীমাবদ্ধতা বা সময়সীমা আছে?'),
+  ],
 };
 
 class PromptBuilder extends StatefulWidget {
@@ -354,6 +384,16 @@ class _PromptBuilderState extends State<PromptBuilder> {
       'email' => t(
           'Draft a clear, polite email based only on my details. Include a suitable subject line. Do not invent names, promises or circumstances.',
           'শুধু আমার দেওয়া তথ্য দিয়ে একটি স্পষ্ট ও ভদ্র ইমেইল লিখুন। উপযুক্ত বিষয় লিখুন। নাম বা পরিস্থিতি নিজের থেকে বানাবেন না।'),
+      'report' => t('Outline a report with a clear purpose, findings, limitations and next steps. Flag missing evidence.',
+          'উদ্দেশ্য, ফলাফল, সীমাবদ্ধতা ও পরবর্তী পদক্ষেপসহ প্রতিবেদনের রূপরেখা দিন। প্রমাণের ঘাটতি চিহ্নিত করুন।'),
+      'career' => t('Help me tailor my CV or cover letter to this opportunity using only my real experience. Suggest stronger phrasing and flag gaps.',
+          'শুধু আমার বাস্তব অভিজ্ঞতা ব্যবহার করে সুযোগটির জন্য সিভি বা কভার লেটার সাজাতে সাহায্য করুন। ভালো বাক্য প্রস্তাব করুন এবং ঘাটতি চিহ্নিত করুন।'),
+      'presentation' => t('Create a slide-by-slide outline with short speaker notes and a clear closing. Identify claims that need evidence.',
+          'সংক্ষিপ্ত বক্তার নোট ও স্পষ্ট উপসংহারসহ প্রতিটি স্লাইডের রূপরেখা দিন। কোন দাবির প্রমাণ দরকার তা চিহ্নিত করুন।'),
+      'revision' => t('Revise the supplied text for clarity. Keep its meaning and facts, and briefly explain your changes.',
+          'মূল অর্থ ও তথ্য ঠিক রেখে লেখাটি আরও স্পষ্ট করুন। পরিবর্তনগুলো সংক্ষেপে ব্যাখ্যা করুন।'),
+      'research' => t('Turn this idea into a focused research question and a practical plan. Suggest search terms and evidence to look for. Do not invent sources.',
+          'ধারণাটি থেকে একটি নির্দিষ্ট গবেষণা প্রশ্ন ও বাস্তবসম্মত পরিকল্পনা তৈরি করুন। অনুসন্ধানের শব্দ ও প্রয়োজনীয় প্রমাণ প্রস্তাব করুন। সূত্র বানাবেন না।'),
       _ => t(
           'Act as a patient tutor. Explain the topic step by step at my level, give a worked example, then three practice questions with answers separated from the questions.',
           'ধৈর্যশীল শিক্ষক হিসেবে আমার স্তর অনুযায়ী ধাপে ধাপে বুঝিয়ে দিন, একটি সমাধানসহ উদাহরণ দিন, তারপর তিনটি অনুশীলনী প্রশ্ন ও আলাদা উত্তর দিন।'),
@@ -379,11 +419,16 @@ class _PromptBuilderState extends State<PromptBuilder> {
       Text(t('Choose a task and answer a few questions.', 'একটি কাজ বেছে নিয়ে কয়েকটি প্রশ্নের উত্তর দিন।')),
       const SizedBox(height: 16),
       Wrap(spacing: 8, children: [
-        for (final item in ['essay', 'email', 'study'])
+        for (final item in _questions.keys)
           ChoiceChip(
             label: Text(switch (item) {
               'essay' => t('Essay', 'রচনা'),
               'email' => t('Email', 'ইমেইল'),
+              'report' => t('Report', 'প্রতিবেদন'),
+              'career' => t('CV & cover letter', 'সিভি ও কভার লেটার'),
+              'presentation' => t('Presentation', 'উপস্থাপনা'),
+              'revision' => t('Rewrite & edit', 'পুনর্লিখন ও সম্পাদনা'),
+              'research' => t('Research plan', 'গবেষণা পরিকল্পনা'),
               _ => t('Study', 'পড়াশোনা'),
             }),
             selected: category == item,
