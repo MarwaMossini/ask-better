@@ -107,6 +107,11 @@
     .brand-icon { background: #6242a4; color: #fff; border-radius: 14px 14px 14px 4px; }
     nav > a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; }
     nav a[aria-current="page"] { color: #43247a; font-weight: 750; text-decoration: underline; text-underline-offset: 4px; }
+    .slide-link { display: block; color: inherit; text-decoration: none; }
+    .slide-link:hover figcaption { text-decoration: underline; text-underline-offset: 3px; }
+    .slide-link:focus-visible { outline: 3px solid #6242a4; outline-offset: -3px; border-radius: 16px; }
+    .library-filter { display: grid; gap: 6px; max-width: 270px; }
+    .reading-card:target { border-color: #6242a4; }
   </style>
 </head>
 <body>
@@ -166,22 +171,22 @@
       <h2 id="library-title" data-en="Learning library" data-bn="শেখার সংগ্রহ">Learning library</h2>
       <ul class="library-photos" id="library-photos">
         <li>
-          <figure>
+          <a class="slide-link" href="#study-guide" data-guide-link><figure>
             <img src="assets/keyboard-writing.webp" width="473" height="315" loading="lazy" decoding="async" alt="Hands typing on a laptop keyboard." data-alt-bn="ল্যাপটপের কিবোর্ডে টাইপ করছেন একজন ব্যক্তি।">
             <figcaption><strong data-en="Study with AI" data-bn="এআই দিয়ে পড়াশোনা">Study with AI</strong></figcaption>
-          </figure>
+          </figure></a>
         </li>
         <li>
-          <figure>
+          <a class="slide-link" href="#team-guide" data-guide-link><figure>
             <img src="assets/group.webp" width="760" height="440" loading="lazy" decoding="async" alt="Students gathered around a laptop." data-alt-bn="একটি ল্যাপটপের পাশে কয়েকজন শিক্ষার্থী।">
             <figcaption><strong data-en="Learn together" data-bn="একসঙ্গে শিখুন">Learn together</strong></figcaption>
-          </figure>
+          </figure></a>
         </li>
         <li>
-          <figure>
+          <a class="slide-link" href="#prompt-workflows" data-guide-link><figure>
             <img src="assets/notes.webp" width="760" height="440" loading="lazy" decoding="async" alt="An open notebook and pens on a desk." data-alt-bn="টেবিলে একটি খোলা নোটবুক ও কয়েকটি কলম।">
             <figcaption><strong data-en="Write clearer prompts" data-bn="আরও স্পষ্ট প্রম্পট লিখুন">Write clearer prompts</strong></figcaption>
-          </figure>
+          </figure></a>
         </li>
       </ul>
       <div class="gallery-controls">
@@ -190,7 +195,24 @@
       <p class="intro" data-en="Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates." data-bn="এআই নিয়ে প্রশ্নোত্তর, প্রম্পটের আগে-পরে উদাহরণ এবং এআই আপডেটের অফিসিয়াল লিংক দেখুন।">Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates.</p>
       <div style="margin-top: 32px">
         <h3 data-en="AI stories and practical tips" data-bn="এআই নিয়ে লেখা ও ব্যবহারিক পরামর্শ">AI stories and practical tips</h3>
-        <article id="prompt-workflows" class="reading-card">
+        <div class="library-filter">
+          <label for="library-topic"><span data-en="Filter by topic" data-bn="বিষয় অনুযায়ী দেখুন">Filter by topic</span></label>
+          <select id="library-topic">
+            <option value="all" data-en="All topics" data-bn="সব বিষয়">All topics</option>
+            <option value="study" data-en="Study" data-bn="পড়াশোনা">Study</option>
+            <option value="team" data-en="Teamwork" data-bn="দলগত কাজ">Teamwork</option>
+            <option value="writing" data-en="Writing prompts" data-bn="প্রম্পট লেখা">Writing prompts</option>
+          </select>
+        </div>
+        <article id="study-guide" class="reading-card" data-library-topic="study" tabindex="-1">
+          <h4 data-en="Turn notes into a practice quiz" data-bn="নোট থেকে অনুশীলনী তৈরি করুন">Turn notes into a practice quiz</h4>
+          <p data-en="Paste a short excerpt from your notes. Ask for three questions at your level and tell AI to hold the answers until you try." data-bn="নোটের ছোট একটি অংশ দিন। নিজের স্তর অনুযায়ী তিনটি প্রশ্ন চান এবং চেষ্টা করার আগে উত্তর না দিতে বলুন।">Paste a short excerpt from your notes. Ask for three questions at your level and tell AI to hold the answers until you try.</p>
+        </article>
+        <article id="team-guide" class="reading-card" data-library-topic="team" tabindex="-1">
+          <h4 data-en="Plan a group project" data-bn="দলগত প্রকল্পের পরিকল্পনা করুন">Plan a group project</h4>
+          <p data-en="Give AI your deadline, team size and expected deliverables. Ask for a task list with owners and milestones. Review the plan together before assigning work." data-bn="সময়সীমা, দলের সদস্যসংখ্যা ও কী জমা দিতে হবে তা জানান। কাজের তালিকা, দায়িত্ব ও মাইলফলক চান। দায়িত্ব ভাগ করার আগে দল মিলে পরিকল্পনাটি যাচাই করুন।">Give AI your deadline, team size and expected deliverables. Ask for a task list with owners and milestones. Review the plan together before assigning work.</p>
+        </article>
+        <article id="prompt-workflows" class="reading-card" data-library-topic="writing" tabindex="-1">
           <div class="muted"><span data-en="Expert opinion" data-bn="বিশেষজ্ঞের মতামত">Expert opinion</span> · Inc. · Pam Didner · <time datetime="2026-08-16" data-en="August 16, 2026" data-bn="১৬ আগস্ট ২০২৬">August 16, 2026</time></div>
           <h4 data-en="Turn one AI prompt into a workflow" data-bn="একটি এআই প্রম্পট থেকে ধাপে ধাপে কাজ করুন">Turn one AI prompt into a workflow</h4>
           <p data-en="Pam Didner describes how her AI use evolved from short, general prompts into repeatable workflows. Her experience offers a way to think about tasks that need planning, drafting, and feedback." data-bn="প্যাম ডিডনার বর্ণনা করেছেন কীভাবে ছোট ও সাধারণ প্রম্পট দিয়ে শুরু করে তিনি এআইকে ধারাবাহিক কাজে ব্যবহার করতে শিখেছেন। পরিকল্পনা, খসড়া ও প্রতিক্রিয়া দরকার এমন কাজে এই অভিজ্ঞতা কাজে লাগতে পারে।">Pam Didner describes how her AI use evolved from short, general prompts into repeatable workflows. Her experience offers a way to think about tasks that need planning, drafting, and feedback.</p>
@@ -298,6 +320,7 @@
       const requested = new URLSearchParams(window.location.search).get('page');
       const fragmentPage = new Map([
         ['about', 'about'], ['library', 'learn'], ['prompt-workflows', 'learn'],
+        ['study-guide', 'learn'], ['team-guide', 'learn'],
         ['ai-updates', 'learn'], ['try', 'builder'], ['how-to', 'help'], ['faq', 'help'],
       ]).get(fragment);
       const page = pageSections.has(requested) ? requested : fragmentPage || 'home';
@@ -328,6 +351,29 @@
         menu.querySelector('summary').focus();
       }
     });
+    const topicFilter = document.getElementById('library-topic');
+    const libraryResources = [...document.querySelectorAll('[data-library-topic]')];
+    function filterLibrary() {
+      for (const resource of libraryResources) {
+        resource.hidden = topicFilter.value !== 'all' && resource.dataset.libraryTopic !== topicFilter.value;
+      }
+    }
+    topicFilter.addEventListener('change', filterLibrary);
+    function revealLinkedGuide() {
+      const guide = libraryResources.find(resource => '#' + resource.id === window.location.hash);
+      if (!guide) return;
+      if (guide.hidden) topicFilter.value = 'all';
+      filterLibrary();
+      guide.focus({preventScroll: true});
+      guide.scrollIntoView();
+    }
+    window.addEventListener('hashchange', revealLinkedGuide);
+    for (const link of document.querySelectorAll('[data-guide-link]')) {
+      link.addEventListener('click', () => {
+        if (link.hash === window.location.hash) revealLinkedGuide();
+      });
+    }
+
     const filmstrip = document.getElementById('library-photos');
     const motionButton = document.getElementById('carousel-motion');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
