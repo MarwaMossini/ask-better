@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const ProshnoLabApp());
 
@@ -402,6 +404,38 @@ class _PromptBuilderState extends State<PromptBuilder> {
     setState(() {});
   }
 
+  Future<void> _copyAndOpen(String address) async {
+    final prompt = preview.text;
+    if (prompt.trim().isEmpty) return;
+    var copied = false;
+    try {
+      final copy = Clipboard.setData(ClipboardData(text: prompt));
+      if (!kIsWeb) {
+        await copy;
+        copied = true;
+      }
+      final opened = await launchUrl(
+        Uri.parse(address),
+        mode: LaunchMode.externalApplication,
+      );
+      if (kIsWeb) await copy;
+      copied = true;
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
+        opened
+            ? t('Prompt copied. Paste it into the AI tool.', 'প্রম্পট কপি হয়েছে। এআই টুলে পেস্ট করুন।')
+            : t('Prompt copied, but the AI tool could not open.', 'প্রম্পট কপি হয়েছে, কিন্তু এআই টুল খোলা যায়নি।'),
+      )));
+    } on PlatformException {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(
+        copied
+            ? t('Prompt copied, but the AI tool could not open.', 'প্রম্পট কপি হয়েছে, কিন্তু এআই টুল খোলা যায়নি।')
+            : t('Could not complete the shortcut. Try Copy prompt.', 'শর্টকাট কাজ করেনি। প্রম্পট কপি করে দেখুন।'),
+      )));
+    }
+  }
+
   Future<void> _copy() async {
     if (preview.text.trim().isEmpty) return;
     await Clipboard.setData(ClipboardData(text: preview.text));
@@ -479,6 +513,24 @@ class _PromptBuilderState extends State<PromptBuilder> {
         onPressed: _copy,
         icon: const Icon(Icons.copy),
         label: Text(t('Copy prompt', 'প্রম্পট কপি করুন')),
+      ),
+      ValueListenableBuilder<TextEditingValue>(
+        valueListenable: preview,
+        builder: (context, value, child) => PopupMenuButton<String>(
+          enabled: value.text.trim().isNotEmpty,
+          onSelected: _copyAndOpen,
+          itemBuilder: (context) => const [
+            PopupMenuItem(value: 'https://chatgpt.com/', child: Text('ChatGPT')),
+            PopupMenuItem(value: 'https://gemini.google.com/', child: Text('Gemini')),
+            PopupMenuItem(value: 'https://claude.ai/', child: Text('Claude')),
+            PopupMenuItem(value: 'https://copilot.microsoft.com/', child: Text('Copilot')),
+          ],
+          child: ListTile(
+            enabled: value.text.trim().isNotEmpty,
+            leading: const Icon(Icons.open_in_new),
+            title: Text(t('Copy and open an AI tool', 'কপি করে এআই টুল খুলুন')),
+          ),
+        ),
       ),
       const SizedBox(height: 10),
       Card(
