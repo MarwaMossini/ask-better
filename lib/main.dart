@@ -36,7 +36,7 @@ class ProshnoLabHome extends StatefulWidget {
 
 class _ProshnoLabHomeState extends State<ProshnoLabHome> {
   bool bangla = false;
-  int selectedTab = 0;
+  int selectedTab = Uri.base.queryParameters['view'] == 'learn' ? 2 : 0;
 
   String t(String english, String bengali) => bangla ? bengali : english;
 

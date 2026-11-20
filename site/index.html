@@ -65,8 +65,34 @@
       .hero { padding: 54px 0; }
       .hero-grid, .demo-grid { grid-template-columns: 1fr; }
       .features { grid-template-columns: 1fr; }
-      nav a { display: none; }
       section { padding: 52px 0; }
+    }
+    nav { gap: 8px; }
+    .nav-menu { position: relative; }
+    .nav-menu summary { cursor: pointer; padding: 10px 6px; min-height: 44px; font-size: .9rem; }
+    .nav-panel { position: absolute; right: 0; z-index: 5; min-width: 160px; padding: 6px; border: 1px solid #badad3; border-radius: 12px; background: white; box-shadow: 0 8px 25px #17312f26; }
+    nav .nav-panel a { display: flex; align-items: center; min-height: 44px; padding: 6px 10px; }
+    .nav-panel a:hover { background: #e8f5f0; }
+    .language { min-height: 44px; }
+    .gallery-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .library-photos { display: grid; grid-auto-flow: column; grid-auto-columns: 46%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; padding: 0 0 10px; margin: 0 0 20px; }
+    .library-photos li { scroll-snap-align: start; min-width: 0; }
+    .library-photos figure { margin: 0; }
+    .library-photos img { display: block; width: 100%; height: auto; aspect-ratio: 19 / 11; object-fit: cover; border-radius: 16px; }
+    .library-photos figcaption { display: flex; gap: 4px 12px; flex-wrap: wrap; justify-content: space-between; padding: 8px 0; }
+    .library-photos figcaption a { font-size: .85rem; }
+    @media (max-width: 760px) {
+      .header-inner { flex-wrap: wrap; gap: 6px; }
+      nav { flex-wrap: wrap; }
+      .nav-panel { left: 0; right: auto; }
+      .library-photos { grid-auto-columns: 88%; }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .gallery-controls button { transition: transform 140ms ease; }
+      .gallery-controls button:active { transform: translateY(2px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .library-photos { scroll-behavior: auto; }
     }
   </style>
 </head>
@@ -75,10 +101,22 @@
     <div class="container header-inner">
       <a class="brand" href="#home"><span class="brand-icon" aria-hidden="true">?</span> ProshnoLab</a>
       <nav aria-label="Main navigation">
-        <a href="#features" data-en="Features" data-bn="সুবিধা">Features</a>
-        <a href="#try" data-en="Try a sample" data-bn="নমুনা দেখুন">Try a sample</a>
+        <details class="nav-menu">
+          <summary data-en="Explore" data-bn="ঘুরে দেখুন">Explore</summary>
+          <div class="nav-panel">
+            <a href="#features" data-en="Features" data-bn="সুবিধা">Features</a>
+            <a href="#try" data-en="Try a sample" data-bn="নমুনা দেখুন">Try a sample</a>
+            <a href="#library" data-en="Learning library" data-bn="শেখার সংগ্রহ">Learning library</a>
+          </div>
+        </details>
+        <details class="nav-menu">
+          <summary data-en="Help" data-bn="সহায়তা">Help</summary>
+          <div class="nav-panel">
+            <a href="#how-to" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a>
+            <a href="#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
+          </div>
+        </details>
         <button type="button" class="language" id="language" aria-label="Switch language">বাংলা</button>
-        <a href="#how-to" data-en="How to use &amp; FAQ" data-bn="ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা">How to use &amp; FAQ</a>
       </nav>
     </div>
   </header>
@@ -113,6 +151,36 @@
         <article class="feature-card"><span class="feature-symbol" aria-hidden="true">❓</span><h3 data-en="Questions & Answers" data-bn="প্রশ্ন ও উত্তর">Questions & Answers</h3><p data-en="Understand how AI prompting works through prepared questions and easy explanations." data-bn="প্রস্তুত প্রশ্ন ও সহজ ব্যাখ্যায় এআই প্রম্পট সম্পর্কে শিখুন।">Understand how AI prompting works through prepared questions and easy explanations.</p></article>
         <article class="feature-card"><span class="feature-symbol" aria-hidden="true">💡</span><h3 data-en="AI Tips & Discoveries" data-bn="এআই টিপস ও নতুন তথ্য">AI Tips & Discoveries</h3><p data-en="See before-and-after prompts and follow official sources for new AI features." data-bn="আগে-পরের প্রম্পটের উদাহরণ দেখুন এবং এআইয়ের নতুন ফিচারের নির্ভরযোগ্য উৎস অনুসরণ করুন।">See before-and-after prompts and follow official sources for new AI features.</p></article>
       </div>
+    </section>
+
+<section id="library" class="container" aria-labelledby="library-title">
+      <h2 id="library-title" data-en="Learning library" data-bn="শেখার সংগ্রহ">Learning library</h2>
+      <div class="gallery-controls">
+        <button type="button" class="cta secondary" data-slide="-1" aria-controls="library-photos" data-en="← Previous" data-bn="← আগের ছবি">← Previous</button>
+        <button type="button" class="cta secondary" data-slide="1" aria-controls="library-photos" data-en="Next →" data-bn="পরের ছবি →">Next →</button>
+      </div>
+      <ul class="library-photos" id="library-photos">
+        <li>
+          <figure>
+            <img src="assets/library-study.webp" width="900" height="600" loading="lazy" decoding="async" alt="A student takes notes beside a laptop in a library." data-alt-bn="লাইব্রেরিতে ল্যাপটপের পাশে একজন শিক্ষার্থী নোট নিচ্ছেন।">
+            <figcaption><strong data-en="Study with AI" data-bn="এআই দিয়ে পড়াশোনা">Study with AI</strong><a href="https://unsplash.com/photos/NASjMHJ9OhI">Ashutosh Gupta</a></figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            <img src="assets/group.webp" width="760" height="440" loading="lazy" decoding="async" alt="Students gathered around a laptop." data-alt-bn="একটি ল্যাপটপের পাশে কয়েকজন শিক্ষার্থী।">
+            <figcaption><strong data-en="Learn together" data-bn="একসঙ্গে শিখুন">Learn together</strong><a href="https://unsplash.com/photos/8gAbl776pc0">Vitaly Gariev</a></figcaption>
+          </figure>
+        </li>
+        <li>
+          <figure>
+            <img src="assets/notes.webp" width="760" height="440" loading="lazy" decoding="async" alt="An open notebook and pens on a desk." data-alt-bn="টেবিলে একটি খোলা নোটবুক ও কয়েকটি কলম।">
+            <figcaption><strong data-en="Write clearer prompts" data-bn="আরও স্পষ্ট প্রম্পট লিখুন">Write clearer prompts</strong><a href="https://unsplash.com/photos/hBdaqrr5Z3k">Kelly Sikkema</a></figcaption>
+          </figure>
+        </li>
+      </ul>
+      <p class="intro" data-en="Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates." data-bn="এআই নিয়ে প্রশ্নোত্তর, প্রম্পটের আগে-পরে উদাহরণ এবং এআই আপডেটের অফিসিয়াল লিংক দেখুন।">Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates.</p>
+      <a class="cta" href="app/?view=learn" data-en="Open the learning library" data-bn="শেখার সংগ্রহ খুলুন">Open the learning library</a>
     </section>
 
     <section class="demo" id="try">
@@ -187,13 +255,41 @@
 
   <script>
     const language = document.getElementById('language');
-    const studyPhoto = document.querySelector('.hero-photo img');
-    const englishPhotoAlt = studyPhoto.alt;
+    const photos = [...document.querySelectorAll('[data-alt-bn]')];
+    const originalAlts = photos.map(photo => photo.alt);
+    const menus = [...document.querySelectorAll('.nav-menu')];
+    document.addEventListener('click', event => {
+      for (const menu of menus) {
+        if (!menu.contains(event.target) || event.target.closest('.nav-panel a')) menu.open = false;
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const menu = menus.find(item => item.open && item.contains(document.activeElement));
+      if (menu) {
+        menu.open = false;
+        menu.querySelector('summary').focus();
+      }
+    });
+    const filmstrip = document.getElementById('library-photos');
+    document.querySelectorAll('[data-slide]').forEach(button => {
+      button.addEventListener('click', () => {
+        const first = filmstrip.children[0];
+        const step = filmstrip.children[1].offsetLeft - first.offsetLeft;
+        const direction = Number(button.dataset.slide);
+        const limit = filmstrip.scrollWidth - filmstrip.clientWidth;
+        if (direction > 0 && filmstrip.scrollLeft >= limit - 2) filmstrip.scrollTo({ left: 0 });
+        else if (direction < 0 && filmstrip.scrollLeft <= 2) filmstrip.scrollTo({ left: limit });
+        else filmstrip.scrollBy({ left: step * direction });
+      });
+    });
     let isBangla = false;
     language.addEventListener('click', () => {
       isBangla = !isBangla;
       document.documentElement.lang = isBangla ? 'bn' : 'en';
-      studyPhoto.alt = isBangla ? studyPhoto.dataset.altBn : englishPhotoAlt;
+      photos.forEach((photo, index) => {
+        photo.alt = isBangla ? photo.dataset.altBn : originalAlts[index];
+      });
       language.textContent = isBangla ? 'English' : 'বাংলা';
       document.querySelectorAll('[data-en][data-bn]').forEach(element => {
         element.textContent = element.dataset[isBangla ? 'bn' : 'en'];
