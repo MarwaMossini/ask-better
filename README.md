@@ -54,7 +54,7 @@ combined website for an HTTPS domain root, run:
 ```bash
 flutter build web --base-href /app/
 mkdir -p dist/app
-cp site/index.html dist/index.html
+cp -a site/. dist/
 cp -a build/web/. dist/app/
 ```
 

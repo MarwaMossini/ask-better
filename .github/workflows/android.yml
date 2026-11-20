@@ -51,8 +51,9 @@ jobs:
       - name: Package website and web app
         run: |
           mkdir -p dist/app
-          cp site/index.html dist/index.html
+          cp -a site/. dist/
           cp -a build/web/. dist/app/
+          test -s dist/assets/library-study.webp
           test -s dist/app/flutter_bootstrap.js
           test -s dist/app/main.dart.js
       - name: Upload website

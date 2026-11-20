@@ -28,17 +28,14 @@
     h3 { line-height: 1.28; margin: 12px 0 6px; }
     p { margin: 0 0 16px; }
     .lede { font-size: 1.12rem; color: #456a65; max-width: 600px; }
-    .eyebrow { display: inline-block; background: #d9f4eb; border: 1px solid #a5d8c9; color: #00675e; padding: 6px 11px; border-radius: 999px; font-size: .83rem; font-weight: 700; }
     .cta { display: inline-flex; justify-content: center; border: 0; border-radius: 12px; padding: 12px 18px; background: #007e76; color: white; font-weight: 750; text-decoration: none; }
     .cta:hover { background: #00675f; }
     .secondary { background: white; color: #00746d; border: 1px solid #a8d6cb; }
     .button-row { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 24px; }
-    .preview-card, .feature-card, .demo-card, .note-card { background: white; border: 1px solid #d7e8e2; border-radius: 20px; box-shadow: 0 8px 30px rgba(5, 56, 45, .04); }
-    .preview-card { padding: 26px; transform: rotate(1deg); }
-    .preview-label { color: #007e76; font-size: .83rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
-    .prompt-line { background: #eff7f4; border-radius: 12px; margin-top: 12px; padding: 13px 15px; }
-    .prompt-line small { display: block; color: #5c7d75; margin-bottom: 3px; }
-    .chip { display: inline-block; background: #d8efe8; color: #006960; padding: 4px 9px; border-radius: 8px; font-size: .83rem; font-weight: 700; }
+    .feature-card, .demo-card, .note-card { background: white; border: 1px solid #d7e8e2; border-radius: 20px; box-shadow: 0 8px 30px rgba(5, 56, 45, .04); }
+    .hero-photo { margin: 0; min-width: 0; }
+    .hero-photo img { display: block; width: 100%; height: auto; border-radius: 20px; }
+    .hero-photo figcaption { margin-top: 6px; font-size: .82rem; }
     section { padding: 72px 0; }
     .help-content { max-width: 760px; }
     .help-content ol { padding-inline-start: 1.5rem; }
@@ -68,7 +65,6 @@
       .hero { padding: 54px 0; }
       .hero-grid, .demo-grid { grid-template-columns: 1fr; }
       .features { grid-template-columns: 1fr; }
-      .preview-card { transform: none; }
       nav a { display: none; }
       section { padding: 52px 0; }
     }
@@ -91,7 +87,6 @@
     <div class="hero">
       <div class="container hero-grid">
         <div>
-          <span class="eyebrow" data-en="Android app in development" data-bn="অ্যান্ড্রয়েড অ্যাপ তৈরির কাজ চলছে">Android app in development</span>
           <h1 data-en="Ask better. Save time and money." data-bn="ভালোভাবে প্রশ্ন করুন। সময় ও অর্থ বাঁচান।">Ask better. Save time and money.</h1>
           <p class="lede" data-en="ProshnoLab turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates." data-bn="কয়েকটি সহজ প্রশ্নের উত্তর দিয়ে আপনার পছন্দের এআই টুলের জন্য স্পষ্ট প্রম্পট তৈরি করুন। উদাহরণ, প্রশ্নোত্তর ও নির্ভরযোগ্য এআই আপডেট থেকে শিখুন।">ProshnoLab turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates.</p>
           <div class="button-row">
@@ -100,13 +95,13 @@
           </div>
           <p><a href="#how-to" data-en="How to use &amp; FAQ" data-bn="ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা">How to use &amp; FAQ</a></p>
         </div>
-        <div class="preview-card" aria-label="Example prompt construction">
-          <div class="preview-label" data-en="From an idea to a better prompt" data-bn="আইডিয়া থেকে ভালো প্রম্পট">From an idea to a better prompt</div>
-          <div class="prompt-line"><small data-en="Your goal" data-bn="আপনার লক্ষ্য">Your goal</small><strong data-en="Understand a difficult topic" data-bn="কঠিন বিষয় বুঝতে চাই">Understand a difficult topic</strong></div>
-          <div class="prompt-line"><small data-en="Your context" data-bn="আপনার পরিস্থিতি">Your context</small><strong data-en="University student, beginner level" data-bn="বিশ্ববিদ্যালয়ের শিক্ষার্থী, প্রাথমিক স্তর">University student, beginner level</strong></div>
-          <div class="prompt-line"><small data-en="Preferred answer" data-bn="কেমন উত্তর চান">Preferred answer</small><strong data-en="Simple example + practice questions" data-bn="সহজ উদাহরণ ও অনুশীলনী">Simple example + practice questions</strong></div>
-          <p style="margin: 16px 0 0"><span class="chip" data-en="Ready to review & copy" data-bn="দেখে কপি করার জন্য প্রস্তুত">Ready to review & copy</span></p>
-        </div>
+        <figure class="hero-photo">
+          <img src="assets/library-study.webp" width="900" height="600" fetchpriority="high"
+            alt="A student writes notes beside a laptop at a library table."
+            data-alt-bn="গ্রন্থাগারের টেবিলে ল্যাপটপের পাশে একজন শিক্ষার্থী নোট লিখছেন।">
+          <figcaption><a href="https://unsplash.com/photos/NASjMHJ9OhI"
+            data-en="Photo by Ashutosh Gupta" data-bn="ছবি: আশুতোষ গুপ্ত">Photo by Ashutosh Gupta</a></figcaption>
+        </figure>
       </div>
     </div>
 
@@ -192,10 +187,13 @@
 
   <script>
     const language = document.getElementById('language');
+    const studyPhoto = document.querySelector('.hero-photo img');
+    const englishPhotoAlt = studyPhoto.alt;
     let isBangla = false;
     language.addEventListener('click', () => {
       isBangla = !isBangla;
       document.documentElement.lang = isBangla ? 'bn' : 'en';
+      studyPhoto.alt = isBangla ? studyPhoto.dataset.altBn : englishPhotoAlt;
       language.textContent = isBangla ? 'English' : 'বাংলা';
       document.querySelectorAll('[data-en][data-bn]').forEach(element => {
         element.textContent = element.dataset[isBangla ? 'bn' : 'en'];
