@@ -75,7 +75,7 @@
     .nav-panel a:hover { background: #e8f5f0; }
     .language { min-height: 44px; }
     .gallery-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-    .library-photos { display: grid; grid-auto-flow: column; grid-auto-columns: 46%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; padding: 0 0 10px; margin: 0 0 20px; }
+    .library-photos { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; padding: 0 0 10px; margin: 0 0 20px; }
     .library-photos li { scroll-snap-align: start; min-width: 0; }
     .library-photos figure { margin: 0; }
     .library-photos img { display: block; width: 100%; height: auto; aspect-ratio: 19 / 11; object-fit: cover; border-radius: 16px; }
@@ -85,7 +85,6 @@
       .header-inner { flex-wrap: wrap; gap: 6px; }
       nav { flex-wrap: wrap; }
       .nav-panel { left: 0; right: auto; }
-      .library-photos { grid-auto-columns: 88%; }
     }
     @media (prefers-reduced-motion: no-preference) {
       .gallery-controls button { transition: transform 140ms ease; }
@@ -164,8 +163,7 @@
 <section id="library" class="container" aria-labelledby="library-title">
       <h2 id="library-title" data-en="Learning library" data-bn="শেখার সংগ্রহ">Learning library</h2>
       <div class="gallery-controls">
-        <button type="button" class="cta secondary" data-slide="-1" aria-controls="library-photos" data-en="← Previous" data-bn="← আগের ছবি">← Previous</button>
-        <button type="button" class="cta secondary" data-slide="1" aria-controls="library-photos" data-en="Next →" data-bn="পরের ছবি →">Next →</button>
+        <button type="button" class="cta secondary" id="carousel-motion" aria-controls="library-photos">Pause slideshow</button>
       </div>
       <ul class="library-photos" id="library-photos">
         <li>
@@ -329,19 +327,49 @@
       }
     });
     const filmstrip = document.getElementById('library-photos');
-    document.querySelectorAll('[data-slide]').forEach(button => {
-      button.addEventListener('click', () => {
-        const first = filmstrip.children[0];
-        const step = filmstrip.children[1].offsetLeft - first.offsetLeft;
-        const direction = Number(button.dataset.slide);
-        const limit = filmstrip.scrollWidth - filmstrip.clientWidth;
-        if (direction > 0 && filmstrip.scrollLeft >= limit - 2) filmstrip.scrollTo({ left: 0 });
-        else if (direction < 0 && filmstrip.scrollLeft <= 2) filmstrip.scrollTo({ left: limit });
-        else filmstrip.scrollBy({ left: step * direction });
-      });
+    const motionButton = document.getElementById('carousel-motion');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let carouselPaused = reducedMotion.matches;
+    let carouselVisible = false;
+    let touchActive = false;
+
+    function renderCarouselControl() {
+      motionButton.textContent = carouselPaused
+        ? (isBangla ? 'স্লাইডশো চালু করুন' : 'Play slideshow')
+        : (isBangla ? 'স্লাইডশো থামান' : 'Pause slideshow');
+    }
+
+    motionButton.addEventListener('click', () => {
+      carouselPaused = !carouselPaused;
+      renderCarouselControl();
     });
+    reducedMotion.addEventListener('change', event => {
+      carouselPaused = event.matches;
+      renderCarouselControl();
+    });
+    new IntersectionObserver(([entry]) => {
+      carouselVisible = entry.isIntersecting;
+    }, {threshold: 0.25}).observe(filmstrip);
+
+    filmstrip.addEventListener('touchstart', () => { touchActive = true; }, {passive: true});
+    for (const eventName of ['touchend', 'touchcancel']) {
+      filmstrip.addEventListener(eventName, () => { touchActive = false; }, {passive: true});
+    }
+
+    window.setInterval(() => {
+      if (carouselPaused || !carouselVisible || document.hidden || touchActive ||
+          filmstrip.matches(':hover, :focus-within')) return;
+
+      const first = filmstrip.children[0];
+      const next = [...filmstrip.children].find(slide => slide.offsetLeft - first.offsetLeft > filmstrip.scrollLeft + 2);
+      filmstrip.scrollTo({
+        left: next ? next.offsetLeft - first.offsetLeft : 0,
+        behavior: next && !reducedMotion.matches ? 'smooth' : 'instant',
+      });
+    }, 2000);
     let isBangla = false;
     function renderLanguage() {
+      renderCarouselControl();
       document.documentElement.lang = isBangla ? 'bn' : 'en';
       result.placeholder = isBangla ? 'আপনার প্রম্পট এখানে দেখাবে।' : 'Your prompt will appear here.';
       status.textContent = '';
