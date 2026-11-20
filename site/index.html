@@ -49,7 +49,7 @@
     .feature-symbol { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; background: #d8f2e9; font-size: 1.5rem; }
     .muted { color: #57756e; }
     .demo { background: #e8f4ef; }
-    .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    .demo-grid { display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr); gap: 24px; align-items: start; }
     .demo-card { padding: 27px; }
     label { display: block; font-weight: 650; margin: 13px 0 6px; }
     input, select, textarea { width: 100%; border: 1px solid #bdd6d0; border-radius: 10px; background: white; padding: 11px 12px; color: #17312f; }
@@ -131,6 +131,16 @@
     .hero .cta.secondary { background: #fffdf7; color: #3f512e; border-color: #869473; }
     .hero .cta.secondary:hover { background: #f2efdf; }
     .hero-photo img { box-shadow: 0 12px 28px #49393229; }
+    .ratio-grid { display: grid; grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+    #how-to.ratio-grid { max-width: 1080px; }
+    .library-reading .library-filter { grid-column: 2; grid-row: 1; }
+    .library-reading .library-resources { grid-column: 1; grid-row: 1; }
+    .library-resources .reading-card:first-of-type { margin-top: 0; }
+    @media (max-width: 760px) {
+      .ratio-grid { grid-template-columns: minmax(0, 1fr); }
+      .library-reading .library-filter { grid-column: 1; grid-row: 1; }
+      .library-reading .library-resources { grid-column: 1; grid-row: 2; }
+    }
   </style>
 </head>
 <body>
@@ -215,7 +225,8 @@
       <p class="intro" data-en="Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates." data-bn="এআই নিয়ে প্রশ্নোত্তর, প্রম্পটের আগে-পরে উদাহরণ এবং এআই আপডেটের অফিসিয়াল লিংক দেখুন।">Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates.</p>
       <div style="margin-top: 32px">
         <h3 data-en="AI stories and practical tips" data-bn="এআই নিয়ে লেখা ও ব্যবহারিক পরামর্শ">AI stories and practical tips</h3>
-        <div class="library-filter">
+        <div class="ratio-grid library-reading">
+<div class="library-filter">
           <label for="library-topic"><span data-en="Filter by topic" data-bn="বিষয় অনুযায়ী দেখুন">Filter by topic</span></label>
           <select id="library-topic">
             <option value="all" data-en="All topics" data-bn="সব বিষয়">All topics</option>
@@ -224,6 +235,7 @@
             <option value="writing" data-en="Writing prompts" data-bn="প্রম্পট লেখা">Writing prompts</option>
           </select>
         </div>
+<div class="library-resources">
         <article id="study-guide" class="reading-card" data-library-topic="study" tabindex="-1">
           <h4 data-en="Turn notes into a practice quiz" data-bn="নোট থেকে অনুশীলনী তৈরি করুন">Turn notes into a practice quiz</h4>
           <p data-en="Paste a short excerpt from your notes. Ask for three questions at your level and tell AI to hold the answers until you try." data-bn="নোটের ছোট একটি অংশ দিন। নিজের স্তর অনুযায়ী তিনটি প্রশ্ন চান এবং চেষ্টা করার আগে উত্তর না দিতে বলুন।">Paste a short excerpt from your notes. Ask for three questions at your level and tell AI to hold the answers until you try.</p>
@@ -239,6 +251,8 @@
           <p><strong data-en="Try it with a class presentation" data-bn="ক্লাসের উপস্থাপনায় চেষ্টা করুন">Try it with a class presentation</strong>. <span data-en="Ask for a five-slide outline based on your topic and audience. Review the outline, then ask for speaker notes and practice questions." data-bn="আপনার বিষয় ও শ্রোতা অনুযায়ী পাঁচটি স্লাইডের রূপরেখা চান। সেটি দেখে বক্তার নোট ও অনুশীলনের প্রশ্ন চান।">Ask for a five-slide outline based on your topic and audience. Review the outline, then ask for speaker notes and practice questions.</span></p>
           <a href="https://www.inc.com/pam-didner/short-chatbot-prompts-are-a-beginner-habit-skilled-users-turn-them-into-whole-workflows/91387220" data-en="Read the original on Inc." data-bn="Inc.-এ মূল লেখাটি পড়ুন">Read the original on Inc.</a>
         </article>
+          </div>
+        </div>
       </div>
       <a class="cta" href="app/?view=learn" data-en="Open the learning library" data-bn="শেখার সংগ্রহ খুলুন">Open the learning library</a>
     </section>
@@ -271,8 +285,11 @@
       </div>
     </section>
 
-    <section id="about" class="container help-content" aria-labelledby="about-title">
+    <section id="about" class="container ratio-grid" aria-labelledby="about-title">
+      <div>
       <h2 id="about-title" data-en="Why prompt structure matters" data-bn="প্রম্পটের গঠন কেন গুরুত্বপূর্ণ">Why prompt structure matters</h2>
+      <p class="intro" data-en="A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. ProshnoLab helps you put those pieces together." data-bn="স্পষ্ট প্রম্পটে আপনার লক্ষ্য, প্রয়োজনীয় প্রেক্ষাপট এবং কেমন উত্তর চান তা থাকে। প্রশ্নোল্যাব এই তথ্যগুলো একসঙ্গে সাজাতে সাহায্য করে।">A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. ProshnoLab helps you put those pieces together.</p>
+      </div>
       <article class="reading-card">
         <h3 data-en="183 students in a prompting study" data-bn="প্রম্পট নিয়ে গবেষণায় ১৮৩ জন শিক্ষার্থী">183 students in a prompting study</h3>
         <p data-en="In an online business administration course, students perceived AI responses as more detailed and accurate when the prompts were well structured." data-bn="অনলাইনে ব্যবসায় প্রশাসনের একটি কোর্সে, সুগঠিত প্রম্পট ব্যবহার করলে শিক্ষার্থীদের কাছে এআইয়ের উত্তর আরও বিস্তারিত ও নির্ভুল মনে হয়েছে।">In an online business administration course, students perceived AI responses as more detailed and accurate when the prompts were well structured.</p>
@@ -280,7 +297,8 @@
       </article>
     </section>
 
-    <section id="how-to" class="container help-content">
+    <section id="how-to" class="container help-content ratio-grid">
+      <div>
       <h2 data-en="How to use ProshnoLab" data-bn="প্রশনোল্যাব কীভাবে ব্যবহার করবেন">How to use ProshnoLab</h2>
       <ol>
         <li data-en="Choose Essay, Email, or Study in the Builder." data-bn="প্রম্পট বিল্ডারে রচনা, ইমেইল বা পড়াশোনা বেছে নিন।">Choose Essay, Email, or Study in the Builder.</li>
@@ -288,6 +306,8 @@
         <li data-en="Generate your prompt, edit it if needed, then copy it into your preferred AI tool." data-bn="প্রম্পট তৈরি করুন, প্রয়োজনে সম্পাদনা করুন, তারপর কপি করে আপনার পছন্দের এআই টুলে পেস্ট করুন।">Generate your prompt, edit it if needed, then copy it into your preferred AI tool.</li>
       </ol>
       <p><a href="app/" data-en="Open the full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ খুলুন">Open the full web app</a></p>
+      </div>
+      <div>
       <h2 id="faq" data-en="Frequently asked questions" data-bn="সাধারণ জিজ্ঞাসা">Frequently asked questions</h2>
       <details>
         <summary data-en="What is a prompt?" data-bn="প্রম্পট কী?">What is a prompt?</summary>
@@ -309,8 +329,10 @@
         <summary data-en="Where do my answers go?" data-bn="আমার উত্তরগুলো কোথায় যায়?">Where do my answers go?</summary>
         <p data-en="ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy." data-bn="প্রশনোল্যাব আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।">ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.</p>
       </details>
+      </div>
     </section>
-    <section id="ai-updates" class="container">
+    <section id="ai-updates" class="container ratio-grid">
+      <div>
       <h2 data-en="Stay curious about AI" data-bn="এআই সম্পর্কে নতুন তথ্য জানুন">Stay curious about AI</h2>
       <p class="intro" data-en="Follow official AI updates or browse our selected stories in the Learning Library." data-bn="এআই সম্পর্কে অফিসিয়াল আপডেট দেখুন অথবা শেখার সংগ্রহে নির্বাচিত লেখাগুলো পড়ুন।">The current preview links to official sources. A curated, dated news library is planned for a later release.</p>
       <p><a href="#prompt-workflows" data-en="Read our featured AI story" data-bn="এআই নিয়ে নির্বাচিত লেখাটি পড়ুন">Read our featured AI story</a></p>
@@ -319,6 +341,7 @@
         <li><a href="https://blog.google/technology/ai/" target="_blank" rel="noopener noreferrer">Google AI news</a></li>
         <li><a href="https://blogs.microsoft.com/blog/tag/ai/" target="_blank" rel="noopener noreferrer">Microsoft AI news</a></li>
       </ul>
+      </div>
       <div class="note-card"><strong data-en="Subscription status: Not active" data-bn="সাবস্ক্রিপশন: চালু হয়নি">Subscription status: Not active</strong><p class="muted" style="margin-bottom: 0" data-en="BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing." data-bn="এই সংস্করণে বিডিঅ্যাপস বিলিং যুক্ত হয়নি। অনুমোদন ও পরীক্ষার পর মূল্য ও সাবস্ক্রিপশন সুবিধা দেখানো হবে।">BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing.</p></div>
     </section>
   </main>
