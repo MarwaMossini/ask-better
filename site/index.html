@@ -187,6 +187,10 @@
     .plan-card .premium-prices { list-style: none; padding: 0; }
     .premium-prices li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding: 8px 10px; border-radius: 8px; background: #edf2f9; }
     .premium-prices small { grid-column: 1 / -1; color: #435571; }
+    #ai-shortcuts summary { cursor: pointer; padding: 10px; }
+    #ai-shortcuts ul { display: flex; flex-wrap: wrap; gap: 4px 12px; list-style: none; padding: 0 10px; }
+    #ai-shortcuts a { display: inline-flex; align-items: center; min-height: 44px; }
+    #ai-shortcuts p { margin: 0 10px 8px; }
   </style>
 </head>
 <body>
@@ -325,7 +329,12 @@
             <h3 id="result-heading" data-en="Your editable result" data-bn="আপনার সম্পাদনাযোগ্য প্রম্পট">Your editable result</h3>
             <textarea id="result" rows="9" aria-labelledby="result-heading" placeholder="Your prompt will appear here." readonly></textarea>
             <p id="builder-status" class="muted" role="status"></p>
-            <div class="button-row"><button class="cta secondary" id="copy" type="button" disabled data-en="Copy prompt" data-bn="প্রম্পট কপি করুন">Copy prompt</button></div>
+            <div class="button-row"><button class="cta secondary" id="copy" type="button" disabled data-en="Copy prompt" data-bn="প্রম্পট কপি করুন">Copy prompt</button>
+              <details id="ai-shortcuts" hidden>
+                <summary data-en="Copy and open an AI tool" data-bn="কপি করে এআই টুল খুলুন">Copy and open an AI tool</summary>
+                <ul><li><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a></li><li><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Gemini</a></li><li><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a></li><li><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a></li></ul>
+                <p data-en="Paste your prompt in the tool that opens." data-bn="যে টুলটি খুলবে, সেখানে প্রম্পটটি পেস্ট করুন।">Paste your prompt in the tool that opens.</p>
+              </details></div>
             <p class="muted" style="margin-top: 14px" data-en="Review your prompt and remove unnecessary personal details before pasting it into an AI service." data-bn="এআই সেবায় ব্যবহার করার আগে প্রম্পট যাচাই করুন এবং অপ্রয়োজনীয় ব্যক্তিগত তথ্য মুছে দিন।">Review your prompt and remove unnecessary personal details before pasting it into an AI service.</p>
           </div>
         </div>
@@ -820,8 +829,28 @@
       result.value = [template[4][languageIndex], lines.join('\n'), followup].join('\n\n');
       copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
       copy.disabled = false;
+      updateShortcuts();
       status.textContent = isBangla ? 'প্রম্পট তৈরি হয়েছে। সম্পাদনা বা কপি করুন।' : 'Prompt ready. You can edit or copy it.';
       result.focus();
+    });
+    const shortcuts = document.getElementById('ai-shortcuts');
+    function updateShortcuts() {
+      shortcuts.hidden = !result.value.trim();
+    }
+    result.addEventListener('input', updateShortcuts);
+    document.querySelectorAll('#ai-shortcuts a').forEach(link => {
+      link.addEventListener('click', async event => {
+        if (!result.value.trim()) {
+          event.preventDefault();
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(result.value);
+          status.textContent = isBangla ? 'প্রম্পট কপি হয়েছে। এআই টুলে পেস্ট করুন।' : 'Prompt copied. Paste it into the AI tool.';
+        } catch {
+          status.textContent = isBangla ? 'প্রম্পট কপি হয়নি। ফিরে এসে কপি করুন।' : 'Could not copy automatically. Return here and use Copy prompt.';
+        }
+      });
     });
     copy.addEventListener('click', async () => {
       try {
