@@ -2,7 +2,7 @@
 
 **Ask better. Save time and money.**
 
-ProshnoLab is an early-stage Bangla–English Android app for students in
+ProshnoLab is an early-stage Bangla–English Android and web app for students in
 Bangladesh. The first preview includes:
 
 - A guided prompt builder for **Essay**, **Email** and **Study** tasks.
@@ -42,21 +42,38 @@ successful run. The artifact downloads as a ZIP; extract the APK before
 installing it on your Android device. Debug APKs are for testing only, not
 official Store publication.
 
-## Landing page
+## Website
 
-`web/index.html` is a standalone responsive landing page. You can open it in
-a browser or upload it to HTTPS hosting. It includes a browser-only sample
-builder that does not transmit users' answers.
+The landing page includes a sample builder and an **Open full web app** link.
+The full browser app shares the Android app's prompt builder and learning
+library. Prompt answers stay in the browser.
+
+To run the full app locally, use `flutter run -d chrome`. To build the
+combined website for an HTTPS domain root, run:
+
+```bash
+flutter build web --base-href /app/
+mkdir -p dist/app
+cp site/index.html dist/index.html
+cp -a build/web/. dist/app/
+```
+
+Upload the contents of `dist/` to the site's document root. The landing page
+opens at `/` and the full web app at `/app/`. For hosting under a URL
+prefix, include that prefix in the Flutter base href when building.
+
+GitHub Actions uploads the complete site as the `proshnolab-website` artifact.
 
 ## Project structure
 
 | Path | Purpose |
 | --- | --- |
-| `lib/main.dart` | Android UI and on-device prompt creation |
+| `lib/main.dart` | Shared Android and browser UI and local prompt creation |
 | `test/widget_test.dart` | Flutter UI smoke test |
-| `web/index.html` | Responsive bilingual landing page |
+| `site/index.html` | Responsive bilingual landing page |
+| `web/index.html` | Flutter web entry point |
 | `backend/README.md` | Pending BDApps integration safeguards |
-| `.github/workflows/android.yml` | Android analysis, tests and APK build |
+| `.github/workflows/android.yml` | Android checks and build, plus website build |
 
 ## Before BDApps publication
 

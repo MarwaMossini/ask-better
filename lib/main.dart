@@ -58,14 +58,19 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
         ],
       ),
       body: SafeArea(
-        child: IndexedStack(
-          index: selectedTab,
-          children: [
-            _homePage(),
-            PromptBuilder(bangla: bangla),
-            LearningLibrary(bangla: bangla),
-            AccountPage(bangla: bangla),
-          ],
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: IndexedStack(
+              index: selectedTab,
+              children: [
+                _homePage(),
+                PromptBuilder(bangla: bangla),
+                LearningLibrary(bangla: bangla),
+                AccountPage(bangla: bangla),
+              ],
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: NavigationBar(
@@ -115,6 +120,7 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: constraints.maxWidth < 370 ? 0.95 : 1.13,
+          mainAxisExtent: constraints.maxWidth >= 560 ? 140 : null,
           children: [
             _feature(Icons.auto_fix_high, t('Smart Prompts', 'স্মার্ট প্রম্পট'),
                 t('Essay, email and study', 'রচনা, ইমেইল ও পড়াশোনা'), 1),
