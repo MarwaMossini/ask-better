@@ -202,6 +202,7 @@
         <p class="intro" data-en="This sample runs in your browser. It does not send your answers to a server or charge you." data-bn="এই নমুনাটি আপনার ব্রাউজারেই চলে। উত্তর সার্ভারে পাঠানো হয় না, কোনো টাকা নেওয়া হয় না।">This sample runs in your browser. It does not send your answers to a server or charge you.</p>
         <div class="demo-grid">
           <form class="demo-card" id="sample-form">
+            <button class="cta secondary" id="try-example" type="button" data-en="Try a presentation example" data-bn="উপস্থাপনার একটি উদাহরণ দেখুন">Try a presentation example</button>
             <label for="task" data-en="What do you need?" data-bn="কী করতে চান?">What do you need?</label>
             <select id="task"><option value="essay" data-en="Essay" data-bn="রচনা">Essay</option><option value="email" data-en="Email" data-bn="ইমেইল">Email</option><option value="study" data-en="Study a topic" data-bn="কোনো বিষয় শিখুন">Study a topic</option><option value="presentation" data-en="Presentation" data-bn="উপস্থাপনা">Presentation</option><option value="project" data-en="Project plan" data-bn="প্রকল্প পরিকল্পনা">Project plan</option><option value="report" data-en="Report" data-bn="প্রতিবেদন">Report</option><option value="other" data-en="Other (write your own)" data-bn="অন্যান্য (নিজে লিখুন)">Other (write your own)</option></select>
             <label for="topic" data-en="Your topic or goal" data-bn="আপনার বিষয় বা লক্ষ্য">Your topic or goal</label>
@@ -213,8 +214,9 @@
             <button class="cta" style="margin-top: 17px; width: 100%;" type="submit" data-en="Generate sample prompt" data-bn="নমুনা প্রম্পট তৈরি করুন">Generate sample prompt</button>
           </form>
           <div class="demo-card">
-            <h3 data-en="Your editable result" data-bn="আপনার সম্পাদনাযোগ্য প্রম্পট">Your editable result</h3>
-            <pre id="result" aria-live="polite">Your prompt will appear here.</pre>
+            <h3 id="result-heading" data-en="Your editable result" data-bn="আপনার সম্পাদনাযোগ্য প্রম্পট">Your editable result</h3>
+            <textarea id="result" rows="9" aria-labelledby="result-heading" placeholder="Your prompt will appear here." readonly></textarea>
+            <p id="builder-status" class="muted" role="status"></p>
             <div class="button-row"><button class="cta secondary" id="copy" type="button" disabled data-en="Copy prompt" data-bn="প্রম্পট কপি করুন">Copy prompt</button></div>
             <p class="muted" style="margin-top: 14px" data-en="Review your prompt and remove unnecessary personal details before pasting it into an AI service." data-bn="এআই সেবায় ব্যবহার করার আগে প্রম্পট যাচাই করুন এবং অপ্রয়োজনীয় ব্যক্তিগত তথ্য মুছে দিন।">Review your prompt and remove unnecessary personal details before pasting it into an AI service.</p>
           </div>
@@ -301,6 +303,8 @@
     language.addEventListener('click', () => {
       isBangla = !isBangla;
       document.documentElement.lang = isBangla ? 'bn' : 'en';
+      result.placeholder = isBangla ? 'আপনার প্রম্পট এখানে দেখাবে।' : 'Your prompt will appear here.';
+      status.textContent = '';
       photos.forEach((photo, index) => {
         photo.alt = isBangla ? photo.dataset.altBn : originalAlts[index];
       });
@@ -467,6 +471,7 @@
     ]
   ]
 };
+    const status = document.getElementById('builder-status');
     const picker = document.getElementById('task');
     const fields = ['topic', 'context', 'requirements'].map(id => document.getElementById(id));
     const drafts = new Map();
@@ -483,7 +488,9 @@
     }
 
     function resetResult() {
-      result.textContent = isBangla ? 'আপনার প্রম্পট এখানে দেখাবে।' : 'Your prompt will appear here.';
+      result.value = '';
+      result.readOnly = true;
+      status.textContent = '';
       copy.disabled = true;
       copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
     }
@@ -497,6 +504,27 @@
       resetResult();
     });
     updateQuestions();
+
+    document.getElementById('try-example').addEventListener('click', () => {
+      if (picker.value !== 'presentation') {
+        picker.value = 'presentation';
+        picker.dispatchEvent(new Event('change'));
+      }
+      const example = isBangla
+        ? ['স্কুলে খাবারের অপচয় কমানো', 'সহপাঠীরা', 'পাঁচ মিনিট, তিনটি বাস্তব সমাধান']
+        : ['Reducing food waste at school', 'Classmates', 'Five minutes and three practical solutions'];
+      fields.forEach((field, index) => {
+        if (!field.value.trim()) field.value = example[index];
+      });
+      fields[0].setCustomValidity('');
+      resetResult();
+      status.textContent = isBangla ? 'খালি ঘরগুলোতে উদাহরণ যোগ হয়েছে।' : 'Example answers filled in the empty fields.';
+      fields[0].focus();
+    });
+    result.addEventListener('input', () => {
+      copy.disabled = !result.value.trim();
+      status.textContent = '';
+    });
 
     fields[0].addEventListener('input', () => fields[0].setCustomValidity(''));
     document.getElementById('sample-form').addEventListener('submit', event => {
@@ -513,16 +541,21 @@
         return value ? [template[index + 1][languageIndex] + ' ' + value] : [];
       });
       const followup = isBangla ? 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।' : 'Ask one short clarifying question if essential information is missing.';
-      result.textContent = [template[4][languageIndex], lines.join('\n'), followup].join('\n\n');
+      result.readOnly = false;
+      result.value = [template[4][languageIndex], lines.join('\n'), followup].join('\n\n');
       copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
       copy.disabled = false;
+      status.textContent = isBangla ? 'প্রম্পট তৈরি হয়েছে। সম্পাদনা বা কপি করুন।' : 'Prompt ready. You can edit or copy it.';
+      result.focus();
     });
     copy.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(result.textContent);
-        copy.textContent = isBangla ? 'কপি হয়েছে!' : 'Copied!';
+        await navigator.clipboard.writeText(result.value);
+        status.textContent = isBangla ? 'প্রম্পট কপি হয়েছে।' : 'Prompt copied.';
       } catch {
-        copy.textContent = isBangla ? 'লেখাটি নির্বাচন করে কপি করুন' : 'Select and copy the text';
+        result.focus();
+        result.select();
+        status.textContent = isBangla ? 'লেখাটি নির্বাচন করা হয়েছে। কপি করুন।' : 'The prompt is selected. Use your device’s Copy command.';
       }
     });
   </script>
