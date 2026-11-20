@@ -5,7 +5,7 @@ import 'package:proshnolab/main.dart';
 void main() {
   testWidgets('Home screen offers the prompt builder', (tester) async {
     await tester.pumpWidget(const ProshnoLabApp());
-    expect(find.text('ProshnoLab'), findsOneWidget);
+    expect(find.text('Ask Better'), findsOneWidget);
     expect(find.text('Build a prompt'), findsOneWidget);
     await tester.tap(find.text('Build a prompt'));
     await tester.pumpAndSettle();
@@ -17,7 +17,7 @@ void main() {
     await tester.pumpWidget(const ProshnoLabApp());
     await tester.tap(find.text('How to use & FAQ'));
     await tester.pumpAndSettle();
-    expect(find.text('How to use ProshnoLab'), findsOneWidget);
+    expect(find.text('How to use Ask Better'), findsOneWidget);
     expect(find.text('Frequently asked questions'), findsOneWidget);
     await tester.tap(find.text('What is a prompt?'));
     await tester.pumpAndSettle();
