@@ -418,10 +418,14 @@ class _PromptBuilderState extends State<PromptBuilder> {
       const SizedBox(height: 6),
       Text(t('Choose a task and answer a few questions.', 'একটি কাজ বেছে নিয়ে কয়েকটি প্রশ্নের উত্তর দিন।')),
       const SizedBox(height: 16),
-      Wrap(spacing: 8, children: [
-        for (final item in _questions.keys)
-          ChoiceChip(
-            label: Text(switch (item) {
+      DropdownButton<String>(
+        value: category,
+        isExpanded: true,
+        items: [
+          for (final item in _questions.keys)
+            DropdownMenuItem(
+              value: item,
+              child: Text(switch (item) {
               'essay' => t('Essay', 'রচনা'),
               'email' => t('Email', 'ইমেইল'),
               'report' => t('Report', 'প্রতিবেদন'),
@@ -431,13 +435,16 @@ class _PromptBuilderState extends State<PromptBuilder> {
               'research' => t('Research plan', 'গবেষণা পরিকল্পনা'),
               _ => t('Study', 'পড়াশোনা'),
             }),
-            selected: category == item,
-            onSelected: (_) => setState(() {
-              category = item;
-              preview.clear();
-            }),
-          ),
-      ]),
+            ),
+        ],
+        onChanged: (item) {
+          if (item == null) return;
+          setState(() {
+            category = item;
+            preview.clear();
+          });
+        },
+      ),
       const SizedBox(height: 14),
       for (var index = 0; index < _questions[category]!.length; index++) ...[
         TextField(
