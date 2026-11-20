@@ -117,6 +117,13 @@
     .slide-link:focus-visible { outline: 3px solid #6242a4; outline-offset: -3px; border-radius: 16px; }
     .library-filter { display: grid; gap: 6px; max-width: 270px; }
     .reading-card:target { border-color: #6242a4; }
+    #features .feature-card { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; padding: clamp(24px, 3vw, 42px); border: 0; color: #fff; }
+    #features .feature-card:nth-child(1) { background: #a63812; }
+    #features .feature-card:nth-child(2) { background: #006b64; }
+    #features .feature-card:nth-child(3) { background: #ffb735; color: #35230f; }
+    #features .feature-symbol { display: grid; place-items: center; width: 58px; height: 58px; background: transparent; border: 2px solid currentColor; border-radius: 50%; }
+    #features .feature-card h3, #features .feature-card p { color: inherit; margin: 0; }
+    #features .feature-link { color: inherit; text-underline-offset: 4px; }
   </style>
 </head>
 <body>
@@ -152,7 +159,6 @@
             <a class="cta" href="?page=builder" data-en="Try the sample builder" data-bn="নমুনা প্রম্পট তৈরি করুন">Try the sample builder</a>
             <a class="cta secondary" href="app/" data-en="Open full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ খুলুন">Open full web app</a>
           </div>
-          <p><a href="?page=help" data-en="How to use &amp; FAQ" data-bn="ব্যবহারবিধি ও সাধারণ জিজ্ঞাসা">How to use &amp; FAQ</a></p>
         </div>
         <figure class="hero-photo">
           <img src="assets/keyboard-writing.webp" width="473" height="315" fetchpriority="high"
@@ -166,9 +172,9 @@
       <h2 data-en="Write, plan and learn" data-bn="লিখুন, পরিকল্পনা করুন ও শিখুন">Write, plan and learn</h2>
       <p class="intro" data-en="Start with the essentials. Our Android preview includes writing guidance, prepared learning answers, and links to reliable AI update sources." data-bn="প্রয়োজনীয় সুবিধা দিয়ে শুরু। অ্যান্ড্রয়েড পরীক্ষামূলক সংস্করণে লেখার সহায়তা, শেখার প্রশ্নোত্তর ও নির্ভরযোগ্য এআই তথ্যের উৎস রয়েছে।">Start with the essentials. Our Android preview includes writing guidance, prepared learning answers, and links to reliable AI update sources.</p>
       <div class="features">
-        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">✍️</span><h3 data-en="Smart Prompt Builder" data-bn="স্মার্ট প্রম্পট নির্মাতা">Smart Prompt Builder</h3><p data-en="Answer task-specific questions for an essay, email or study topic. Edit and copy the result." data-bn="রচনা, ইমেইল বা পড়াশোনার জন্য নির্দিষ্ট প্রশ্নের উত্তর দিন। প্রম্পট সম্পাদনা ও কপি করুন।">Answer task-specific questions for an essay, email or study topic. Edit and copy the result.</p></article>
-        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">❓</span><h3 data-en="Questions & Answers" data-bn="প্রশ্ন ও উত্তর">Questions & Answers</h3><p data-en="Understand how AI prompting works through prepared questions and easy explanations." data-bn="প্রস্তুত প্রশ্ন ও সহজ ব্যাখ্যায় এআই প্রম্পট সম্পর্কে শিখুন।">Understand how AI prompting works through prepared questions and easy explanations.</p></article>
-        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">💡</span><h3 data-en="AI Tips & Discoveries" data-bn="এআই টিপস ও নতুন তথ্য">AI Tips & Discoveries</h3><p data-en="See before-and-after prompts and follow official sources for new AI features." data-bn="আগে-পরের প্রম্পটের উদাহরণ দেখুন এবং এআইয়ের নতুন ফিচারের নির্ভরযোগ্য উৎস অনুসরণ করুন।">See before-and-after prompts and follow official sources for new AI features.</p></article>
+        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">✍️</span><h3 data-en="Smart Prompt Builder" data-bn="স্মার্ট প্রম্পট নির্মাতা">Smart Prompt Builder</h3><p data-en="Answer task-specific questions for an essay, email or study topic. Edit and copy the result." data-bn="রচনা, ইমেইল বা পড়াশোনার জন্য নির্দিষ্ট প্রশ্নের উত্তর দিন। প্রম্পট সম্পাদনা ও কপি করুন।">Answer task-specific questions for an essay, email or study topic. Edit and copy the result.</p><a class="feature-link" href="?page=builder" data-en="Try the builder" data-bn="বিল্ডার ব্যবহার করুন">Try the builder</a></article>
+        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">❓</span><h3 data-en="Questions & Answers" data-bn="প্রশ্ন ও উত্তর">Questions & Answers</h3><p data-en="Understand how AI prompting works through prepared questions and easy explanations." data-bn="প্রস্তুত প্রশ্ন ও সহজ ব্যাখ্যায় এআই প্রম্পট সম্পর্কে শিখুন।">Understand how AI prompting works through prepared questions and easy explanations.</p><a class="feature-link" href="app/?view=learn" data-en="Browse questions" data-bn="প্রশ্নোত্তর দেখুন">Browse questions</a></article>
+        <article class="feature-card"><span class="feature-symbol" aria-hidden="true">💡</span><h3 data-en="AI Tips & Discoveries" data-bn="এআই টিপস ও নতুন তথ্য">AI Tips & Discoveries</h3><p data-en="See before-and-after prompts and follow official sources for new AI features." data-bn="আগে-পরের প্রম্পটের উদাহরণ দেখুন এবং এআইয়ের নতুন ফিচারের নির্ভরযোগ্য উৎস অনুসরণ করুন।">See before-and-after prompts and follow official sources for new AI features.</p><a class="feature-link" href="?page=learn" data-en="Explore AI tips" data-bn="এআই টিপস দেখুন">Explore AI tips</a></article>
       </div>
     </section>
 
