@@ -147,7 +147,7 @@
     </div>
 
     <section id="features" class="container">
-      <h2 data-en="Built for real student tasks" data-bn="শিক্ষার্থীদের দরকারি কাজের জন্য">Built for real student tasks</h2>
+      <h2 data-en="Write, plan and learn" data-bn="লিখুন, পরিকল্পনা করুন ও শিখুন">Write, plan and learn</h2>
       <p class="intro" data-en="Start with the essentials. Our Android preview includes writing guidance, prepared learning answers, and links to reliable AI update sources." data-bn="প্রয়োজনীয় সুবিধা দিয়ে শুরু। অ্যান্ড্রয়েড পরীক্ষামূলক সংস্করণে লেখার সহায়তা, শেখার প্রশ্নোত্তর ও নির্ভরযোগ্য এআই তথ্যের উৎস রয়েছে।">Start with the essentials. Our Android preview includes writing guidance, prepared learning answers, and links to reliable AI update sources.</p>
       <div class="features">
         <article class="feature-card"><span class="feature-symbol" aria-hidden="true">✍️</span><h3 data-en="Smart Prompt Builder" data-bn="স্মার্ট প্রম্পট নির্মাতা">Smart Prompt Builder</h3><p data-en="Answer task-specific questions for an essay, email or study topic. Edit and copy the result." data-bn="রচনা, ইমেইল বা পড়াশোনার জন্য নির্দিষ্ট প্রশ্নের উত্তর দিন। প্রম্পট সম্পাদনা ও কপি করুন।">Answer task-specific questions for an essay, email or study topic. Edit and copy the result.</p></article>
@@ -203,13 +203,13 @@
         <div class="demo-grid">
           <form class="demo-card" id="sample-form">
             <label for="task" data-en="What do you need?" data-bn="কী করতে চান?">What do you need?</label>
-            <select id="task"><option value="essay">Essay</option><option value="email">Email</option><option value="study">Study</option></select>
+            <select id="task"><option value="essay" data-en="Essay" data-bn="রচনা">Essay</option><option value="email" data-en="Email" data-bn="ইমেইল">Email</option><option value="study" data-en="Study a topic" data-bn="কোনো বিষয় শিখুন">Study a topic</option><option value="presentation" data-en="Presentation" data-bn="উপস্থাপনা">Presentation</option><option value="project" data-en="Project plan" data-bn="প্রকল্প পরিকল্পনা">Project plan</option><option value="report" data-en="Report" data-bn="প্রতিবেদন">Report</option><option value="other" data-en="Other (write your own)" data-bn="অন্যান্য (নিজে লিখুন)">Other (write your own)</option></select>
             <label for="topic" data-en="Your topic or goal" data-bn="আপনার বিষয় বা লক্ষ্য">Your topic or goal</label>
-            <input id="topic" required maxlength="250" placeholder="e.g. Explain blockchain">
+            <input id="topic" required maxlength="250">
             <label for="context" data-en="Your background or context" data-bn="আপনার পরিস্থিতি">Your background or context</label>
-            <input id="context" maxlength="250" placeholder="e.g. First-year university student">
+            <input id="context" maxlength="250">
             <label for="requirements" data-en="Anything specific you want?" data-bn="বিশেষ কোনো শর্ত আছে?">Anything specific you want?</label>
-            <textarea id="requirements" maxlength="500" placeholder="e.g. Include two examples"></textarea>
+            <textarea id="requirements" maxlength="500"></textarea>
             <button class="cta" style="margin-top: 17px; width: 100%;" type="submit" data-en="Generate sample prompt" data-bn="নমুনা প্রম্পট তৈরি করুন">Generate sample prompt</button>
           </form>
           <div class="demo-card">
@@ -265,7 +265,7 @@
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><strong>ProshnoLab</strong><span data-en="A student-focused project for Bangladesh. Android app in development." data-bn="বাংলাদেশের শিক্ষার্থীদের জন্য একটি প্রকল্প। অ্যান্ড্রয়েড অ্যাপ তৈরির কাজ চলছে।">A student-focused project for Bangladesh. Android app in development.</span></div></footer>
+  <footer><div class="container footer-inner"><strong>ProshnoLab</strong><span data-en="For anyone writing, planning or learning." data-bn="লেখা, পরিকল্পনা ও শেখার জন্য সবার উপযোগী।">For anyone writing, planning or learning.</span></div></footer>
 
   <script>
     const language = document.getElementById('language');
@@ -311,19 +311,210 @@
     });
     const result = document.getElementById('result');
     const copy = document.getElementById('copy');
+    const taskContent = {
+  "essay": [
+    [
+      "Essay",
+      "রচনা"
+    ],
+    [
+      "What is your essay topic?",
+      "রচনার বিষয় কী?"
+    ],
+    [
+      "Who is the reader?",
+      "পাঠক কারা?"
+    ],
+    [
+      "What argument or length should it cover?",
+      "কোন যুক্তি বা দৈর্ঘ্য প্রয়োজন?"
+    ],
+    [
+      "Help me outline an original essay and identify claims that need evidence.",
+      "মৌলিক রচনার রূপরেখা দিন এবং যেসব দাবির প্রমাণ দরকার তা চিহ্নিত করুন।"
+    ]
+  ],
+  "email": [
+    [
+      "Email",
+      "ইমেইল"
+    ],
+    [
+      "Why are you writing?",
+      "কেন লিখছেন?"
+    ],
+    [
+      "Who will receive the email?",
+      "ইমেইলটি কে পাবেন?"
+    ],
+    [
+      "What details and tone should it include?",
+      "কোন তথ্য ও ভাষার ধরন প্রয়োজন?"
+    ],
+    [
+      "Draft an email with a subject line using only my details.",
+      "আমার তথ্য দিয়ে বিষয়সহ একটি ইমেইল খসড়া লিখুন।"
+    ]
+  ],
+  "study": [
+    [
+      "Study a topic",
+      "কোনো বিষয় শিখুন"
+    ],
+    [
+      "What do you want to learn?",
+      "কী শিখতে চান?"
+    ],
+    [
+      "What do you already know?",
+      "এ বিষয়ে আগে কী জানেন?"
+    ],
+    [
+      "What is confusing or needs practice?",
+      "কোন অংশটি বুঝতে বা অনুশীলন করতে চান?"
+    ],
+    [
+      "Explain the topic at my level with an example and practice questions.",
+      "আমার স্তর অনুযায়ী উদাহরণ ও অনুশীলনীসহ বিষয়টি বুঝিয়ে দিন।"
+    ]
+  ],
+  "presentation": [
+    [
+      "Presentation",
+      "উপস্থাপনা"
+    ],
+    [
+      "What will you present?",
+      "কী নিয়ে উপস্থাপনা করবেন?"
+    ],
+    [
+      "Who is your audience?",
+      "শ্রোতা কারা?"
+    ],
+    [
+      "How long is it and what must it cover?",
+      "সময় কত এবং কোন বিষয়গুলো রাখতে হবে?"
+    ],
+    [
+      "Plan a slide-by-slide presentation with concise speaker notes.",
+      "সংক্ষিপ্ত বক্তার নোটসহ প্রতিটি স্লাইডের পরিকল্পনা দিন।"
+    ]
+  ],
+  "project": [
+    [
+      "Project plan",
+      "প্রকল্প পরিকল্পনা"
+    ],
+    [
+      "What project are you planning?",
+      "কোন প্রকল্পের পরিকল্পনা করছেন?"
+    ],
+    [
+      "What resources, people or deadlines do you have?",
+      "কোন সংস্থান, লোকবল বা সময়সীমা আছে?"
+    ],
+    [
+      "What must be delivered or checked?",
+      "কী জমা দিতে বা যাচাই করতে হবে?"
+    ],
+    [
+      "Create a practical project plan with milestones, next steps and risks.",
+      "মাইলফলক, পরবর্তী পদক্ষেপ ও ঝুঁকিসহ বাস্তবসম্মত প্রকল্প পরিকল্পনা দিন।"
+    ]
+  ],
+  "report": [
+    [
+      "Report",
+      "প্রতিবেদন"
+    ],
+    [
+      "What is the report about?",
+      "প্রতিবেদনের বিষয় কী?"
+    ],
+    [
+      "Who will read it?",
+      "কারা পড়বেন?"
+    ],
+    [
+      "What findings or sections must it include?",
+      "কোন ফলাফল বা অংশ অন্তর্ভুক্ত করতে হবে?"
+    ],
+    [
+      "Outline a report and flag missing evidence.",
+      "প্রতিবেদনের রূপরেখা দিন এবং প্রমাণের ঘাটতি দেখান।"
+    ]
+  ],
+  "other": [
+    [
+      "Other (write your own)",
+      "অন্যান্য (নিজে লিখুন)"
+    ],
+    [
+      "What would you like help with?",
+      "কোন কাজে সাহায্য চান?"
+    ],
+    [
+      "What background or audience should AI know about?",
+      "কোন প্রেক্ষাপট বা পাঠকের কথা এআইকে জানাবেন?"
+    ],
+    [
+      "What should the answer look like?",
+      "উত্তরটি কেমন হওয়া উচিত?"
+    ],
+    [
+      "Help me complete the task described below. Follow the requested format and constraints.",
+      "নিচে বর্ণিত কাজটি করতে সাহায্য করুন। আমার চাওয়া বিন্যাস ও শর্ত মেনে চলুন।"
+    ]
+  ]
+};
+    const picker = document.getElementById('task');
+    const fields = ['topic', 'context', 'requirements'].map(id => document.getElementById(id));
+    const drafts = new Map();
+    let activeTask = picker.value;
+
+    function updateQuestions() {
+      for (const [index, field] of fields.entries()) {
+        const label = document.querySelector('label[for="' + field.id + '"]');
+        const [en, bn] = taskContent[activeTask][index + 1];
+        label.dataset.en = en;
+        label.dataset.bn = bn;
+        label.textContent = isBangla ? bn : en;
+      }
+    }
+
+    function resetResult() {
+      result.textContent = isBangla ? 'আপনার প্রম্পট এখানে দেখাবে।' : 'Your prompt will appear here.';
+      copy.disabled = true;
+      copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
+    }
+
+    picker.addEventListener('change', () => {
+      drafts.set(activeTask, fields.map(field => field.value));
+      activeTask = picker.value;
+      fields[0].setCustomValidity('');
+      fields.forEach((field, index) => { field.value = drafts.get(activeTask)?.[index] || ''; });
+      updateQuestions();
+      resetResult();
+    });
+    updateQuestions();
+
+    fields[0].addEventListener('input', () => fields[0].setCustomValidity(''));
     document.getElementById('sample-form').addEventListener('submit', event => {
       event.preventDefault();
-      const task = document.getElementById('task').value;
-      const goal = document.getElementById('topic').value.trim();
-      const context = document.getElementById('context').value.trim();
-      const requirements = document.getElementById('requirements').value.trim();
-      if (!goal) return;
-      const introductions = {
-        essay: 'Act as a writing coach. Help me develop an original essay outline and revision checklist. Do not invent sources.',
-        email: 'Draft a clear, polite email with a subject line. Use only the information I provide.',
-        study: 'Act as a patient tutor. Explain the topic with a simple example and three practice questions.'
-      };
-      result.textContent = `${introductions[task]}\n\nGoal: ${goal}\nContext: ${context || 'Ask if needed'}\nRequirements: ${requirements || 'No extra requirements'}\n\nAsk one short clarifying question if essential information is missing.`;
+      if (!fields[0].value.trim()) {
+        fields[0].setCustomValidity(isBangla ? 'আপনার কাজটি লিখুন।' : 'Describe the task first.');
+        fields[0].reportValidity();
+        return;
+      }
+      const languageIndex = isBangla ? 1 : 0;
+      const template = taskContent[activeTask];
+      const lines = fields.flatMap((field, index) => {
+        const value = field.value.trim();
+        return value ? [template[index + 1][languageIndex] + ' ' + value] : [];
+      });
+      const followup = isBangla ? 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।' : 'Ask one short clarifying question if essential information is missing.';
+      result.textContent = [template[4][languageIndex], lines.join('\n'), followup].join('\n\n');
+      copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
       copy.disabled = false;
     });
     copy.addEventListener('click', async () => {
