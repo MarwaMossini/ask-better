@@ -329,6 +329,9 @@
             <input id="context" maxlength="250">
             <label for="requirements" data-en="Anything specific you want?" data-bn="বিশেষ কোনো শর্ত আছে?">Anything specific you want?</label>
             <textarea id="requirements" maxlength="500"></textarea>
+            <label for="reply-language" data-en="Reply language (optional)" data-bn="উত্তরের ভাষা (ঐচ্ছিক)">Reply language (optional)</label>
+            <input id="reply-language" type="text" dir="auto" maxlength="80" aria-describedby="reply-language-hint">
+            <p id="reply-language-hint" class="muted" data-en="Type any language, such as Dari or Spanish." data-bn="দারি বা স্প্যানিশের মতো যেকোনো ভাষার নাম লিখুন।">Type any language, such as Dari or Spanish.</p>
             <button class="cta" style="margin-top: 17px; width: 100%;" type="submit" data-en="Generate sample prompt" data-bn="নমুনা প্রম্পট তৈরি করুন">Generate sample prompt</button>
           </form>
           <div class="demo-card">
@@ -887,7 +890,11 @@ Thank you for considering my request.
       });
       const followup = isBangla ? 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।' : 'Ask one short clarifying question if essential information is missing.';
       result.readOnly = false;
-      result.value = [template[4][languageIndex], lines.join('\n'), followup].join('\n\n');
+      const replyLanguage = document.getElementById('reply-language').value.trim();
+      const languageInstruction = replyLanguage
+        ? (isBangla ? 'এই ভাষায় উত্তর দিন: ' : 'Reply in ') + replyLanguage
+        : '';
+      result.value = [template[4][languageIndex], lines.join('\n'), followup, languageInstruction].filter(Boolean).join('\n\n');
       copy.textContent = isBangla ? copy.dataset.bn : copy.dataset.en;
       copy.disabled = false;
       updateShortcuts();
