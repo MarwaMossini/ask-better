@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ProshnoLab helps Bangla and English speakers create clearer AI prompts and discover useful AI learning resources.">
-  <title>ProshnoLab | Ask better. Save time and money.</title>
+  <meta name="description" content="Ask Better helps Bangla and English speakers create clearer AI prompts and discover useful AI learning resources.">
+  <title>Ask Better | Ask better. Save time and money.</title>
   <style>
     :root { color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     * { box-sizing: border-box; }
@@ -141,12 +141,28 @@
       .library-reading .library-filter { grid-column: 1; grid-row: 1; }
       .library-reading .library-resources { grid-column: 1; grid-row: 2; }
     }
+  
+    .plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%, 17rem),1fr)); gap:24px; }
+    .plan-card { padding:clamp(20px,4vw,32px); }
+    .plan-price { color:#294c80; font-size:1.5rem; font-weight:750; }
+    .plan-card ul { padding-inline-start:1.4rem; margin-block:1rem 1.5rem; }
+    .plan-card li + li { margin-top:.55rem; }
+    img.brand-icon { background:transparent; object-fit:contain; }
+    @media (prefers-reduced-motion: no-preference) {
+      main > :not([hidden]) { animation:page-enter 280ms ease-out both; }
+      .cta { transition:transform 160ms ease-out; }
+      .cta:active { transform:scale(.97); }
+      @keyframes page-enter {
+        from { opacity:0; transform:translateY(8px); }
+        to { opacity:1; transform:translateY(0); }
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container header-inner">
-      <a class="brand" href="./"><span class="brand-icon" aria-hidden="true">P</span> ProshnoLab</a>
+      <a class="brand" href="./"><img class="brand-icon" src="data:image/webp;base64,UklGRgAHAABXRUJQVlA4WAoAAAAQAAAAXwAAVgAAQUxQSKwDAAABoETbtmnbGXPd8BsPsW3btlNLS822rZpt27Ztf9u2ontW4Z6zzzl739ZSjYgJ4H+12pralyRAkqqQklMuKD9EkkCkLkmAQnOkFiQptVYBIbmAIEdCgFJRaSSKFUi6qkQ5AgKkNBRCUT6SBIS0RiZQ3RUoshiLaFsqCG07VcajCqm2AsWi0gA9OlZcccXuzs6Ojo6Ozo6Ozq6uvssApKDS0GvHi5/7bsTkyZPGjx0zetSoUaNHjx49dsygL548c6vlIEwxqCyscfkv/3rlf317zooQl0pC13VT3T2r3N3HX9yfkNYYrAAOH+Se1ez+4z4Qj8JY7sZ/PIvQF18ogqQaFE6/p9yzKN1vXYZIIMDo96p7VmGzisz9zqWQWZFUlQLNtOzTnsXrflUZqRIVm5lxjceU+d9HERkH/OVZ1D5mVcwsEjNj4O+eRe73oVyzyhR2qWfRLdqBnOJyKjYzVp0QX+ZPRCMzLvQsgTkbIKtB4T1/TSHz8zBFwt7/pvGJqQaVuMGzJGasSSQ0PkkkOwizANXROSmNzM/BzCIwtpifyu0tZgWqTOz1dyrPovAaDmym8loM1nJQMm8hsyJKBlhS78YgyRL6AItCHJjMZ2FqR1+VUBv6toyCCDsgme+kyhTOgcl8L5lCCQ4wEwelYxGYmSX0g8ksit3/SuULpBCCVWLd2ak8jYIrUkuPoZU1mzVdgUXC04k0D47FOL6yrNmsw8d3YxZAyTIrTfKq6vVHkCm0IsvllhT8r92wIMoWNRpmDdaf6Qm82pApgtaGcWV8Pn97THUQ1qDf115Ds6LrsCgkmVnD2GySV1etf9C7LuWbLJ+9Z3hM/vvqmCmY8nkqMo5Z7PH4oA0xU00EKJfGH9G4f702ZgqnBuUZPQbH4v/dPxBTSWopZMfFcbgPOhasDLWZmbjJs9rd3UdcMBCZSlKfzFhpfJHXOO3V4zrATCWJ5FrPct2n3X3CWfd/MnzKrJnTJk8aP3bUiBHDhvz+/fuPX3XwqoAqrM0kM9aanOO+5P71AJbp373Siit0d3V2DBwwoH+/Pj0atKpCUFUEmBlneJZl7s23dwNJokpVTJ15rcYp7u5/v3+YoYiJSAx4YcKgu3droMgRsQhbsQfIrD4IqztIgGSmWkGla4OQupEEKk0baUWhIIlIC4igJBJxKpiYiFiigDaFilGthBEXFNQNkgBE/BJlCIAQJIkkywEthLcgkWwOUAQFChBpSwKBJEooj+QAKawti3YIVlA4IC4DAACwEQCdASpgAFcAPl0skUajoqGhJXK6qHALiUAPKj8Nyx+QHvfL3OA8TjpO+YD9iN8A/tPUYehX5bfsbfuh6WKeBQMW4n6O4AHoVlWbQhoeXNZZOLOlf+m7e8aY0a3KxDx2Tch4OpN7U5Ty+BZ5Rz3zdkAJePxwcy+iWg33aEz9ysnF5DpMrK/sIQBY34cm8OnHwRF1XQAA/v1uSMy4/0YqrApap6Cz0FP+1jmySYn/uY2dCJAzdMh7WZ3MJFuKMNdXIo1cc8aEtRNpkFIXh3rY9G1+4kcPLHPxvLXYNVhvGLFmJeCVEDsqvjFZyYSyr1ge1ISTXnPWbdvdGRgZXR4nbdDnR9lwtWsGEjksHd0Ct0XNlP+YtBYFcbttnmkGhkHqdzublpCyNax48vnDfdycFIrX/u7OX0HreqrYF4Md3mdCXBljxQHKBZYFgc9zCPFGIfaAIi7DeuDyd18d5BN96/PvSTR6rAcvr412a4WymWnPmrUErxJPWIyAgScoi1+K9dzMbo0PRuA6PvBafORuL+/IrISczz0s/x98nl/ppn4vwryiQmwNnRpalbyLoZG/hH5FZ8kSA12rI/uOGXzLfrTZmtDtriKNgrJLADQ7Snd58ccmtvIZ6+IEcQDkyacNOn8aumr34OSFp3VDBbz418JSESSdq3vfpAkynERS/PzYotqr982VgqU3j06e67fEflH8oxTB9/8FsFjMvf/ga1SD+guEFoP8kCJnEZkYzjmSTeeRadn6T2EdhtD79RFPIr274/Bwai2M+nkodfpGRYz051tdIseJne217jxOMZthBhgraiGiJwu/7ADrnZ4iLKve5rNmUiKPH3HJGNnqjUa1d87D7ptW69+/vnq420TrMRrRpl33Z+c2GKYv4Oz7tCukSfT59YnYg3lbWL/NVDDbh5bIj+mo1RRrfe2S4fOuD2p8qut0sJKRNbOSq19QVHC4RTP+u3K5uAZF7oHNz/1+ogzCJ1uOBdOwaTouo8qrn1tmrS2NbY5r/9VXnIZf5gA6o8U6ycKOAt8yD716ICH0/X08lHUdnrkmeEaWSIAD8/fMXkZLSORgAAAA" alt="" width="44" height="44"> Ask Better</a>
       <nav aria-label="Main navigation">
         <a href="./" data-page-link="home" data-en="Home" data-bn="হোম">Home</a>
         <a href="?page=about" data-page-link="about" data-en="About" data-bn="সম্পর্কে">About</a>
@@ -156,6 +172,7 @@
           <div class="nav-panel">
             <a href="?page=builder" data-page-link="builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a>
             <a href="?page=help" data-page-link="help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a>
+            <a href="?page=plans" data-page-link="plans" data-en="Plans" data-bn="প্ল্যান">Plans</a>
             <a href="?page=help#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
             <a href="app/" data-en="Full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ">Full web app</a>
           </div>
@@ -171,7 +188,7 @@
       <div class="container hero-grid">
         <div>
           <h1 data-en="Ask better. Save time and money." data-bn="ভালোভাবে প্রশ্ন করুন। সময় ও অর্থ বাঁচান।">Ask better. Save time and money.</h1>
-          <p class="lede" data-en="ProshnoLab turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates." data-bn="কয়েকটি সহজ প্রশ্নের উত্তর দিয়ে আপনার পছন্দের এআই টুলের জন্য স্পষ্ট প্রম্পট তৈরি করুন। উদাহরণ, প্রশ্নোত্তর ও নির্ভরযোগ্য এআই আপডেট থেকে শিখুন।">ProshnoLab turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates.</p>
+          <p class="lede" data-en="Ask Better turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates." data-bn="কয়েকটি সহজ প্রশ্নের উত্তর দিয়ে আপনার পছন্দের এআই টুলের জন্য স্পষ্ট প্রম্পট তৈরি করুন। উদাহরণ, প্রশ্নোত্তর ও নির্ভরযোগ্য এআই আপডেট থেকে শিখুন।">Ask Better turns a few guided answers into a clear prompt for your preferred AI tool. Learn from practical examples, Q&A, and trustworthy AI updates.</p>
           <div class="button-row">
             <a class="cta" href="?page=builder" data-en="Try the sample builder" data-bn="নমুনা প্রম্পট তৈরি করুন">Try the sample builder</a>
             <a class="cta secondary" href="app/" data-en="Open full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ খুলুন">Open full web app</a>
@@ -288,7 +305,7 @@
     <section id="about" class="container ratio-grid" aria-labelledby="about-title">
       <div>
       <h2 id="about-title" data-en="Why prompt structure matters" data-bn="প্রম্পটের গঠন কেন গুরুত্বপূর্ণ">Why prompt structure matters</h2>
-      <p class="intro" data-en="A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. ProshnoLab helps you put those pieces together." data-bn="স্পষ্ট প্রম্পটে আপনার লক্ষ্য, প্রয়োজনীয় প্রেক্ষাপট এবং কেমন উত্তর চান তা থাকে। প্রশ্নোল্যাব এই তথ্যগুলো একসঙ্গে সাজাতে সাহায্য করে।">A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. ProshnoLab helps you put those pieces together.</p>
+      <p class="intro" data-en="A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. Ask Better helps you put those pieces together." data-bn="স্পষ্ট প্রম্পটে আপনার লক্ষ্য, প্রয়োজনীয় প্রেক্ষাপট এবং কেমন উত্তর চান তা থাকে। প্রশ্নোল্যাব এই তথ্যগুলো একসঙ্গে সাজাতে সাহায্য করে।">A clear prompt gives an AI tool your goal, the context it needs, and the kind of answer you want. Ask Better helps you put those pieces together.</p>
       </div>
       <article class="reading-card">
         <h3 data-en="183 students in a prompting study" data-bn="প্রম্পট নিয়ে গবেষণায় ১৮৩ জন শিক্ষার্থী">183 students in a prompting study</h3>
@@ -299,7 +316,7 @@
 
     <section id="how-to" class="container help-content ratio-grid">
       <div>
-      <h2 data-en="How to use ProshnoLab" data-bn="প্রশনোল্যাব কীভাবে ব্যবহার করবেন">How to use ProshnoLab</h2>
+      <h2 data-en="How to use Ask Better" data-bn="আস্ক বেটার কীভাবে ব্যবহার করবেন">How to use Ask Better</h2>
       <ol>
         <li data-en="Choose Essay, Email, or Study in the Builder." data-bn="প্রম্পট বিল্ডারে রচনা, ইমেইল বা পড়াশোনা বেছে নিন।">Choose Essay, Email, or Study in the Builder.</li>
         <li data-en="Answer the guided questions with a few details about your task." data-bn="আপনার কাজ সম্পর্কে কয়েকটি তথ্য দিয়ে প্রশ্নগুলোর উত্তর দিন।">Answer the guided questions with a few details about your task.</li>
@@ -314,7 +331,7 @@
         <p data-en="A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want." data-bn="প্রম্পট হলো এআই টুলকে দেওয়া প্রশ্ন বা নির্দেশনা। এতে আপনার লক্ষ্য, প্রাসঙ্গিক তথ্য ও কী ধরনের উত্তর চান তা লিখতে পারেন।">A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want.</p>
       </details>
       <details>
-        <summary data-en="Does ProshnoLab answer my question?" data-bn="প্রশনোল্যাব কি আমার প্রশ্নের উত্তর দেয়?">Does ProshnoLab answer my question?</summary>
+        <summary data-en="Does Ask Better answer my question?" data-bn="আস্ক বেটার কি আমার প্রশ্নের উত্তর দেয়?">Does Ask Better answer my question?</summary>
         <p data-en="The builder prepares a prompt for you. Copy it into an AI tool, such as ChatGPT or Gemini, to get a response." data-bn="বিল্ডার আপনার জন্য একটি প্রম্পট তৈরি করে। উত্তর পেতে সেটি কপি করে ChatGPT বা Gemini-এর মতো কোনো এআই টুলে পেস্ট করুন।">The builder prepares a prompt for you. Copy it into an AI tool, such as ChatGPT or Gemini, to get a response.</p>
       </details>
       <details>
@@ -323,11 +340,11 @@
       </details>
       <details>
         <summary data-en="Do I need an account or payment?" data-bn="অ্যাকাউন্ট খুলতে বা টাকা দিতে হবে কি?">Do I need an account or payment?</summary>
-        <p data-en="The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing." data-bn="প্রশনোল্যাবের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।">The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.</p>
+        <p data-en="The Ask Better preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing." data-bn="আস্ক বেটারের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।">The Ask Better preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.</p>
       </details>
       <details>
         <summary data-en="Where do my answers go?" data-bn="আমার উত্তরগুলো কোথায় যায়?">Where do my answers go?</summary>
-        <p data-en="ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy." data-bn="প্রশনোল্যাব আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।">ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.</p>
+        <p data-en="Ask Better processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy." data-bn="আস্ক বেটার আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।">Ask Better processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.</p>
       </details>
       </div>
     </section>
@@ -342,11 +359,29 @@
         <li><a href="https://blogs.microsoft.com/blog/tag/ai/" target="_blank" rel="noopener noreferrer">Microsoft AI news</a></li>
       </ul>
       </div>
-      <div class="note-card"><strong data-en="Subscription status: Not active" data-bn="সাবস্ক্রিপশন: চালু হয়নি">Subscription status: Not active</strong><p class="muted" style="margin-bottom: 0" data-en="BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing." data-bn="এই সংস্করণে বিডিঅ্যাপস বিলিং যুক্ত হয়নি। অনুমোদন ও পরীক্ষার পর মূল্য ও সাবস্ক্রিপশন সুবিধা দেখানো হবে।">BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing.</p></div>
+      <div class="note-card"><strong data-en="Subscription status: Not active" data-bn="সাবস্ক্রিপশন: চালু হয়নি">Subscription status: Not active</strong><p class="muted" style="margin-bottom: 0" data-en="BDApps billing is not connected in this preview. See Plans for the proposed Plus features and price." data-bn="এই সংস্করণে বিডিঅ্যাপস বিলিং যুক্ত হয়নি। প্লাসের প্রস্তাবিত সুবিধা ও মূল্য প্ল্যান পেজে দেখুন।">BDApps billing is not connected in this preview. Pricing and subscription features will be shown only after approval and testing.</p></div>
+    </section>
+  <section id="plans" class="container" aria-labelledby="plans-title" hidden>
+      <h1 id="plans-title" data-en="Plans" data-bn="প্ল্যান">Plans</h1>
+      <p class="intro" data-en="The free builder is available now. Plus features and pricing are proposed, and billing is currently off." data-bn="বিনামূল্যের বিল্ডার এখন ব্যবহার করা যায়। প্লাসের সুবিধা ও মূল্য প্রস্তাবিত, এবং বিলিং এখন বন্ধ।">The free builder is available now. Plus features and pricing are proposed, and billing is currently off.</p>
+      <div class="plan-grid">
+        <article class="feature-card plan-card">
+          <h2 data-en="Free" data-bn="বিনামূল্যে">Free</h2>
+          <p class="plan-price" data-en="৳0" data-bn="৳০">৳0</p>
+          <ul><li data-en="Build and copy prompts as a guest" data-bn="অ্যাকাউন্ট ছাড়াই প্রম্পট তৈরি ও কপি করুন">Build and copy prompts as a guest</li><li data-en="Browse examples and learning guides" data-bn="উদাহরণ ও শেখার নির্দেশিকা দেখুন">Browse examples and learning guides</li></ul>
+          <a class="cta" href="?page=builder" data-en="Try the free builder" data-bn="বিনামূল্যের বিল্ডার ব্যবহার করুন">Try the free builder</a>
+        </article>
+        <article class="feature-card plan-card">
+          <h2 data-en="Plus" data-bn="প্লাস">Plus</h2>
+          <p class="plan-price" data-en="৳99 per month" data-bn="মাসে ৳৯৯">৳99 per month</p>
+          <ul><li data-en="Save and organize prompts in folders" data-bn="প্রম্পট সংরক্ষণ করে ফোল্ডারে সাজান">Save and organize prompts in folders</li><li data-en="Sync saved prompts between web and Android" data-bn="ওয়েব ও অ্যান্ড্রয়েডে সংরক্ষিত প্রম্পট ব্যবহার করুন">Sync saved prompts between web and Android</li><li data-en="Get more templates for work, study, and creative projects" data-bn="কাজ, পড়াশোনা ও সৃজনশীল প্রকল্পের জন্য আরও টেমপ্লেট পান">Get more templates for work, study, and creative projects</li></ul>
+          
+        </article>
+      </div>
     </section>
   </main>
 
-  <footer><div class="container footer-inner"><strong>ProshnoLab</strong><span data-en="For anyone writing, planning or learning." data-bn="লেখা, পরিকল্পনা ও শেখার জন্য সবার উপযোগী।">For anyone writing, planning or learning.</span></div></footer>
+  <footer><div class="container footer-inner"><strong>Ask Better</strong><span data-en="For anyone writing, planning or learning." data-bn="লেখা, পরিকল্পনা ও শেখার জন্য সবার উপযোগী।">For anyone writing, planning or learning.</span></div></footer>
 
   <script>
     const language = document.getElementById('language');
@@ -356,6 +391,7 @@
       ['learn', ['#library', '#ai-updates']],
       ['builder', ['#try']],
       ['help', ['#how-to']],
+      ['plans', ['#plans']],
     ]);
     const main = document.querySelector('main');
     function showPage() {
