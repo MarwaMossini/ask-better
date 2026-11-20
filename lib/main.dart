@@ -3,7 +3,7 @@ import 'package:material_ui/material_ui.dart';
 
 void main() => runApp(const ProshnoLabApp());
 
-const _teal = Color(0xFF007E76);
+const _teal = Color(0xFF3D6098);
 
 class ProshnoLabApp extends StatelessWidget {
   const ProshnoLabApp({super.key});
@@ -11,12 +11,12 @@ class ProshnoLabApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ProshnoLab',
+      title: 'Ask Better',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: _teal),
-        scaffoldBackgroundColor: const Color(0xFFF5F9F8),
+        scaffoldBackgroundColor: const Color(0xFFFAF8F3),
         inputDecorationTheme: const InputDecorationTheme(
           border: OutlineInputBorder(),
           contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 13),
@@ -44,11 +44,11 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF5F9F8),
+        backgroundColor: const Color(0xFFFAF8F3),
         title: const Row(children: [
           Icon(Icons.question_answer_rounded, color: _teal),
           SizedBox(width: 8),
-          Text('ProshnoLab', style: TextStyle(fontWeight: FontWeight.w800)),
+          Text('Ask Better', style: TextStyle(fontWeight: FontWeight.w800)),
         ]),
         actions: [
           TextButton(
@@ -92,7 +92,7 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
         Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: const Color(0xFFE2F3EF),
+            color: const Color(0xFFEAF0F9),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -123,7 +123,7 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
           ]),
         ),
         const SizedBox(height: 22),
-        Text(t('Explore ProshnoLab', 'প্রশনোল্যাব ঘুরে দেখুন'),
+        Text(t('Explore Ask Better', 'আস্ক বেটার ঘুরে দেখুন'),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
         const SizedBox(height: 12),
         GridView.count(
@@ -196,7 +196,7 @@ class ProshnoLabHelp extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: Text(t('How to use ProshnoLab', 'প্রশনোল্যাব কীভাবে ব্যবহার করবেন'))),
+      appBar: AppBar(title: Text(t('How to use Ask Better', 'আস্ক বেটার কীভাবে ব্যবহার করবেন'))),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -233,7 +233,7 @@ class ProshnoLabHelp extends StatelessWidget {
                   ],
                 ),
                 ExpansionTile(
-                  title: Text(t('Does ProshnoLab answer my question?', 'প্রশনোল্যাব কি আমার প্রশ্নের উত্তর দেয়?')),
+                  title: Text(t('Does Ask Better answer my question?', 'আস্ক বেটার কি আমার প্রশ্নের উত্তর দেয়?')),
                   expandedAlignment: AlignmentDirectional.centerStart,
                   childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   children: [
@@ -253,7 +253,7 @@ class ProshnoLabHelp extends StatelessWidget {
                   expandedAlignment: AlignmentDirectional.centerStart,
                   childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   children: [
-                    Text(t('The ProshnoLab preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.', 'প্রশনোল্যাবের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।')),
+                    Text(t('The Ask Better preview is free to use without an account. Your chosen AI tool may have its own sign-in or pricing.', 'আস্ক বেটারের পরীক্ষামূলক সংস্করণ অ্যাকাউন্ট ছাড়াই বিনা মূল্যে ব্যবহার করা যায়। আপনার পছন্দের এআই টুলে আলাদা লগইন বা খরচ থাকতে পারে।')),
                   ],
                 ),
                 ExpansionTile(
@@ -261,7 +261,7 @@ class ProshnoLabHelp extends StatelessWidget {
                   expandedAlignment: AlignmentDirectional.centerStart,
                   childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   children: [
-                    Text(t('ProshnoLab processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.', 'প্রশনোল্যাব আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।')),
+                    Text(t('Ask Better processes your answers in the browser or on your phone. If you paste the prompt into another service, that service handles the text under its own privacy policy.', 'আস্ক বেটার আপনার উত্তর ব্রাউজার বা ফোনেই প্রক্রিয়া করে। প্রম্পট অন্য কোনো সেবায় পেস্ট করলে সেই সেবার গোপনীয়তা নীতি প্রযোজ্য হবে।')),
                   ],
                 ),
               ],
@@ -502,7 +502,7 @@ typedef _Lesson = ({
 
 const _lessons = <_Lesson>[
   (group: 0, title: ('What is a good AI prompt?', 'ভালো এআই প্রম্পট কী?'), body: ('It states your goal, useful context, limits and the kind of answer you need. Clear requests often reduce follow-up questions.', 'এতে আপনার লক্ষ্য, দরকারি তথ্য, সীমাবদ্ধতা এবং কী ধরনের উত্তর চান তা স্পষ্ট থাকে।'), example: null),
-  (group: 0, title: ('Does ProshnoLab answer questions with AI?', 'প্রশনোল্যাব কি এআই দিয়ে উত্তর দেয়?'), body: ('Not in this first version. It builds prompts you can paste into an AI tool, and this library contains prepared explanations.', 'প্রথম সংস্করণে নয়। এটি এআই টুলে ব্যবহার করার প্রম্পট তৈরি করে এবং এখানে আগে থেকে লেখা ব্যাখ্যা আছে।'), example: null),
+  (group: 0, title: ('Does Ask Better answer questions with AI?', 'আস্ক বেটার কি এআই দিয়ে উত্তর দেয়?'), body: ('Not in this first version. It builds prompts you can paste into an AI tool, and this library contains prepared explanations.', 'প্রথম সংস্করণে নয়। এটি এআই টুলে ব্যবহার করার প্রম্পট তৈরি করে এবং এখানে আগে থেকে লেখা ব্যাখ্যা আছে।'), example: null),
   (group: 0, title: ('Can a better prompt remove free-plan limits?', 'ভালো প্রম্পট কি ফ্রি প্ল্যানের সীমা সরায়?'), body: ('No. Better instructions can reduce unnecessary back-and-forth but cannot change a provider’s usage limits.', 'না। ভালো নির্দেশনা অপ্রয়োজনীয় বার্তা কমাতে পারে, কিন্তু সেবার ব্যবহারের সীমা বদলায় না।'), example: null),
   (group: 0, title: ('Should I share personal information?', 'ব্যক্তিগত তথ্য কি শেয়ার করা উচিত?'), body: ('Only include information truly needed for the task. Use placeholders for private names, numbers and addresses.', 'কাজের জন্য একান্ত প্রয়োজনীয় তথ্যই দিন। ব্যক্তিগত নাম, নম্বর ও ঠিকানার বদলে নমুনা তথ্য দিন।'), example: null),
   (group: 1, title: ('Make the output specific', 'কেমন উত্তর চান তা বলুন'), body: ('Weak: Explain photosynthesis.', 'সাধারণ: সালোকসংশ্লেষণ বুঝিয়ে দিন।'), example: ('Better: Explain photosynthesis to a class 9 student with a simple example and three practice questions.', 'উন্নত: নবম শ্রেণির শিক্ষার্থীর জন্য সহজ উদাহরণ ও তিনটি অনুশীলনীসহ সালোকসংশ্লেষণ বুঝিয়ে দিন।')),
@@ -712,7 +712,7 @@ class AccountPage extends StatelessWidget {
       Card(child: ListTile(
         leading: const Icon(Icons.lock_outline, color: _teal),
         title: Text(t('Your privacy', 'আপনার গোপনীয়তা')),
-        subtitle: Text(t('Prompt inputs stay in app memory and are not sent to ProshnoLab servers. Closing the app clears them.',
+        subtitle: Text(t('Prompt inputs stay in app memory and are not sent to Ask Better servers. Closing the app clears them.',
             'প্রম্পটের তথ্য শুধু অ্যাপের মেমোরিতে থাকে; সার্ভারে পাঠানো হয় না। অ্যাপ বন্ধ করলে তথ্য মুছে যায়।')),
       )),
       const SizedBox(height: 12),
