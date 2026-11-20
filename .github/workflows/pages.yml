@@ -44,6 +44,14 @@ jobs:
           cp -a build/web/. dist/app/
           test -s dist/index.html
           test -s dist/app/flutter_bootstrap.js
+      - name: Package Android test APK
+        run: |
+          flutter create . --platforms=android --project-name proshnolab --org com.proshnolab
+          sed -i 's/android:label="proshnolab"/android:label="Ask Better"/' android/app/src/main/AndroidManifest.xml
+          flutter build apk --debug
+          mkdir -p dist/downloads
+          cp build/app/outputs/flutter-apk/app-debug.apk dist/downloads/ask-better-test.apk
+          test -s dist/downloads/ask-better-test.apk
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
