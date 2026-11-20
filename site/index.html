@@ -77,8 +77,9 @@
     .gallery-controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
     .library-photos { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; padding: 0 0 10px; margin: 0 0 20px; }
     .library-photos li { scroll-snap-align: start; min-width: 0; }
+    .library-photos { max-width: 440px; }
     .library-photos figure { margin: 0; }
-    .library-photos img { display: block; width: 100%; height: auto; aspect-ratio: 19 / 11; object-fit: cover; border-radius: 16px; }
+    .library-photos img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border-radius: 16px; }
     .library-photos figcaption { display: flex; gap: 4px 12px; flex-wrap: wrap; justify-content: space-between; padding: 8px 0; }
     .library-photos figcaption a { font-size: .85rem; }
     @media (max-width: 760px) {
