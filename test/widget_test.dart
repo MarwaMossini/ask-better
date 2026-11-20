@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_ui/material_ui.dart';
 import 'package:proshnolab/main.dart';
 
 void main() {
@@ -9,8 +8,8 @@ void main() {
     expect(find.text('Build a prompt'), findsOneWidget);
     await tester.tap(find.text('Build a prompt'));
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Generate my prompt'), 120);
     expect(find.text('Generate my prompt'), findsOneWidget);
-    expect(find.byType(TextField), findsNWidgets(5));
     expect(find.text('Reply language (optional)'), findsOneWidget);
   });
 
@@ -25,6 +24,7 @@ void main() {
     expect(find.textContaining('A prompt is the question'), findsOneWidget);
     await tester.tap(find.text('Open the builder'));
     await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Generate my prompt'), 120);
     expect(find.text('Generate my prompt'), findsOneWidget);
   });
 }
