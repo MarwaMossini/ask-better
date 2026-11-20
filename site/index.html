@@ -75,11 +75,18 @@
     .nav-panel a:hover { background: #e8f5f0; }
     .language { min-height: 44px; }
     #library { padding-top: clamp(24px, 4vw, 48px); }
-    .gallery-controls { display: flex; justify-content: center; margin: 12px 0 22px; }
-    .gallery-controls .cta { border-radius: 999px; }
     .library-photos { display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; list-style: none; padding: 0 0 10px; margin: 16px auto 0; }
     .library-photos li { scroll-snap-align: start; min-width: 0; }
-    .library-photos { width: clamp(260px, 30vw, 460px); max-width: 100%; }
+    .library-carousel { width: clamp(260px, 30vw, 460px); max-width: 100%; margin: 16px auto 22px; position: relative; }
+    .library-photos { width: 100%; margin: 0; padding-bottom: 0; scrollbar-width: none; }
+    .library-photos::-webkit-scrollbar { display: none; }
+    .slide-control { position: absolute; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #fff8; border-radius: 50%; background: #211839d9; color: white; font-size: 30px; line-height: 1; }
+    .slide-control:hover { background: #43247a; }
+    .slide-prev, .slide-next { top: min(25cqw, 115px); transform: translateY(-50%); }
+    .library-carousel { container-type: inline-size; }
+    .slide-prev { left: 8px; }
+    .slide-next { right: 8px; }
+    .slide-motion { top: 8px; right: 8px; font-size: 17px; }
     .library-photos figure { margin: 0; overflow: hidden; border: 1px solid #ded6f0; border-radius: 16px; background: white; }
     .library-photos img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
     .library-photos figcaption { padding: 8px 12px; color: #43247a; text-align: center; font-size: .9rem; }
@@ -89,8 +96,6 @@
       .nav-panel { left: 0; right: auto; }
     }
     @media (prefers-reduced-motion: no-preference) {
-      .gallery-controls button { transition: transform 140ms ease; }
-      .gallery-controls button:active { transform: translateY(2px); }
     }
     @media (prefers-reduced-motion: reduce) {
       .library-photos { scroll-behavior: auto; }
@@ -169,7 +174,8 @@
 
 <section id="library" class="container" aria-labelledby="library-title">
       <h2 id="library-title" data-en="Learning library" data-bn="শেখার সংগ্রহ">Learning library</h2>
-      <ul class="library-photos" id="library-photos">
+      <div class="library-carousel">
+        <ul class="library-photos" id="library-photos">
         <li>
           <a class="slide-link" href="#study-guide" data-guide-link><figure>
             <img src="assets/keyboard-writing.webp" width="473" height="315" loading="lazy" decoding="async" alt="Hands typing on a laptop keyboard." data-alt-bn="ল্যাপটপের কিবোর্ডে টাইপ করছেন একজন ব্যক্তি।">
@@ -189,8 +195,9 @@
           </figure></a>
         </li>
       </ul>
-      <div class="gallery-controls">
-        <button type="button" class="cta secondary" id="carousel-motion" aria-controls="library-photos">Pause slideshow</button>
+        <button class="slide-control slide-prev" type="button" aria-label="Previous photo" aria-controls="library-photos">‹</button>
+        <button class="slide-control slide-next" type="button" aria-label="Next photo" aria-controls="library-photos">›</button>
+        <button class="slide-control slide-motion" id="carousel-motion" type="button" aria-label="Pause slideshow" aria-controls="library-photos">Ⅱ</button>
       </div>
       <p class="intro" data-en="Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates." data-bn="এআই নিয়ে প্রশ্নোত্তর, প্রম্পটের আগে-পরে উদাহরণ এবং এআই আপডেটের অফিসিয়াল লিংক দেখুন।">Browse AI questions and answers, before-and-after prompt examples, and links to official AI updates.</p>
       <div style="margin-top: 32px">
@@ -376,15 +383,32 @@
 
     const filmstrip = document.getElementById('library-photos');
     const motionButton = document.getElementById('carousel-motion');
+    const previousSlide = document.querySelector('.slide-prev');
+    const nextSlide = document.querySelector('.slide-next');
+    function moveSlide(direction) {
+      const slides = [...filmstrip.children];
+      const firstOffset = slides[0].offsetLeft;
+      const offsets = slides.map(slide => slide.offsetLeft - firstOffset);
+      const current = offsets.reduce((nearest, offset, index) =>
+        Math.abs(offset - filmstrip.scrollLeft) < Math.abs(offsets[nearest] - filmstrip.scrollLeft)
+          ? index : nearest, 0);
+      const next = (current + direction + offsets.length) % offsets.length;
+      filmstrip.scrollTo({left: offsets[next], behavior: reducedMotion.matches || Math.abs(next - current) > 1 ? 'instant' : 'smooth'});
+    }
+    previousSlide.addEventListener('click', () => moveSlide(-1));
+    nextSlide.addEventListener('click', () => moveSlide(1));
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let carouselPaused = reducedMotion.matches;
     let carouselVisible = false;
     let touchActive = false;
 
     function renderCarouselControl() {
-      motionButton.textContent = carouselPaused
+      motionButton.textContent = carouselPaused ? '▷' : 'Ⅱ';
+      motionButton.setAttribute('aria-label', carouselPaused
         ? (isBangla ? 'স্লাইডশো চালু করুন' : 'Play slideshow')
-        : (isBangla ? 'স্লাইডশো থামান' : 'Pause slideshow');
+        : (isBangla ? 'স্লাইডশো থামান' : 'Pause slideshow'));
+      previousSlide.setAttribute('aria-label', isBangla ? 'আগের ছবি' : 'Previous photo');
+      nextSlide.setAttribute('aria-label', isBangla ? 'পরের ছবি' : 'Next photo');
     }
 
     motionButton.addEventListener('click', () => {
@@ -406,14 +430,9 @@
 
     window.setInterval(() => {
       if (carouselPaused || !carouselVisible || document.hidden || touchActive ||
-          filmstrip.matches(':hover, :focus-within')) return;
+          filmstrip.parentElement.matches(':hover, :focus-within')) return;
 
-      const first = filmstrip.children[0];
-      const next = [...filmstrip.children].find(slide => slide.offsetLeft - first.offsetLeft > filmstrip.scrollLeft + 2);
-      filmstrip.scrollTo({
-        left: next ? next.offsetLeft - first.offsetLeft : 0,
-        behavior: next && !reducedMotion.matches ? 'smooth' : 'instant',
-      });
+      moveSlide(1);
     }, 2000);
     let isBangla = false;
     function renderLanguage() {
