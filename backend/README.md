@@ -1,7 +1,10 @@
-# BDApps backend — integration pending
+# Ask Better backend
 
-The official ProshnoLab Android preview does **not** send OTP requests,
-collect payments, or manage subscriptions yet.
+The [SMS demo](bdapps/README.md) contains the PHP callback and a simulated test. Live SMS setup and verification are pending.
+
+## Future OTP, subscription, and billing work
+
+The Android preview currently has no OTP verification, payment collection, or subscription management.
 
 This folder intentionally contains no BDApps passwords, access tokens,
 subscriber phone numbers, or copies of the workshop PHP examples. Before
