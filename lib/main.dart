@@ -278,57 +278,59 @@ class ProshnoLabHelp extends StatelessWidget {
 class PromptQuestion {
   final String english;
   final String bengali;
-  const PromptQuestion(this.english, this.bengali);
+  final String englishLabel;
+  final String bengaliLabel;
+  const PromptQuestion(this.english, this.bengali, this.englishLabel, this.bengaliLabel);
 }
 
 const _questions = <String, List<PromptQuestion>>{
   'essay': [
-    PromptQuestion('What is your essay topic?', 'রচনার বিষয় কী?'),
-    PromptQuestion('What is your education level?', 'আপনার শিক্ষার স্তর কী?'),
-    PromptQuestion('What do you want help with?', 'কী ধরনের সাহায্য চান?'),
-    PromptQuestion('Any word count or other requirements?', 'শব্দসংখ্যা বা অন্য শর্ত আছে?'),
+    PromptQuestion('What is your essay topic?', 'রচনার বিষয় কী?', 'Topic', 'বিষয়'),
+    PromptQuestion('What is your education level?', 'আপনার শিক্ষার স্তর কী?', 'Education level', 'শিক্ষার স্তর'),
+    PromptQuestion('What do you want help with?', 'কী ধরনের সাহায্য চান?', 'Help needed', 'প্রয়োজনীয় সহায়তা'),
+    PromptQuestion('Any word count or other requirements?', 'শব্দসংখ্যা বা অন্য শর্ত আছে?', 'Requirements', 'শর্ত'),
   ],
   'email': [
-    PromptQuestion('Who will receive the email?', 'ইমেইলটি কাকে পাঠাবেন?'),
-    PromptQuestion('Why are you writing?', 'কেন লিখছেন?'),
-    PromptQuestion('What details must be included?', 'কোন তথ্যগুলো রাখতে হবে?'),
-    PromptQuestion('What tone would you prefer?', 'কেমন ভাষা চান?'),
+    PromptQuestion('Who will receive the email?', 'ইমেইলটি কাকে পাঠাবেন?', 'Recipient', 'প্রাপক'),
+    PromptQuestion('Why are you writing?', 'কেন লিখছেন?', 'Purpose', 'উদ্দেশ্য'),
+    PromptQuestion('What details must be included?', 'কোন তথ্যগুলো রাখতে হবে?', 'Details to include', 'প্রয়োজনীয় তথ্য'),
+    PromptQuestion('What tone would you prefer?', 'কেমন ভাষা চান?', 'Tone', 'ভাষার ধরন'),
   ],
   'study': [
-    PromptQuestion('Which topic are you studying?', 'কোন বিষয়টি পড়ছেন?'),
-    PromptQuestion('What is your current level?', 'আপনার বর্তমান স্তর কী?'),
-    PromptQuestion('What is difficult or confusing?', 'কোন অংশটি কঠিন লাগছে?'),
-    PromptQuestion('What kind of examples would help?', 'কেমন উদাহরণে বুঝতে সুবিধা হবে?'),
+    PromptQuestion('Which topic are you studying?', 'কোন বিষয়টি পড়ছেন?', 'Topic', 'বিষয়'),
+    PromptQuestion('What is your current level?', 'আপনার বর্তমান স্তর কী?', 'Current level', 'বর্তমান স্তর'),
+    PromptQuestion('What is difficult or confusing?', 'কোন অংশটি কঠিন লাগছে?', 'Areas to clarify', 'যেসব অংশ বুঝতে হবে'),
+    PromptQuestion('What kind of examples would help?', 'কেমন উদাহরণে বুঝতে সুবিধা হবে?', 'Preferred examples', 'পছন্দের উদাহরণ'),
   ],
   'report': [
-    PromptQuestion('What is the report about?', 'প্রতিবেদনের বিষয় কী?'),
-    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?'),
-    PromptQuestion('What findings or data can I use?', 'কোন ফলাফল বা তথ্য ব্যবহার করা যাবে?'),
-    PromptQuestion('What sections or length are required?', 'কোন অংশ বা দৈর্ঘ্য প্রয়োজন?'),
+    PromptQuestion('What is the report about?', 'প্রতিবেদনের বিষয় কী?', 'Topic', 'বিষয়'),
+    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?', 'Audience', 'পাঠক'),
+    PromptQuestion('What findings or data can I use?', 'কোন ফলাফল বা তথ্য ব্যবহার করা যাবে?', 'Findings or data', 'ফলাফল বা তথ্য'),
+    PromptQuestion('What sections or length are required?', 'কোন অংশ বা দৈর্ঘ্য প্রয়োজন?', 'Required sections or length', 'প্রয়োজনীয় অংশ বা দৈর্ঘ্য'),
   ],
   'career': [
-    PromptQuestion('What role are you applying for?', 'কোন পদের জন্য আবেদন করছেন?'),
-    PromptQuestion('Do you need a CV or a cover letter?', 'সিভি নাকি কভার লেটার দরকার?'),
-    PromptQuestion('What skills or experience should it include?', 'কোন দক্ষতা বা অভিজ্ঞতা রাখতে হবে?'),
-    PromptQuestion('Which job requirements should it address?', 'চাকরির কোন শর্তগুলো তুলে ধরতে হবে?'),
+    PromptQuestion('What role are you applying for?', 'কোন পদের জন্য আবেদন করছেন?', 'Target role', 'লক্ষ্য পদ'),
+    PromptQuestion('Do you need a CV or a cover letter?', 'সিভি নাকি কভার লেটার দরকার?', 'Document type', 'নথির ধরন'),
+    PromptQuestion('What skills or experience should it include?', 'কোন দক্ষতা বা অভিজ্ঞতা রাখতে হবে?', 'Skills and experience', 'দক্ষতা ও অভিজ্ঞতা'),
+    PromptQuestion('Which job requirements should it address?', 'চাকরির কোন শর্তগুলো তুলে ধরতে হবে?', 'Job requirements', 'চাকরির শর্ত'),
   ],
   'presentation': [
-    PromptQuestion('What are you presenting?', 'কী নিয়ে উপস্থাপনা করবেন?'),
-    PromptQuestion('Who is the audience?', 'শ্রোতা কারা?'),
-    PromptQuestion('How long is the presentation?', 'উপস্থাপনার সময় কত?'),
-    PromptQuestion('What key points must it cover?', 'কোন মূল বিষয়গুলো রাখতে হবে?'),
+    PromptQuestion('What are you presenting?', 'কী নিয়ে উপস্থাপনা করবেন?', 'Topic', 'বিষয়'),
+    PromptQuestion('Who is the audience?', 'শ্রোতা কারা?', 'Audience', 'শ্রোতা'),
+    PromptQuestion('How long is the presentation?', 'উপস্থাপনার সময় কত?', 'Duration', 'সময়কাল'),
+    PromptQuestion('What key points must it cover?', 'কোন মূল বিষয়গুলো রাখতে হবে?', 'Key points', 'মূল বিষয়গুলো'),
   ],
   'revision': [
-    PromptQuestion('What text would you like to revise?', 'কোন লেখাটি সংশোধন করতে চান?'),
-    PromptQuestion('What should improve?', 'কোন বিষয়টি উন্নত করতে চান?'),
-    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?'),
-    PromptQuestion('What tone or length should it have?', 'ভাষার ধরন বা দৈর্ঘ্য কেমন হবে?'),
+    PromptQuestion('What text would you like to revise?', 'কোন লেখাটি সংশোধন করতে চান?', 'Text to revise', 'সংশোধনের লেখা'),
+    PromptQuestion('What should improve?', 'কোন বিষয়টি উন্নত করতে চান?', 'Changes needed', 'প্রয়োজনীয় পরিবর্তন'),
+    PromptQuestion('Who will read it?', 'কারা এটি পড়বেন?', 'Audience', 'পাঠক'),
+    PromptQuestion('What tone or length should it have?', 'ভাষার ধরন বা দৈর্ঘ্য কেমন হবে?', 'Tone or length', 'ভাষার ধরন বা দৈর্ঘ্য'),
   ],
   'research': [
-    PromptQuestion('What topic are you investigating?', 'কোন বিষয় নিয়ে গবেষণা করছেন?'),
-    PromptQuestion('What do you want to find out?', 'কী জানতে চান?'),
-    PromptQuestion('What sources or data can you access?', 'কোন সূত্র বা তথ্য ব্যবহার করতে পারবেন?'),
-    PromptQuestion('What limits or deadlines apply?', 'কী সীমাবদ্ধতা বা সময়সীমা আছে?'),
+    PromptQuestion('What topic are you investigating?', 'কোন বিষয় নিয়ে গবেষণা করছেন?', 'Topic', 'বিষয়'),
+    PromptQuestion('What do you want to find out?', 'কী জানতে চান?', 'Research objective', 'গবেষণার উদ্দেশ্য'),
+    PromptQuestion('What sources or data can you access?', 'কোন সূত্র বা তথ্য ব্যবহার করতে পারবেন?', 'Sources or data', 'সূত্র বা তথ্য'),
+    PromptQuestion('What limits or deadlines apply?', 'কী সীমাবদ্ধতা বা সময়সীমা আছে?', 'Limits or deadlines', 'সীমাবদ্ধতা বা সময়সীমা'),
   ],
 };
 
@@ -376,10 +378,11 @@ class _PromptBuilderState extends State<PromptBuilder> {
       return;
     }
     final labels = _questions[category]!;
-    final details = List.generate(values.length, (index) {
-      final label = widget.bangla ? labels[index].bengali : labels[index].english;
-      return '- $label ${values[index].isEmpty ? t('Not provided', 'দেওয়া হয়নি') : values[index]}';
-    }).join('\n');
+    final details = [
+      for (var index = 0; index < values.length; index++)
+        if (values[index].isNotEmpty)
+          '${t(labels[index].englishLabel, labels[index].bengaliLabel)}: ${values[index]}',
+    ].join('\n');
 
     final instruction = switch (category) {
       'essay' => t(
