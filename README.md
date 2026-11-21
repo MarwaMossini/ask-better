@@ -1,88 +1,44 @@
-# ProshnoLab
+# Ask Better
 
-**Ask better. Save time and money.**
+Ask Better helps users turn a topic and a few details into a prompt they can paste into an AI tool. The website and Android app support English and Bangla. The GitHub repository and Flutter project use the original name, `proshnolab`.
 
-ProshnoLab is an early-stage Bangla–English Android and web app for students in
-Bangladesh. The first preview includes:
+- [Try the live website](https://marwamossini.github.io/proshnolab/)
+- [Download the Android test APK](https://marwamossini.github.io/proshnolab/downloads/ask-better-test.apk)
 
-- A guided prompt builder for **Essay**, **Email** and **Study** tasks.
-- Editable prompt previews and copy-to-clipboard.
-- A curated Q&A learning library and before/after prompting tips.
-- Links to official sources for AI and technology updates.
-- A responsive bilingual landing page with a working sample prompt builder.
+For a quick demo, enter **Food waste** as the topic, add a few details, and generate a prompt. Blank answers are skipped. Copy the result or use one of the AI shortcuts to open an external tool. The APK is a debug build. Installation on a physical phone is still pending.
 
-This is **not yet the competition-ready paid service**. There is no live AI
-chatbot, live news feed, BDApps OTP verification, subscription or billing in
-the preview. No payment can be collected. The subscription screen explains
-this status to testers.
-
-## Android development
-
-The repository contains Flutter source code. The Android platform scaffold is
-generated on first setup, keeping the initial repository small:
-
-```bash
-flutter create . --platforms=android --project-name proshnolab --org com.proshnolab
-flutter pub get
-flutter analyze
-flutter test
-flutter run
-```
-
-Use the latest supported Flutter **stable** SDK. To create a test APK locally:
-
-```bash
-flutter build apk --debug
-```
-
-GitHub Actions runs the same checks and uploads a **debug APK** as a workflow
-artifact after each push to `main`. Open the Actions tab, select **Build
-Android test APK**, and download the `proshnolab-debug-apk` artifact from a
-successful run. The artifact downloads as a ZIP; extract the APK before
-installing it on your Android device. Debug APKs are for testing only, not
-official Store publication.
-
-## Website
-
-The landing page includes a sample builder and an **Open full web app** link.
-The full browser app shares the Android app's prompt builder and learning
-library. Prompt answers stay in the browser.
-
-To run the full app locally, use `flutter run -d chrome`. To build the
-combined website for an HTTPS domain root, run:
-
-```bash
-flutter build web --base-href /app/
-mkdir -p dist/app
-cp -a site/. dist/
-cp -a build/web/. dist/app/
-```
-
-Upload the contents of `dist/` to the site's document root. The landing page
-opens at `/` and the full web app at `/app/`. For hosting under a URL
-prefix, include that prefix in the Flutter base href when building.
-
-GitHub Actions uploads the complete site as the `proshnolab-website` artifact.
-
-## Project structure
+## Where to find the code
 
 | Path | Purpose |
 | --- | --- |
-| `lib/main.dart` | Shared Android and browser UI and local prompt creation |
-| `test/widget_test.dart` | Flutter UI smoke test |
-| `site/index.html` | Responsive bilingual landing page |
-| `web/index.html` | Flutter web entry point |
-| `backend/README.md` | Pending BDApps integration safeguards |
-| `.github/workflows/android.yml` | Android checks and build, plus website build |
+| [`site/`](site/) | Public landing page, sample builder, and website assets |
+| [`lib/main.dart`](lib/main.dart) | Flutter app for Android and the browser, including the prompt builder and learning library |
+| [`web/`](web/) | Flutter web entry point |
+| [`test/widget_test.dart`](test/widget_test.dart) | Flutter widget tests |
+| [`backend/bdapps/sms.php`](backend/bdapps/sms.php) | PHP callback that formats an SMS topic into a prompt |
+| [`backend/bdapps/smoke-test.php`](backend/bdapps/smoke-test.php) | Simulated SMS callback test |
+| [`.github/workflows/`](.github/workflows/) | Build, test, and GitHub Pages workflows |
 
-## Before BDApps publication
+## Run the Flutter app
 
-1. Verify the Tech Quest submission requirements and deadline.
-2. Confirm hosting permissions, HTTPS and stable outbound IPv4.
-3. Review the workshop PHP examples and implement approved BDApps integration.
-4. Test OTP, active/inactive subscription, callbacks and unsubscribe.
-5. Approve the price, billing frequency, subscriber benefits and marketing
-   material before taking subscriptions.
-6. Prepare a signed release APK and the required Store listing materials.
+Use Flutter stable with the minimum versions listed in [`pubspec.yaml`](pubspec.yaml), an Android SDK for Android, or Chrome for the browser.
 
-Never commit passwords, `.env` files, signing keys or subscriber data.
+```bash
+flutter pub get
+flutter analyze
+flutter test
+flutter run -d chrome
+```
+
+For an Android device or emulator, generate the Android scaffold, then select the device with `flutter run`.
+
+```bash
+flutter create . --platforms=android --project-name proshnolab --org com.proshnolab
+flutter run
+```
+
+The [Android workflow](.github/workflows/android.yml) runs analysis and widget tests and builds the debug APK. The [Pages workflow](.github/workflows/pages.yml) publishes the landing page, browser app, and downloadable APK.
+
+## SMS demo status
+
+The SMS callback code has [passed its simulated test](https://github.com/MarwaMossini/proshnolab/actions/runs/44895784332). The live HTTPS callback still needs verification, the bdapps API request is pending submission, and no real SMS reply has been verified. The demo uses charging off. See the [SMS setup notes](backend/bdapps/README.md) for PHP requirements, callback configuration, and the test command.
