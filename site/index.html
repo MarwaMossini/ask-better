@@ -195,6 +195,8 @@
     .comparison-card h4 { margin-block: 20px 6px; }
     .comparison-card .sample-answer { white-space: pre-line; margin: 0; }
     .comparison-note { margin-block: 16px 0; }
+    #ai-shortcuts a { gap: 7px; }
+    #ai-shortcuts img { flex: none; object-fit: contain; }
   </style>
 </head>
 <body>
@@ -212,6 +214,7 @@
             <a href="?page=builder" data-page-link="builder" data-en="Prompt builder" data-bn="প্রম্পট বিল্ডার">Prompt builder</a>
             <a href="?page=help" data-page-link="help" data-en="How to use" data-bn="ব্যবহারবিধি">How to use</a>
             <a href="?page=plans" data-page-link="plans" data-en="Premium" data-bn="প্রিমিয়াম">Premium</a>
+            <a href="?page=help#website-languages" data-en="Website languages" data-bn="ওয়েবসাইটের ভাষা">Website languages</a>
             <a href="?page=help#faq" data-en="FAQ" data-bn="সাধারণ জিজ্ঞাসা">FAQ</a>
             <a href="downloads/ask-better-test.apk" download data-en="Download Android test APK" data-bn="অ্যান্ড্রয়েড পরীক্ষামূলক APK ডাউনলোড করুন">Download Android test APK</a>
             <a href="app/" data-en="Full web app" data-bn="সম্পূর্ণ ওয়েব অ্যাপ">Full web app</a>
@@ -341,7 +344,7 @@
             <div class="button-row"><button class="cta secondary" id="copy" type="button" disabled data-en="Copy prompt" data-bn="প্রম্পট কপি করুন">Copy prompt</button>
               <details id="ai-shortcuts" hidden>
                 <summary data-en="Copy and open an AI tool" data-bn="কপি করে এআই টুল খুলুন">Copy and open an AI tool</summary>
-                <ul><li><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">ChatGPT</a></li><li><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer">Gemini</a></li><li><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer">Claude</a></li><li><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer">Copilot</a></li></ul>
+                <ul><li><a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSJjdXJyZW50Q29sb3IiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaGVpZ2h0PSIxZW0iIHN0eWxlPSJmbGV4Om5vbmU7bGluZS1oZWlnaHQ6MSIgdmlld0JveD0iMCAwIDI0IDI0IiB3aWR0aD0iMWVtIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjx0aXRsZT5PcGVuQUk8L3RpdGxlPjxwYXRoIGQ9Ik05LjIwNSA4LjY1OHYtMi4yNmMwLS4xOS4wNzItLjMzMy4yMzgtLjQyOGw0LjU0My0yLjYxNmMuNjE5LS4zNTcgMS4zNTYtLjUyMyAyLjExNy0uNTIzIDIuODU0IDAgNC42NjIgMi4yMTIgNC42NjIgNC41NjYgMCAuMTY3IDAgLjM1Ny0uMDI0LjU0N2wtNC43MS0yLjc1OWEuNzk3Ljc5NyAwIDAwLS44NTYgMGwtNS45NyAzLjQ3M3ptMTAuNjA5IDguOFYxMi4wNmMwLS4zMzMtLjE0My0uNTctLjQyOS0uNzM3bC01Ljk3LTMuNDczIDEuOTUtMS4xMThhLjQzMy40MzMgMCAwMS40NzYgMGw0LjU0MyAyLjYxN2MxLjMwOS43NiAyLjE4OSAyLjM3OCAyLjE4OSAzLjk0OCAwIDEuODA4LTEuMDcgMy40NzMtMi43NiA0LjE2M3pNNy44MDIgMTIuNzAzbC0xLjk1LTEuMTQyYy0uMTY3LS4wOTUtLjIzOS0uMjM4LS4yMzktLjQyOFY1Ljg5OWMwLTIuNTQ1IDEuOTUtNC40NzIgNC41OTEtNC40NzIgMSAwIDEuOTI3LjMzMyAyLjcxMi45MjhMOC4yMyA1LjA2N2MtLjI4NS4xNjYtLjQyOC40MDQtLjQyOC43Mzd2Ni44OTh6TTEyIDE1LjEyOGwtMi43OTUtMS41N3YtMy4zM0wxMiA4LjY1OGwyLjc5NSAxLjU3djMuMzNMMTIgMTUuMTI4em0xLjc5NiA3LjIzYy0xIDAtMS45MjctLjMzMi0yLjcxMi0uOTI3bDQuNjg2LTIuNzEyYy4yODUtLjE2Ni40MjgtLjQwNC40MjgtLjczN3YtNi44OThsMS45NzQgMS4xNDJjLjE2Ny4wOTUuMjM4LjIzOC4yMzguNDI4djUuMjMzYzAgMi41NDUtMS45NzQgNC40NzItNC42MTQgNC40NzJ6bS01LjYzNy01LjMwM2wtNC41NDQtMi42MTdjLTEuMzA4LS43NjEtMi4xODgtMi4zNzgtMi4xODgtMy45NDhBNC40ODIgNC40ODIgMCAwMTQuMjEgNi4zMjd2NS40MjNjMCAuMzMzLjE0My41NzEuNDI4LjczOGw1Ljk0NyAzLjQ0OS0xLjk1IDEuMTE4YS40MzIuNDMyIDAgMDEtLjQ3NiAwem0tLjI2MiAzLjljLTIuNjg4IDAtNC42NjItMi4wMjEtNC42NjItNC41MTkgMC0uMTkuMDI0LS4zOC4wNDctLjU3bDQuNjg2IDIuNzFjLjI4Ni4xNjcuNTcxLjE2Ny44NTYgMGw1Ljk3LTMuNDQ4djIuMjZjMCAuMTktLjA3LjMzMy0uMjM3LjQyOGwtNC41NDMgMi42MTZjLS42MTkuMzU3LTEuMzU2LjUyMy0yLjExNy41MjN6bTUuODk5IDIuODNhNS45NDcgNS45NDcgMCAwMDUuODI3LTQuNzU2QzIyLjI4NyAxOC4zMzkgMjQgMTUuODQgMjQgMTMuMjk2YzAtMS42NjUtLjcxMy0zLjI4Mi0xLjk5OC00LjQ0OC4xMTktLjUuMTktLjk5OS4xOS0xLjQ5OCAwLTMuNDAxLTIuNzU5LTUuOTQ3LTUuOTQ2LTUuOTQ3LS42NDIgMC0xLjI2LjA5NS0xLjg4LjMxQTUuOTYyIDUuOTYyIDAgMDAxMC4yMDUgMGE1Ljk0NyA1Ljk0NyAwIDAwLTUuODI3IDQuNzU3QzEuNzEzIDUuNDQ3IDAgNy45NDUgMCAxMC40OWMwIDEuNjY2LjcxMyAzLjI4MyAxLjk5OCA0LjQ0OC0uMTE5LjUtLjE5IDEtLjE5IDEuNDk5IDAgMy40MDEgMi43NTkgNS45NDYgNS45NDYgNS45NDYuNjQyIDAgMS4yNi0uMDk1IDEuODgtLjMwOWE1Ljk2IDUuOTYgMCAwMDQuMTYyIDEuNzEzeiI+PC9wYXRoPjwvc3ZnPg==" width="20" height="20" alt="">ChatGPT</a></li><li><a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkdlbWluaTwvdGl0bGU+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9IiMzMTg2RkYiPjwvcGF0aD48cGF0aCBkPSJNMjAuNjE2IDEwLjgzNWExNC4xNDcgMTQuMTQ3IDAgMDEtNC40NS0zLjAwMSAxNC4xMTEgMTQuMTExIDAgMDEtMy42NzgtNi40NTIuNTAzLjUwMyAwIDAwLS45NzUgMCAxNC4xMzQgMTQuMTM0IDAgMDEtMy42NzkgNi40NTIgMTQuMTU1IDE0LjE1NSAwIDAxLTQuNDUgMy4wMDFjLS42NS4yOC0xLjMxOC41MDUtMi4wMDIuNjc4YS41MDIuNTAyIDAgMDAwIC45NzVjLjY4NC4xNzIgMS4zNS4zOTcgMi4wMDIuNjc3YTE0LjE0NyAxNC4xNDcgMCAwMTQuNDUgMy4wMDEgMTQuMTEyIDE0LjExMiAwIDAxMy42NzkgNi40NTMuNTAyLjUwMiAwIDAwLjk3NSAwYy4xNzItLjY4NS4zOTctMS4zNTEuNjc3LTIuMDAzYTE0LjE0NSAxNC4xNDUgMCAwMTMuMDAxLTQuNDUgMTQuMTEzIDE0LjExMyAwIDAxNi40NTMtMy42NzguNTAzLjUwMyAwIDAwMC0uOTc1IDEzLjI0NSAxMy4yNDUgMCAwMS0yLjAwMy0uNjc4eiIgZmlsbD0idXJsKCNsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfKSI+PC9wYXRoPjxwYXRoIGQ9Ik0yMC42MTYgMTAuODM1YTE0LjE0NyAxNC4xNDcgMCAwMS00LjQ1LTMuMDAxIDE0LjExMSAxNC4xMTEgMCAwMS0zLjY3OC02LjQ1Mi41MDMuNTAzIDAgMDAtLjk3NSAwIDE0LjEzNCAxNC4xMzQgMCAwMS0zLjY3OSA2LjQ1MiAxNC4xNTUgMTQuMTU1IDAgMDEtNC40NSAzLjAwMWMtLjY1LjI4LTEuMzE4LjUwNS0yLjAwMi42NzhhLjUwMi41MDIgMCAwMDAgLjk3NWMuNjg0LjE3MiAxLjM1LjM5NyAyLjAwMi42NzdhMTQuMTQ3IDE0LjE0NyAwIDAxNC40NSAzLjAwMSAxNC4xMTIgMTQuMTEyIDAgMDEzLjY3OSA2LjQ1My41MDIuNTAyIDAgMDAuOTc1IDBjLjE3Mi0uNjg1LjM5Ny0xLjM1MS42NzctMi4wMDNhMTQuMTQ1IDE0LjE0NSAwIDAxMy4wMDEtNC40NSAxNC4xMTMgMTQuMTEzIDAgMDE2LjQ1My0zLjY3OC41MDMuNTAzIDAgMDAwLS45NzUgMTMuMjQ1IDEzLjI0NSAwIDAxLTIuMDAzLS42Nzh6IiBmaWxsPSJ1cmwoI2xvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8pIj48L3BhdGg+PHBhdGggZD0iTTIwLjYxNiAxMC44MzVhMTQuMTQ3IDE0LjE0NyAwIDAxLTQuNDUtMy4wMDEgMTQuMTExIDE0LjExMSAwIDAxLTMuNjc4LTYuNDUyLjUwMy41MDMgMCAwMC0uOTc1IDAgMTQuMTM0IDE0LjEzNCAwIDAxLTMuNjc5IDYuNDUyIDE0LjE1NSAxNC4xNTUgMCAwMS00LjQ1IDMuMDAxYy0uNjUuMjgtMS4zMTguNTA1LTIuMDAyLjY3OGEuNTAyLjUwMiAwIDAwMCAuOTc1Yy42ODQuMTcyIDEuMzUuMzk3IDIuMDAyLjY3N2ExNC4xNDcgMTQuMTQ3IDAgMDE0LjQ1IDMuMDAxIDE0LjExMiAxNC4xMTIgMCAwMTMuNjc5IDYuNDUzLjUwMi41MDIgMCAwMC45NzUgMGMuMTcyLS42ODUuMzk3LTEuMzUxLjY3Ny0yLjAwM2ExNC4xNDUgMTQuMTQ1IDAgMDEzLjAwMS00LjQ1IDE0LjExMyAxNC4xMTMgMCAwMTYuNDUzLTMuNjc4LjUwMy41MDMgMCAwMDAtLjk3NSAxMy4yNDUgMTMuMjQ1IDAgMDEtMi4wMDMtLjY3OHoiIGZpbGw9InVybCgjbG9iZS1pY29ucy1nZW1pbmktMi1fUl8wXykiPjwvcGF0aD48ZGVmcz48bGluZWFyR3JhZGllbnQgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGlkPSJsb2JlLWljb25zLWdlbWluaS0wLV9SXzBfIiB4MT0iNyIgeDI9IjExIiB5MT0iMTUuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjMDhCOTYyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDhCOTYyIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTEtX1JfMF8iIHgxPSI4IiB4Mj0iMTEuNSIgeTE9IjUuNSIgeTI9IjExIj48c3RvcCBzdG9wLWNvbG9yPSIjRjk0NTQzIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjk0NTQzIiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtZ2VtaW5pLTItX1JfMF8iIHgxPSIzLjUiIHgyPSIxNy41IiB5MT0iMTMuNSIgeTI9IjEyIj48c3RvcCBzdG9wLWNvbG9yPSIjRkFCQzEyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIuNDYiIHN0b3AtY29sb3I9IiNGQUJDMTIiIHN0b3Atb3BhY2l0eT0iMCI+PC9zdG9wPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjwvc3ZnPg==" width="20" height="20" alt="">Gemini</a></li><li><a href="https://claude.ai/" target="_blank" rel="noopener noreferrer"><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNsYXVkZTwvdGl0bGU+PHBhdGggZD0iTTQuNzA5IDE1Ljk1NWw0LjcyLTIuNjQ3LjA4LS4yMy0uMDgtLjEyOEg5LjJsLS43OS0uMDQ4LTIuNjk4LS4wNzMtMi4zMzktLjA5Ny0yLjI2Ni0uMTIyLS41NzEtLjEyMUwwIDExLjc4NGwuMDU1LS4zNTIuNDgtLjMyMS42ODYuMDYgMS41Mi4xMDMgMi4yNzguMTU4IDEuNjUyLjA5NyAyLjQ0OS4yNTVoLjM4OWwuMDU1LS4xNTctLjEzNC0uMDk4LS4xMDMtLjA5Ny0yLjM1OC0xLjU5Ni0yLjU1Mi0xLjY4OC0xLjMzNi0uOTcyLS43MjQtLjQ5MS0uMzY0LS40NjItLjE1OC0xLjAwOC42NTYtLjcyMi44ODEuMDYuMjI1LjA2MS44OTMuNjg2IDEuOTA4IDEuNDc2IDIuNDkxIDEuODMzLjM2NS4zMDQuMTQ1LS4xMDMuMDE5LS4wNzMtLjE2NC0uMjc0LTEuMzU1LTIuNDQ2LTEuNDQ2LTIuNDktLjY0NC0xLjAzMi0uMTctLjYxOWEyLjk3IDIuOTcgMCAwMS0uMTA0LS43MjlMNi4yODMuMTM0IDYuNjk2IDBsLjk5Ni4xMzQuNDIuMzY0LjYyIDEuNDE0IDEuMDAyIDIuMjI5IDEuNTU1IDMuMDMuNDU2Ljg5OC4yNDMuODMyLjA5MS4yNTVoLjE1OFY5LjAxbC4xMjgtMS43MDYuMjM3LTIuMDk1LjIzLTIuNjk1LjA4LS43Ni4zNzYtLjkxLjc0Ny0uNDkyLjU4NC4yOC40OC42ODUtLjA2Ny40NDQtLjI4NiAxLjg1MS0uNTU5IDIuOTAzLS4zNjQgMS45NDJoLjIxMmwuMjQzLS4yNDIuOTg1LTEuMzA2IDEuNjUyLTIuMDY0LjczLS44Mi44NS0uOTA0LjU0Ny0uNDMxaDEuMDMzbC43NiAxLjEyOS0uMzQgMS4xNjYtMS4wNjQgMS4zNDctLjg4MSAxLjE0Mi0xLjI2NCAxLjctLjc5IDEuMzYuMDczLjExLjE4OC0uMDIgMi44NTYtLjYwNiAxLjU0My0uMjggMS44NDEtLjMxNS44MzMuMzg4LjA5MS4zOTUtLjMyOC44MDctMS45NjkuNDg2LTIuMzA5LjQ2Mi0zLjQzOS44MTMtLjA0Mi4wMy4wNDkuMDYxIDEuNTQ5LjE0Ni42NjIuMDM2aDEuNjIybDMuMDIuMjI1Ljc5LjUyMi40NzQuNjM4LS4wNzkuNDg1LTEuMjE1LjYyLTEuNjQtLjM4OS0zLjgyOS0uOTEtMS4zMTItLjMyOWgtLjE4MnYuMTFsMS4wOTMgMS4wNjggMi4wMDYgMS44MSAyLjUwOSAyLjMzLjEyNy41NzgtLjMyMi40NTUtLjM0LS4wNDktMi4yMDUtMS42NTctLjg1MS0uNzQ3LTEuOTI2LTEuNjJoLS4xMjh2LjE3bC40NDQuNjQ5IDIuMzQ1IDMuNTIxLjEyMiAxLjA4LS4xNy4zNTMtLjYwOC4yMTMtLjY2OC0uMTIyLTEuMzc0LTEuOTI1LTEuNDE1LTIuMTY3LTEuMTQzLTEuOTQzLS4xNC4wOC0uNjc0IDcuMjU0LS4zMTYuMzctLjcyOS4yOC0uNjA3LS40NjEtLjMyMi0uNzQ3LjMyMi0xLjQ3Ni4zODktMS45MjQuMzE1LTEuNTMuMjg2LTEuOS4xNy0uNjMyLS4wMTItLjA0Mi0uMTQuMDE4LTEuNDM0IDEuOTY3LTIuMTggMi45NDUtMS43MjYgMS44NDUtLjQxNC4xNjQtLjcxNy0uMzcuMDY3LS42NjIuNDAxLS41ODkgMi4zODgtMy4wMzYgMS40NC0xLjg4Mi45My0xLjA4Ni0uMDA2LS4xNThoLS4wNTVMNC4xMzIgMTguNTZsLTEuMTMuMTQ2LS40ODctLjQ1Ni4wNjEtLjc0Ni4yMzEtLjI0MyAxLjkwOC0xLjMxMi0uMDA2LjAwNnoiIGZpbGw9IiNEOTc3NTciIGZpbGwtcnVsZT0ibm9uemVybyI+PC9wYXRoPjwvc3ZnPg==" width="20" height="20" alt="">Claude</a></li><li><a href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer"><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjFlbSIgc3R5bGU9ImZsZXg6bm9uZTtsaW5lLWhlaWdodDoxIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIxZW0iIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvcGlsb3Q8L3RpdGxlPjxwYXRoIGQ9Ik0xNi4yOTUgNS4yOWwtMC4yNDIgMC45ODZoLTIuMzJjLTEuNzIxIDAtMy4yMiAxLjE5Ny0zLjYzOCAyLjkwMmwtMi4xMDEgOC41OTNIMy43OThjLTIuNDQgMC00LjIyOS0yLjM0Mi0zLjYzNy00Ljc2MWwyLjEwNi04LjYxMmMwLjU1Ny0yLjI3NCAyLjU1Ni0zLjg3IDQuODUtMy44N2g1LjU0YzIuNDQgMCA0LjIzIDIuMzQzIDMuNjM4IDQuNzYxIiBmaWxsPSJ1cmwoI2xvYmUtaWNvbnMtY29waWxvdC0wLV9SXzBfKSI+PC9wYXRoPjxwYXRoIGQ9Ik0xNi4yOTUgNS4yOWwtMC4yNDIgMC45ODZoLTIuMzJjLTEuNzIxIDAtMy4yMiAxLjE5Ny0zLjYzOCAyLjkwMmwtMi4xMDEgOC41OTNIMy43OThjLTIuNDQgMC00LjIyOS0yLjM0Mi0zLjYzNy00Ljc2MWwyLjEwNi04LjYxMmMwLjU1Ny0yLjI3NCAyLjU1Ni0zLjg3IDQuODUtMy44N2g1LjU0YzIuNDQgMCA0LjIzIDIuMzQzIDMuNjM4IDQuNzYxIiBmaWxsPSJ1cmwoI2xvYmUtaWNvbnMtY29waWxvdC0xLV9SXzBfKSI+PC9wYXRoPjxwYXRoIGQ9Ik03Ljc1MiAxOC43NThsMC4yNDItMC45ODZoMi4zMjFjMS43MiAwIDMuMjItMS4xOTcgMy42MzctMi45MDNsMi4xMDItOC41OTNoNC4xOTZjMi40MzkgMCA0LjIyOCAyLjM0MyAzLjYzNyA0Ljc2MmwtMi4xMDcgOC42MTFjLTAuNTU2IDIuMjc0LTIuNTU1IDMuODctNC44NSAzLjg3aC01LjU0Yy0yLjQ0IDAtNC4yMjktMi4zNDItMy42MzgtNC43NjEiIGZpbGw9InVybCgjbG9iZS1pY29ucy1jb3BpbG90LTItX1JfMF8pIj48L3BhdGg+PHBhdGggZD0iTTcuNzUyIDE4Ljc1OGwwLjI0Mi0wLjk4NmgyLjMyMWMxLjcyIDAgMy4yMi0xLjE5NyAzLjYzNy0yLjkwM2wyLjEwMi04LjU5M2g0LjE5NmMyLjQzOSAwIDQuMjI4IDIuMzQzIDMuNjM3IDQuNzYybC0yLjEwNyA4LjYxMWMtMC41NTYgMi4yNzQtMi41NTUgMy44Ny00Ljg1IDMuODdoLTUuNTRjLTIuNDQgMC00LjIyOS0yLjM0Mi0zLjYzOC00Ljc2MSIgZmlsbD0idXJsKCNsb2JlLWljb25zLWNvcGlsb3QtMy1fUl8wXykiPjwvcGF0aD48ZGVmcz48cmFkaWFsR3JhZGllbnQgY3g9IjAiIGN5PSIwIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KC05Ljc3MTMzIDE5Ljg0MDUgMzguOTQwMyAxNS43NzI3IDEyLjY3NCAwLjU4NykiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBpZD0ibG9iZS1pY29ucy1jb3BpbG90LTAtX1JfMF8iIHI9IjEiPjxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMTA5ZGYyIj48L3N0b3A+PHN0b3Agb2Zmc2V0PSIuNzIiIHN0b3AtY29sb3I9IiNhYWQ0NDUiPjwvc3RvcD48c3RvcCBvZmZzZXQ9Ii45NyIgc3RvcC1jb2xvcj0iI2ZmZDQwMCI+PC9zdG9wPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGN4PSIwIiBjeT0iMCIgZ3JhZGllbnRUcmFuc2Zvcm09Im1hdHJpeCgtOS45NDQxNCAyMC43OTU5IDI0LjY1MzcgMTIuNTMzNiAyMS45NDggNC43NTYpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtY29waWxvdC0yLV9SXzBfIiByPSIxIj48c3RvcCBvZmZzZXQ9Ii4wNyIgc3RvcC1jb2xvcj0iIzhjNDhmZiI+PC9zdG9wPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNmMjU5OGEiPjwvc3RvcD48c3RvcCBvZmZzZXQ9Ii45IiBzdG9wLWNvbG9yPSIjZmZiMTUyIj48L3N0b3A+PC9yYWRpYWxHcmFkaWVudD48bGluZWFyR3JhZGllbnQgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGlkPSJsb2JlLWljb25zLWNvcGlsb3QtMS1fUl8wXyIgeDE9IjguMjc1IiB4Mj0iOC4xNzciIHkxPSIwLjUzNCIgeTI9IjE3Ljc3NiI+PHN0b3Agc3RvcC1jb2xvcj0iIzNkY2JmZiI+PC9zdG9wPjxzdG9wIG9mZnNldD0iLjI1IiBzdG9wLWNvbG9yPSIjMDU4OGY3IiBzdG9wLW9wYWNpdHk9IjAiPjwvc3RvcD48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgaWQ9ImxvYmUtaWNvbnMtY29waWxvdC0zLV9SXzBfIiB4MT0iMTUuODM5IiB4Mj0iMTUuODI5IiB5MT0iNS4yMTEiIHkyPSI5LjkwNyI+PHN0b3Agb2Zmc2V0PSIuMDYiIHN0b3AtY29sb3I9IiNmOGFkZmEiPjwvc3RvcD48c3RvcCBvZmZzZXQ9Ii43MSIgc3RvcC1jb2xvcj0iI2E4NmVkZCIgc3RvcC1vcGFjaXR5PSIwIj48L3N0b3A+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PC9zdmc+" width="20" height="20" alt="">Copilot</a></li></ul>
                 <p data-en="Paste your prompt in the tool that opens." data-bn="যে টুলটি খুলবে, সেখানে প্রম্পটটি পেস্ট করুন।">Paste your prompt in the tool that opens.</p>
               </details></div>
             <p class="muted" style="margin-top: 14px" data-en="Review your prompt and remove unnecessary personal details before pasting it into an AI service." data-bn="এআই সেবায় ব্যবহার করার আগে প্রম্পট যাচাই করুন এবং অপ্রয়োজনীয় ব্যক্তিগত তথ্য মুছে দিন।">Review your prompt and remove unnecessary personal details before pasting it into an AI service.</p>
@@ -374,6 +377,11 @@
       </div>
       <div>
       <h2 id="faq" data-en="Frequently asked questions" data-bn="সাধারণ জিজ্ঞাসা">Frequently asked questions</h2>
+      <details id="website-languages">
+        <summary data-en="Can I browse in another language?" data-bn="আমি কি অন্য ভাষায় ওয়েবসাইট দেখতে পারি?">Can I browse in another language?</summary>
+        <p data-en="Use the site’s language button for English or Bangla. For more languages, open your browser’s Translate Page menu and choose a language." data-bn="ইংরেজি বা বাংলার জন্য সাইটের ভাষার বোতাম ব্যবহার করুন। আরও ভাষার জন্য ব্রাউজারের পৃষ্ঠা অনুবাদের মেনু থেকে একটি ভাষা বেছে নিন।">Use the site’s language button for English or Bangla. For more languages, open your browser’s Translate Page menu and choose a language.</p>
+        <a href="https://support.google.com/chrome/answer/173424" data-en="How to translate a page in Chrome" data-bn="Chrome-এ পৃষ্ঠা অনুবাদের নিয়ম">How to translate a page in Chrome</a>
+      </details>
       <details>
         <summary data-en="What is a prompt?" data-bn="প্রম্পট কী?">What is a prompt?</summary>
         <p data-en="A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want." data-bn="প্রম্পট হলো এআই টুলকে দেওয়া প্রশ্ন বা নির্দেশনা। এতে আপনার লক্ষ্য, প্রাসঙ্গিক তথ্য ও কী ধরনের উত্তর চান তা লিখতে পারেন।">A prompt is the question or instruction you give an AI tool. You can include your goal, background, and the type of answer you want.</p>
@@ -543,7 +551,11 @@ Thank you for considering my request.
         if (link.dataset.pageLink === page) link.setAttribute('aria-current', 'page');
         else link.removeAttribute('aria-current');
       }
-      if (fragment) document.getElementById(fragment)?.scrollIntoView();
+      if (fragment) {
+        const target = document.getElementById(fragment);
+        if (target instanceof HTMLDetailsElement) target.open = true;
+        target?.scrollIntoView();
+      }
     }
     showPage();
     window.addEventListener('hashchange', showPage);
@@ -817,6 +829,106 @@ Thank you for considering my request.
     ]
   ]
 };
+    const promptLabels = {
+  "essay": [
+    [
+      "Topic",
+      "বিষয়"
+    ],
+    [
+      "Audience",
+      "পাঠক"
+    ],
+    [
+      "Argument or length",
+      "যুক্তি বা দৈর্ঘ্য"
+    ]
+  ],
+  "email": [
+    [
+      "Purpose",
+      "উদ্দেশ্য"
+    ],
+    [
+      "Recipient",
+      "প্রাপক"
+    ],
+    [
+      "Details and tone",
+      "তথ্য ও ভাষার ধরন"
+    ]
+  ],
+  "study": [
+    [
+      "Topic",
+      "বিষয়"
+    ],
+    [
+      "Current knowledge",
+      "বর্তমান জ্ঞান"
+    ],
+    [
+      "Areas to practice",
+      "অনুশীলনের বিষয়"
+    ]
+  ],
+  "presentation": [
+    [
+      "Topic",
+      "বিষয়"
+    ],
+    [
+      "Audience",
+      "শ্রোতা"
+    ],
+    [
+      "Duration and key points",
+      "সময়কাল ও মূল বিষয়"
+    ]
+  ],
+  "project": [
+    [
+      "Project",
+      "প্রকল্প"
+    ],
+    [
+      "Resources and deadlines",
+      "সংস্থান ও সময়সীমা"
+    ],
+    [
+      "Deliverables and checks",
+      "জমা দেওয়ার কাজ ও যাচাই"
+    ]
+  ],
+  "report": [
+    [
+      "Topic",
+      "বিষয়"
+    ],
+    [
+      "Audience",
+      "পাঠক"
+    ],
+    [
+      "Findings or sections to include",
+      "অন্তর্ভুক্ত ফলাফল বা অংশ"
+    ]
+  ],
+  "other": [
+    [
+      "Task",
+      "কাজ"
+    ],
+    [
+      "Background or audience",
+      "প্রেক্ষাপট বা পাঠক"
+    ],
+    [
+      "Desired format",
+      "কাঙ্ক্ষিত বিন্যাস"
+    ]
+  ]
+};
     const status = document.getElementById('builder-status');
     const picker = document.getElementById('task');
     const fields = ['topic', 'context', 'requirements'].map(id => document.getElementById(id));
@@ -886,7 +998,7 @@ Thank you for considering my request.
       const template = taskContent[activeTask];
       const lines = fields.flatMap((field, index) => {
         const value = field.value.trim();
-        return value ? [template[index + 1][languageIndex] + ' ' + value] : [];
+        return value ? [promptLabels[activeTask][index][languageIndex] + ': ' + value] : [];
       });
       const followup = isBangla ? 'জরুরি তথ্য না থাকলে একটি সংক্ষিপ্ত প্রশ্ন করুন।' : 'Ask one short clarifying question if essential information is missing.';
       result.readOnly = false;
