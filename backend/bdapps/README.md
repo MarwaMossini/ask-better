@@ -3,11 +3,15 @@
 This PHP 8 service turns an SMS topic into an AI prompt. The proposed keyword is
 `ASKBETTER`. Keep charging disabled in provisioning for the demo.
 
-1. Confirm the hosting account's outbound IP and assigned HTTPS folder.
+1. Confirm the hosting account's outbound IP and assigned HTTPS folder. Open the
+   callback URL without the token first. A browser GET should return HTTP 405
+   once HTTPS is trusted. This checks reachability before testing an SMS.
 2. Upload only `sms.php` into the assigned public folder. PHP needs cURL and PDO SQLite.
 3. Create `ask-better-sms-config.php` one directory above the site's document root,
-   outside any web-served directory. Use restrictive permissions. The file returns
-   an array with these keys:
+   outside any web-served directory. Use a hosting account or configuration store
+   that other workshop participants cannot access. A student folder under a
+   shared cPanel login does not provide that isolation. The file returns an
+   array with these keys:
 
    | Key | Value |
    | --- | --- |
@@ -22,8 +26,10 @@ This PHP 8 service turns an SMS topic into an AI prompt. The proposed keyword is
    Receiving URL to the uploaded HTTPS endpoint with `?token=<callback_token>`.
    Confirm that provisioning preserves the query string. Treat the callback URL
    as private and avoid recording its query string in access logs.
-5. With charging off and a test number whitelisted, send the keyword plus a topic
-   to the assigned shortcode. Check that the same test phone receives the reply.
+5. Once the SMS request is approved, keep charging off and whitelist the test
+   number. Use an approved Robi number for the first test, since Robi is the
+   configured operator. Send the assigned keyword plus a topic to the assigned
+   shortcode and confirm the same phone receives one reply.
 
 Run `php backend/bdapps/smoke-test.php` for a simulated callback. It substitutes
 a fake sender function, so it cannot send a real SMS. Each accepted request ID
