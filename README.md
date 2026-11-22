@@ -2,10 +2,11 @@
 
 Ask Better helps users turn a topic and a few details into a prompt they can paste into an AI tool. The website and Android app support English and Bangla. The GitHub repository and Flutter project use the original name, `proshnolab`.
 
-- [Try the live website](https://marwamossini.github.io/proshnolab/)
+- [Open the web app](https://marwamossini.github.io/proshnolab/app/)
+- [Visit the project website](https://marwamossini.github.io/proshnolab/)
 - [Download the Android test APK](https://marwamossini.github.io/proshnolab/downloads/ask-better-test.apk)
 
-For a quick demo, enter **Food waste** as the topic, add a few details, and generate a prompt. Blank answers are skipped. Copy the result or use one of the AI shortcuts to open an external tool. The APK is a debug build. Installation on a physical phone is still pending.
+For a quick demo, enter **Food waste** as the topic, add a few details, and generate a prompt. Blank answers are skipped. Copy the result or use one of the AI shortcuts to open an external tool. The APK is a debug build. The full download passed an archive integrity check. Installation and launch on a physical Android phone are still unverified.
 
 ## Where to find the code
 
@@ -41,4 +42,4 @@ The [Android workflow](.github/workflows/android.yml) runs analysis and widget t
 
 ## SMS demo status
 
-The SMS callback code has [passed its simulated test](https://github.com/MarwaMossini/proshnolab/actions/runs/44895784332). The live HTTPS callback still needs verification, the bdapps API request is pending submission, and no real SMS reply has been verified. The demo uses charging off. See the [SMS setup notes](backend/bdapps/README.md) for PHP requirements, callback configuration, and the test command.
+The SMS callback code has [passed its simulated test](https://github.com/MarwaMossini/proshnolab/actions/runs/44895784332). The PHP callback was uploaded to the AUW workshop hosting. The current callback URL produced a browser certificate warning, so HTTPS is still unverified. The last status verified for the bdapps SMS request was **Robi: Draft**. The Charging SDK is off, and no live SMS reply has been verified. See the [SMS setup notes](backend/bdapps/README.md) for PHP requirements, callback configuration, and the test command.
