@@ -1048,7 +1048,7 @@ Thank you for considering my request.
       const type = document.getElementById('feedback-type').value;
       const title = document.getElementById('feedback-title').value.trim();
       const message = document.getElementById('feedback-message').value.trim();
-      const draft = new URL('https://github.com/MarwaMossini/proshnolab/issues/new');
+      const draft = new URL('https://github.com/MarwaMossini/ask-better/issues/new');
       draft.search = new URLSearchParams({ title: type + ': ' + title, body: message });
       window.location.assign(draft);
     });
