@@ -109,6 +109,50 @@ class _ProshnoLabHomeState extends State<ProshnoLabHome> {
               icon: const Icon(Icons.edit_outlined),
               label: Text(t('Build a prompt', 'প্রম্পট তৈরি করুন')),
             ),
+            OutlinedButton.icon(
+              onPressed: () => showDialog<void>(
+                context: context,
+                builder: (dialogContext) => AlertDialog(
+                  title: Text(t('Try by SMS', 'এসএমএস দিয়ে চেষ্টা করুন')),
+                  content: Text(t(
+                    'Limited test for approved Robi numbers. Text askbetter food waste to 21213, or replace food waste with your topic.',
+                    'অনুমোদিত রবি নম্বরের জন্য সীমিত পরীক্ষা। 21213 নম্বরে askbetter food waste লিখে পাঠান, অথবা food waste-এর জায়গায় আপনার বিষয় লিখুন।',
+                  )),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(dialogContext).pop(),
+                      child: Text(t('Close', 'বন্ধ করুন')),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        final sms = Uri(
+                          scheme: 'sms',
+                          path: '21213',
+                          query: 'body=${Uri.encodeComponent('askbetter food waste')}',
+                        );
+                        var opened = false;
+                        try {
+                          opened = await launchUrl(sms, mode: LaunchMode.externalApplication);
+                        } on PlatformException {
+                          // The manual texting instructions remain visible.
+                        }
+                        if (!opened && context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(t(
+                              'Open your phone’s Messages app and enter the text manually.',
+                              'ফোনের মেসেজ অ্যাপ খুলে নিজে বার্তাটি লিখুন।',
+                            )),
+                          ));
+                        }
+                      },
+                      child: Text(t('Open Messages', 'মেসেজ খুলুন')),
+                    ),
+                  ],
+                ),
+              ),
+              icon: const Icon(Icons.sms_outlined),
+              label: Text(t('Try by SMS', 'এসএমএস দিয়ে চেষ্টা করুন')),
+            ),
             TextButton(
               onPressed: () async {
                 final openBuilder = await Navigator.of(context).push<bool>(
